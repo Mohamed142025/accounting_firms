@@ -1,0 +1,321 @@
+[
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-crm_deal",
+    "dt": "Customer",
+    "fieldname": "crm_deal",
+    "label": "Frappe CRM Deal",
+    "fieldtype": "Data",
+    "insert_after": "prospect_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_other_info",
+    "dt": "Customer",
+    "fieldname": "custom_other_info",
+    "label": "Other Info",
+    "fieldtype": "Tab Break",
+    "insert_after": "connections_tab"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_tax_card",
+    "dt": "Customer",
+    "fieldname": "custom_tax_card",
+    "label": "Tax Card",
+    "fieldtype": "Section Break",
+    "insert_after": "custom_other_info",
+    "collapsible": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom__business_commencement_date",
+    "dt": "Customer",
+    "fieldname": "custom__business_commencement_date",
+    "label": " Business Commencement Date",
+    "fieldtype": "Date",
+    "insert_after": "custom_tax_card"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_company_termination_date",
+    "dt": "Customer",
+    "fieldname": "custom_company_termination_date",
+    "label": "Company Termination Date",
+    "fieldtype": "Date",
+    "insert_after": "custom__business_commencement_date"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_column_break_uny4o",
+    "dt": "Customer",
+    "fieldname": "custom_column_break_uny4o",
+    "label": "",
+    "fieldtype": "Column Break",
+    "insert_after": "custom_company_termination_date"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_tax_card_issuance_date",
+    "dt": "Customer",
+    "fieldname": "custom_tax_card_issuance_date",
+    "label": "Tax Card Issuance Date",
+    "fieldtype": "Date",
+    "insert_after": "custom_column_break_uny4o"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_tax_card_expiry_date",
+    "dt": "Customer",
+    "fieldname": "custom_tax_card_expiry_date",
+    "label": "Tax Card Expiry Date",
+    "fieldtype": "Date",
+    "insert_after": "custom_tax_card_issuance_date"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_vat",
+    "dt": "Customer",
+    "fieldname": "custom_vat",
+    "label": "VAT",
+    "fieldtype": "Section Break",
+    "insert_after": "custom_tax_card_expiry_date",
+    "collapsible": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_vat_registration",
+    "dt": "Customer",
+    "fieldname": "custom_vat_registration",
+    "label": "VAT Registration",
+    "fieldtype": "Select",
+    "insert_after": "custom_vat"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_column_break_8ai1n",
+    "dt": "Customer",
+    "fieldname": "custom_column_break_8ai1n",
+    "label": "",
+    "fieldtype": "Column Break",
+    "insert_after": "custom_vat_registration"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_vat_issue_date",
+    "dt": "Customer",
+    "fieldname": "custom_vat_issue_date",
+    "label": "VAT Issue Date",
+    "fieldtype": "Date",
+    "insert_after": "custom_column_break_8ai1n"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_column_break_e3nuk",
+    "dt": "Customer",
+    "fieldname": "custom_column_break_e3nuk",
+    "label": "",
+    "fieldtype": "Column Break",
+    "insert_after": "custom_vat_issue_date"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_vat_expiry_date",
+    "dt": "Customer",
+    "fieldname": "custom_vat_expiry_date",
+    "label": "VAT Expiry Date",
+    "fieldtype": "Date",
+    "insert_after": "custom_column_break_e3nuk"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_license",
+    "dt": "Customer",
+    "fieldname": "custom_license",
+    "label": "License",
+    "fieldtype": "Section Break",
+    "insert_after": "custom_vat_expiry_date",
+    "collapsible": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_license_number",
+    "dt": "Customer",
+    "fieldname": "custom_license_number",
+    "label": "License Number",
+    "fieldtype": "Data",
+    "insert_after": "custom_license"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_license_type",
+    "dt": "Customer",
+    "fieldname": "custom_license_type",
+    "label": "License Type",
+    "fieldtype": "Select",
+    "insert_after": "custom_license_number"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_licensing_authority",
+    "dt": "Customer",
+    "fieldname": "custom_licensing_authority",
+    "label": "Licensing Authority",
+    "fieldtype": "Data",
+    "insert_after": "custom_license_type"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_column_break_a9rrf",
+    "dt": "Customer",
+    "fieldname": "custom_column_break_a9rrf",
+    "label": "",
+    "fieldtype": "Column Break",
+    "insert_after": "custom_licensing_authority"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_license_issue_date",
+    "dt": "Customer",
+    "fieldname": "custom_license_issue_date",
+    "label": "License Issue Date",
+    "fieldtype": "Date",
+    "insert_after": "custom_column_break_a9rrf"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_license_expiry_date",
+    "dt": "Customer",
+    "fieldname": "custom_license_expiry_date",
+    "label": "License Expiry Date",
+    "fieldtype": "Date",
+    "insert_after": "custom_license_issue_date"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_license_address",
+    "dt": "Customer",
+    "fieldname": "custom_license_address",
+    "label": "License Address",
+    "fieldtype": "Data",
+    "insert_after": "custom_license_expiry_date"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_column_break_e0urc",
+    "dt": "Customer",
+    "fieldname": "custom_column_break_e0urc",
+    "label": "",
+    "fieldtype": "Column Break",
+    "insert_after": "custom_license_address"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_authorized_activity",
+    "dt": "Customer",
+    "fieldname": "custom_authorized_activity",
+    "label": "Authorized Activity",
+    "fieldtype": "Data",
+    "insert_after": "custom_column_break_e0urc"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_license_status",
+    "dt": "Customer",
+    "fieldname": "custom_license_status",
+    "label": "License Status",
+    "fieldtype": "Select",
+    "insert_after": "custom_authorized_activity"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_note",
+    "dt": "Customer",
+    "fieldname": "custom_note",
+    "label": "Note",
+    "fieldtype": "Small Text",
+    "insert_after": "custom_license_status"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_import__export",
+    "dt": "Customer",
+    "fieldname": "custom_import__export",
+    "label": "Import & Export",
+    "fieldtype": "Section Break",
+    "insert_after": "custom_note",
+    "collapsible": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_import_card",
+    "dt": "Customer",
+    "fieldname": "custom_import_card",
+    "label": "Import Card",
+    "fieldtype": "Column Break",
+    "insert_after": "custom_import__export"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_import_card_number",
+    "dt": "Customer",
+    "fieldname": "custom_import_card_number",
+    "label": "Import Card Number",
+    "fieldtype": "Data",
+    "insert_after": "custom_import_card"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_import_card_issue_date",
+    "dt": "Customer",
+    "fieldname": "custom_import_card_issue_date",
+    "label": "Import Card Issue Date",
+    "fieldtype": "Date",
+    "insert_after": "custom_import_card_number"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_import_card_expiry_date",
+    "dt": "Customer",
+    "fieldname": "custom_import_card_expiry_date",
+    "label": "Import Card Expiry Date",
+    "fieldtype": "Date",
+    "insert_after": "custom_import_card_issue_date"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_column_break_qw7or",
+    "dt": "Customer",
+    "fieldname": "custom_column_break_qw7or",
+    "label": "Export Card",
+    "fieldtype": "Column Break",
+    "insert_after": "custom_import_card_expiry_date"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_export_card_number",
+    "dt": "Customer",
+    "fieldname": "custom_export_card_number",
+    "label": "Export Card Number",
+    "fieldtype": "Data",
+    "insert_after": "custom_column_break_qw7or"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_export_card_issue_date",
+    "dt": "Customer",
+    "fieldname": "custom_export_card_issue_date",
+    "label": "Export Card Issue Date",
+    "fieldtype": "Date",
+    "insert_after": "custom_export_card_number"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_export_card_expiry_date",
+    "dt": "Customer",
+    "fieldname": "custom_export_card_expiry_date",
+    "label": "Export Card Expiry Date",
+    "fieldtype": "Date",
+    "insert_after": "custom_export_card_issue_date"
+  }
+]

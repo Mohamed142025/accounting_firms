@@ -5,6 +5,13 @@ app_description = "Accounting firms management system"
 app_email = "Mohameddbs53@gmail.com"
 app_license = "mit"
 
+# Fixtures
+# --------
+
+fixtures = [
+	"Custom Field"
+]
+
 # Apps
 # ------------------
 
