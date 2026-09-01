@@ -6,7 +6,18 @@
     "fieldname": "crm_deal",
     "label": "Frappe CRM Deal",
     "fieldtype": "Data",
-    "insert_after": "prospect_name"
+    "insert_after": "prospect_name",
+    "module": "Accounting Firms"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_custom_number",
+    "dt": "Customer",
+    "fieldname": "custom_custom_number",
+    "label": "Custom Number",
+    "fieldtype": "Data",
+    "insert_after": "customer_name",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -15,7 +26,8 @@
     "fieldname": "custom_other_info",
     "label": "Other Info",
     "fieldtype": "Tab Break",
-    "insert_after": "connections_tab"
+    "insert_after": "connections_tab",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -25,7 +37,8 @@
     "label": "Tax Card",
     "fieldtype": "Section Break",
     "insert_after": "custom_other_info",
-    "collapsible": 1
+    "collapsible": 1,
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -34,7 +47,8 @@
     "fieldname": "custom__business_commencement_date",
     "label": " Business Commencement Date",
     "fieldtype": "Date",
-    "insert_after": "custom_tax_card"
+    "insert_after": "custom_tax_card",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -43,7 +57,8 @@
     "fieldname": "custom_company_termination_date",
     "label": "Company Termination Date",
     "fieldtype": "Date",
-    "insert_after": "custom__business_commencement_date"
+    "insert_after": "custom__business_commencement_date",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -52,7 +67,8 @@
     "fieldname": "custom_column_break_uny4o",
     "label": "",
     "fieldtype": "Column Break",
-    "insert_after": "custom_company_termination_date"
+    "insert_after": "custom_company_termination_date",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -61,7 +77,8 @@
     "fieldname": "custom_tax_card_issuance_date",
     "label": "Tax Card Issuance Date",
     "fieldtype": "Date",
-    "insert_after": "custom_column_break_uny4o"
+    "insert_after": "custom_column_break_uny4o",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -70,7 +87,8 @@
     "fieldname": "custom_tax_card_expiry_date",
     "label": "Tax Card Expiry Date",
     "fieldtype": "Date",
-    "insert_after": "custom_tax_card_issuance_date"
+    "insert_after": "custom_tax_card_issuance_date",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -80,7 +98,8 @@
     "label": "VAT",
     "fieldtype": "Section Break",
     "insert_after": "custom_tax_card_expiry_date",
-    "collapsible": 1
+    "collapsible": 1,
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -89,7 +108,8 @@
     "fieldname": "custom_vat_registration",
     "label": "VAT Registration",
     "fieldtype": "Select",
-    "insert_after": "custom_vat"
+    "insert_after": "custom_vat",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -98,7 +118,8 @@
     "fieldname": "custom_column_break_8ai1n",
     "label": "",
     "fieldtype": "Column Break",
-    "insert_after": "custom_vat_registration"
+    "insert_after": "custom_vat_registration",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -107,7 +128,8 @@
     "fieldname": "custom_vat_issue_date",
     "label": "VAT Issue Date",
     "fieldtype": "Date",
-    "insert_after": "custom_column_break_8ai1n"
+    "insert_after": "custom_column_break_8ai1n",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -116,7 +138,8 @@
     "fieldname": "custom_column_break_e3nuk",
     "label": "",
     "fieldtype": "Column Break",
-    "insert_after": "custom_vat_issue_date"
+    "insert_after": "custom_vat_issue_date",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -125,7 +148,8 @@
     "fieldname": "custom_vat_expiry_date",
     "label": "VAT Expiry Date",
     "fieldtype": "Date",
-    "insert_after": "custom_column_break_e3nuk"
+    "insert_after": "custom_column_break_e3nuk",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -135,7 +159,8 @@
     "label": "License",
     "fieldtype": "Section Break",
     "insert_after": "custom_vat_expiry_date",
-    "collapsible": 1
+    "collapsible": 1,
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -144,7 +169,8 @@
     "fieldname": "custom_license_number",
     "label": "License Number",
     "fieldtype": "Data",
-    "insert_after": "custom_license"
+    "insert_after": "custom_license",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -153,7 +179,8 @@
     "fieldname": "custom_license_type",
     "label": "License Type",
     "fieldtype": "Select",
-    "insert_after": "custom_license_number"
+    "insert_after": "custom_license_number",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -162,7 +189,8 @@
     "fieldname": "custom_licensing_authority",
     "label": "Licensing Authority",
     "fieldtype": "Data",
-    "insert_after": "custom_license_type"
+    "insert_after": "custom_license_type",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -171,7 +199,8 @@
     "fieldname": "custom_column_break_a9rrf",
     "label": "",
     "fieldtype": "Column Break",
-    "insert_after": "custom_licensing_authority"
+    "insert_after": "custom_licensing_authority",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -180,7 +209,8 @@
     "fieldname": "custom_license_issue_date",
     "label": "License Issue Date",
     "fieldtype": "Date",
-    "insert_after": "custom_column_break_a9rrf"
+    "insert_after": "custom_column_break_a9rrf",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -189,7 +219,8 @@
     "fieldname": "custom_license_expiry_date",
     "label": "License Expiry Date",
     "fieldtype": "Date",
-    "insert_after": "custom_license_issue_date"
+    "insert_after": "custom_license_issue_date",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -198,7 +229,8 @@
     "fieldname": "custom_license_address",
     "label": "License Address",
     "fieldtype": "Data",
-    "insert_after": "custom_license_expiry_date"
+    "insert_after": "custom_license_expiry_date",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -207,7 +239,8 @@
     "fieldname": "custom_column_break_e0urc",
     "label": "",
     "fieldtype": "Column Break",
-    "insert_after": "custom_license_address"
+    "insert_after": "custom_license_address",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -216,7 +249,8 @@
     "fieldname": "custom_authorized_activity",
     "label": "Authorized Activity",
     "fieldtype": "Data",
-    "insert_after": "custom_column_break_e0urc"
+    "insert_after": "custom_column_break_e0urc",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -225,7 +259,8 @@
     "fieldname": "custom_license_status",
     "label": "License Status",
     "fieldtype": "Select",
-    "insert_after": "custom_authorized_activity"
+    "insert_after": "custom_authorized_activity",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -234,7 +269,8 @@
     "fieldname": "custom_note",
     "label": "Note",
     "fieldtype": "Small Text",
-    "insert_after": "custom_license_status"
+    "insert_after": "custom_license_status",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -244,7 +280,8 @@
     "label": "Import & Export",
     "fieldtype": "Section Break",
     "insert_after": "custom_note",
-    "collapsible": 1
+    "collapsible": 1,
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -253,7 +290,8 @@
     "fieldname": "custom_import_card",
     "label": "Import Card",
     "fieldtype": "Column Break",
-    "insert_after": "custom_import__export"
+    "insert_after": "custom_import__export",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -262,7 +300,8 @@
     "fieldname": "custom_import_card_number",
     "label": "Import Card Number",
     "fieldtype": "Data",
-    "insert_after": "custom_import_card"
+    "insert_after": "custom_import_card",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -271,7 +310,8 @@
     "fieldname": "custom_import_card_issue_date",
     "label": "Import Card Issue Date",
     "fieldtype": "Date",
-    "insert_after": "custom_import_card_number"
+    "insert_after": "custom_import_card_number",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -280,7 +320,8 @@
     "fieldname": "custom_import_card_expiry_date",
     "label": "Import Card Expiry Date",
     "fieldtype": "Date",
-    "insert_after": "custom_import_card_issue_date"
+    "insert_after": "custom_import_card_issue_date",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -289,7 +330,8 @@
     "fieldname": "custom_column_break_qw7or",
     "label": "Export Card",
     "fieldtype": "Column Break",
-    "insert_after": "custom_import_card_expiry_date"
+    "insert_after": "custom_import_card_expiry_date",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -298,7 +340,8 @@
     "fieldname": "custom_export_card_number",
     "label": "Export Card Number",
     "fieldtype": "Data",
-    "insert_after": "custom_column_break_qw7or"
+    "insert_after": "custom_column_break_qw7or",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -307,7 +350,8 @@
     "fieldname": "custom_export_card_issue_date",
     "label": "Export Card Issue Date",
     "fieldtype": "Date",
-    "insert_after": "custom_export_card_number"
+    "insert_after": "custom_export_card_number",
+    "module": "Accounting Firms"
   },
   {
     "doctype": "Custom Field",
@@ -316,6 +360,7 @@
     "fieldname": "custom_export_card_expiry_date",
     "label": "Export Card Expiry Date",
     "fieldtype": "Date",
-    "insert_after": "custom_export_card_issue_date"
+    "insert_after": "custom_export_card_issue_date",
+    "module": "Accounting Firms"
   }
 ]

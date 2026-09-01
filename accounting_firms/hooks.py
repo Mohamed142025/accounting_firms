@@ -12,6 +12,10 @@ fixtures = [
 	"Custom Field"
 ]
 
+override_doctype_class = {
+	"Customer": "accounting_firms.custom.customer.CustomCustomer"
+}
+
 # Apps
 # ------------------
 
@@ -50,7 +54,7 @@ fixtures = [
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Customer": "public/js/customer.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}

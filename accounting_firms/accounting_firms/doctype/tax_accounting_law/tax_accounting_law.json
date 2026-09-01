@@ -1,0 +1,50 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "field:tax_accounting_law",
+ "creation": "2026-09-01 18:15:24.724948",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "tax_accounting_law"
+ ],
+ "fields": [
+  {
+   "fieldname": "tax_accounting_law",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tax Accounting Law ",
+   "reqd": 1,
+   "unique": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-01 18:17:21.750848",
+ "modified_by": "Administrator",
+ "module": "Accounting Firms",
+ "name": "Tax Accounting Law",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
