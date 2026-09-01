@@ -21,6 +21,96 @@
   },
   {
     "doctype": "Custom Field",
+    "name": "Customer-custom_customer_status",
+    "dt": "Customer",
+    "fieldname": "custom_customer_status",
+    "label": "Customer Status",
+    "fieldtype": "Select",
+    "insert_after": "custom_custom_number",
+    "module": "Accounting Firms"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_legal_structure",
+    "dt": "Customer",
+    "fieldname": "custom_legal_structure",
+    "label": "Legal Structure",
+    "fieldtype": "Select",
+    "insert_after": "custom_customer_status",
+    "module": "Accounting Firms"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_tax_file_number",
+    "dt": "Customer",
+    "fieldname": "custom_tax_file_number",
+    "label": "Tax File Number",
+    "fieldtype": "Data",
+    "insert_after": "tax_id",
+    "module": "Accounting Firms"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_tax_office",
+    "dt": "Customer",
+    "fieldname": "custom_tax_office",
+    "label": "Tax Office",
+    "fieldtype": "Data",
+    "insert_after": "custom_tax_file_number",
+    "module": "Accounting Firms"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_the_company_is_governed_by_law_no",
+    "dt": "Customer",
+    "fieldname": "custom_the_company_is_governed_by_law_no",
+    "label": "The company is governed by Law No.",
+    "fieldtype": "Data",
+    "insert_after": "tax_category",
+    "module": "Accounting Firms"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_tax_accounting_law",
+    "dt": "Customer",
+    "fieldname": "custom_tax_accounting_law",
+    "label": "Tax Accounting Law",
+    "fieldtype": "Data",
+    "insert_after": "custom_the_company_is_governed_by_law_no",
+    "module": "Accounting Firms"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_accountant_id",
+    "dt": "Customer",
+    "fieldname": "custom_accountant_id",
+    "label": "Accountant ID",
+    "fieldtype": "Data",
+    "insert_after": "tax_withholding_category",
+    "module": "Accounting Firms"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_insurance_id",
+    "dt": "Customer",
+    "fieldname": "custom_insurance_id",
+    "label": "Insurance ID",
+    "fieldtype": "Data",
+    "insert_after": "custom_accountant_id",
+    "module": "Accounting Firms"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-custom_affiliated_with",
+    "dt": "Customer",
+    "fieldname": "custom_affiliated_with",
+    "label": "Affiliated with",
+    "fieldtype": "Data",
+    "insert_after": "custom_insurance_id",
+    "module": "Accounting Firms"
+  },
+  {
+    "doctype": "Custom Field",
     "name": "Customer-custom_other_info",
     "dt": "Customer",
     "fieldname": "custom_other_info",
