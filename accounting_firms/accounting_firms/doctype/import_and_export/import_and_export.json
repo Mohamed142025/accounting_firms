@@ -1,0 +1,76 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "creation": "2026-09-06 21:57:55.877627",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "import_card_column",
+  "import_card_number",
+  "import_card_issue_date",
+  "import_card_expiry_date",
+  "export_card_column",
+  "export_card_number",
+  "export_card_issue_date",
+  "export_card_expiry_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "import_card_column",
+   "fieldtype": "Column Break",
+   "label": "Import Card"
+  },
+  {
+   "fieldname": "import_card_number",
+   "fieldtype": "Data",
+   "label": "Import Card Number"
+  },
+  {
+   "fieldname": "import_card_issue_date",
+   "fieldtype": "Date",
+   "label": "Import Card Issue Date"
+  },
+  {
+   "fieldname": "import_card_expiry_date",
+   "fieldtype": "Date",
+   "label": "Import Card Expiry Date"
+  },
+  {
+   "fieldname": "export_card_column",
+   "fieldtype": "Column Break",
+   "label": "Export Card"
+  },
+  {
+   "fieldname": "export_card_number",
+   "fieldtype": "Data",
+   "label": "Export Card Number"
+  },
+  {
+   "fieldname": "export_card_issue_date",
+   "fieldtype": "Date",
+   "label": "Export Card Issue Date"
+  },
+  {
+   "fieldname": "export_card_expiry_date",
+   "fieldtype": "Date",
+   "label": "Export Card Expiry Date"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-06 22:00:00.518201",
+ "modified_by": "Administrator",
+ "module": "Accounting Firms",
+ "name": "Import and Export",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "creation": "2026-09-06 21:37:35.076168",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "vat_registration",
+  "column_break_ylsp",
+  "vat_issue_date",
+  "column_break_kbty",
+  "vat_expiry_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "vat_registration",
+   "fieldtype": "Select",
+   "label": "VAT Registration",
+   "options": "\u0645\u0634\u062a\u0631\u0643\n\u063a\u064a\u0631 \u0645\u0634\u062a\u0631\u0643"
+  },
+  {
+   "fieldname": "column_break_ylsp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vat_issue_date",
+   "fieldtype": "Date",
+   "label": "VAT Issue Date"
+  },
+  {
+   "fieldname": "column_break_kbty",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vat_expiry_date",
+   "fieldtype": "Date",
+   "label": "VAT Expiry Date"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-06 21:44:35.892309",
+ "modified_by": "Administrator",
+ "module": "Accounting Firms",
+ "name": "VAT",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

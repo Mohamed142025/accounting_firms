@@ -1,5 +1,224 @@
 [
   {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_table_tax_email",
+    "dt": "Customer",
+    "fieldtype": "Table",
+    "module": "Accounting Firms",
+    "label": "",
+    "fieldname": "custom_table_tax_email",
+    "insert_after": "custom_tax_email",
+    "options": "Tax Email",
+    "collapsible": 0,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_tax_email",
+    "dt": "Customer",
+    "fieldtype": "Section Break",
+    "module": "Accounting Firms",
+    "label": "Tax Email",
+    "fieldname": "custom_tax_email",
+    "insert_after": "custom_table_advance_payments",
+    "collapsible": 1,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_table_advance_payments",
+    "dt": "Customer",
+    "fieldtype": "Table",
+    "module": "Accounting Firms",
+    "label": "",
+    "fieldname": "custom_table_advance_payments",
+    "insert_after": "custom_advance_payments",
+    "options": "Advance Payments",
+    "collapsible": 0,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_advance_payments",
+    "dt": "Customer",
+    "fieldtype": "Section Break",
+    "module": "Accounting Firms",
+    "label": "Advance Payments",
+    "fieldname": "custom_advance_payments",
+    "insert_after": "custom_table_facilitation",
+    "collapsible": 1,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_table_facilitation",
+    "dt": "Customer",
+    "fieldtype": "Table",
+    "module": "Accounting Firms",
+    "label": "",
+    "fieldname": "custom_table_facilitation",
+    "insert_after": "custom_facilitation",
+    "options": "Facilitation",
+    "collapsible": 0,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_facilitation",
+    "dt": "Customer",
+    "fieldtype": "Section Break",
+    "module": "Accounting Firms",
+    "label": "Facilitation",
+    "fieldname": "custom_facilitation",
+    "insert_after": "custom_table_token",
+    "collapsible": 1,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_table_token",
+    "dt": "Customer",
+    "fieldtype": "Table",
+    "module": "Accounting Firms",
+    "label": "Table Token",
+    "fieldname": "custom_table_token",
+    "insert_after": "custom_token",
+    "options": "Token",
+    "collapsible": 0,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_token",
+    "dt": "Customer",
+    "fieldtype": "Section Break",
+    "module": "Accounting Firms",
+    "label": "Token",
+    "fieldname": "custom_token",
+    "insert_after": "custom_table_client_branches",
+    "collapsible": 1,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_table_client_branches",
+    "dt": "Customer",
+    "fieldtype": "Table",
+    "module": "Accounting Firms",
+    "label": "",
+    "fieldname": "custom_table_client_branches",
+    "insert_after": "custom_section_break_hdlww",
+    "options": "Client Branches",
+    "collapsible": 0,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_section_break_hdlww",
+    "dt": "Customer",
+    "fieldtype": "Section Break",
+    "module": "Accounting Firms",
+    "label": "Client Branches",
+    "fieldname": "custom_section_break_hdlww",
+    "insert_after": "custom_table_construction_and_building_federation",
+    "collapsible": 1,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_table_construction_and_building_federation",
+    "dt": "Customer",
+    "fieldtype": "Table",
+    "module": "Accounting Firms",
+    "label": "Table Construction and Building Federation",
+    "fieldname": "custom_table_construction_and_building_federation",
+    "insert_after": "custom_construction_and_building_federation",
+    "options": "Construction and Building Federation",
+    "collapsible": 0,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_construction_and_building_federation",
+    "dt": "Customer",
+    "fieldtype": "Section Break",
+    "module": "Accounting Firms",
+    "label": "Construction and Building Federation",
+    "fieldname": "custom_construction_and_building_federation",
+    "insert_after": "custom_table_import__export",
+    "collapsible": 1,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_table_import__export",
+    "dt": "Customer",
+    "fieldtype": "Table",
+    "module": "Accounting Firms",
+    "label": "Import & Export",
+    "fieldname": "custom_table_import__export",
+    "insert_after": "custom_import__export",
+    "options": "Import and Export",
+    "collapsible": 0,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_table_license",
+    "dt": "Customer",
+    "fieldtype": "Table",
+    "module": "Accounting Firms",
+    "label": "",
+    "fieldname": "custom_table_license",
+    "insert_after": "custom_license",
+    "options": "License",
+    "collapsible": 0,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_table_vat",
+    "dt": "Customer",
+    "fieldtype": "Table",
+    "module": "Accounting Firms",
+    "label": "",
+    "fieldname": "custom_table_vat",
+    "insert_after": "custom_vat",
+    "options": "VAT",
+    "collapsible": 0,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
+    "doctype": "Custom Field",
+    "name": "Customer-custom_table_tax_card",
+    "dt": "Customer",
+    "fieldtype": "Table",
+    "module": "Accounting Firms",
+    "label": "",
+    "fieldname": "custom_table_tax_card",
+    "insert_after": "custom_tax_card",
+    "options": "Tax Caed",
+    "collapsible": 0,
+    "unique": 0
+  },
+  {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_affiliated_with",
     "dt": "Customer",
@@ -8,9 +227,12 @@
     "label": "Affiliated with",
     "fieldname": "custom_affiliated_with",
     "insert_after": "custom_insurance_id",
-    "options": "Customer"
+    "options": "Customer",
+    "collapsible": 0,
+    "unique": 0
   },
   {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_tax_accounting_law",
     "dt": "Customer",
@@ -19,9 +241,12 @@
     "label": "Tax Accounting Law",
     "fieldname": "custom_tax_accounting_law",
     "insert_after": "custom_the_company_is_governed_by_law_no",
-    "options": "Tax Accounting Law"
+    "options": "Tax Accounting Law",
+    "collapsible": 0,
+    "unique": 0
   },
   {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_the_company_is_governed_by_law_no",
     "dt": "Customer",
@@ -30,9 +255,11 @@
     "label": "The company is governed by Law No.",
     "fieldname": "custom_the_company_is_governed_by_law_no",
     "insert_after": "tax_category",
-    "translatable": 1
+    "collapsible": 0,
+    "unique": 0
   },
   {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_insurance_id",
     "dt": "Customer",
@@ -41,9 +268,11 @@
     "label": "Insurance ID",
     "fieldname": "custom_insurance_id",
     "insert_after": "custom_accountant_id",
-    "translatable": 1
+    "collapsible": 0,
+    "unique": 0
   },
   {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_accountant_id",
     "dt": "Customer",
@@ -52,9 +281,11 @@
     "label": "Accountant ID",
     "fieldname": "custom_accountant_id",
     "insert_after": "tax_withholding_category",
-    "translatable": 1
+    "collapsible": 0,
+    "unique": 0
   },
   {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_tax_office",
     "dt": "Customer",
@@ -64,9 +295,11 @@
     "fieldname": "custom_tax_office",
     "insert_after": "custom_tax_file_number",
     "options": "Tax Office",
-    "in_list_view": 1
+    "collapsible": 0,
+    "unique": 0
   },
   {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_tax_file_number",
     "dt": "Customer",
@@ -75,11 +308,11 @@
     "label": "Tax File Number",
     "fieldname": "custom_tax_file_number",
     "insert_after": "tax_id",
-    "unique": 1,
-    "in_list_view": 1,
-    "translatable": 1
+    "collapsible": 0,
+    "unique": 1
   },
   {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_legal_structure",
     "dt": "Customer",
@@ -88,11 +321,12 @@
     "label": "Legal Structure",
     "fieldname": "custom_legal_structure",
     "insert_after": "custom_customer_status",
-    "options": "تضامن\nتوصية بالأسهم\nتوصية بسيطة\nذات مسؤولية محدودة\nشخص واحد\nفردي\nمساهمة",
-    "in_list_view": 1,
-    "translatable": 1
+    "options": "تضامن\nتوصية بالاسهم\nتوصية بسيطة\nذات مسؤولية محدودة\nشخص واحد\nفردي\nمساهمه",
+    "collapsible": 0,
+    "unique": 0
   },
   {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_customer_status",
     "dt": "Customer",
@@ -101,11 +335,12 @@
     "label": "Customer Status",
     "fieldname": "custom_customer_status",
     "insert_after": "territory",
-    "options": "In Review\nStart\nActive\nInactive\nStopped\nTemporary Stop\nOthers",
-    "in_list_view": 1,
-    "translatable": 1
+    "options": "Inreview\nStart\nActive\nInactive\nStopped\nStop Temp\nOthers",
+    "collapsible": 0,
+    "unique": 0
   },
   {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_custom_number",
     "dt": "Customer",
@@ -114,91 +349,11 @@
     "label": "Custom Number",
     "fieldname": "custom_custom_number",
     "insert_after": "basic_info",
-    "translatable": 1
+    "collapsible": 0,
+    "unique": 0
   },
   {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_export_card_expiry_date",
-    "dt": "Customer",
-    "fieldtype": "Date",
-    "module": "Accounting Firms",
-    "label": "Export Card Expiry Date",
-    "fieldname": "custom_export_card_expiry_date",
-    "insert_after": "custom_export_card_issue_date"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_export_card_issue_date",
-    "dt": "Customer",
-    "fieldtype": "Date",
-    "module": "Accounting Firms",
-    "label": "Export Card Issue Date",
-    "fieldname": "custom_export_card_issue_date",
-    "insert_after": "custom_export_card_number"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_export_card_number",
-    "dt": "Customer",
-    "fieldtype": "Data",
-    "module": "Accounting Firms",
-    "label": "Export Card Number",
-    "fieldname": "custom_export_card_number",
-    "insert_after": "custom_column_break_qw7or",
-    "translatable": 1
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_import_card_expiry_date",
-    "dt": "Customer",
-    "fieldtype": "Date",
-    "module": "Accounting Firms",
-    "label": "Import Card Expiry Date",
-    "fieldname": "custom_import_card_expiry_date",
-    "insert_after": "custom_import_card_issue_date"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_column_break_qw7or",
-    "dt": "Customer",
-    "fieldtype": "Column Break",
-    "module": "Accounting Firms",
-    "label": "Export Card",
-    "fieldname": "custom_column_break_qw7or",
-    "insert_after": "custom_import_card_expiry_date"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_import_card_issue_date",
-    "dt": "Customer",
-    "fieldtype": "Date",
-    "module": "Accounting Firms",
-    "label": "Import Card Issue Date",
-    "fieldname": "custom_import_card_issue_date",
-    "insert_after": "custom_import_card_number"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_import_card_number",
-    "dt": "Customer",
-    "fieldtype": "Data",
-    "module": "Accounting Firms",
-    "label": "Import Card Number",
-    "fieldname": "custom_import_card_number",
-    "insert_after": "custom_import_card",
-    "translatable": 1
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_import_card",
-    "dt": "Customer",
-    "fieldtype": "Column Break",
-    "module": "Accounting Firms",
-    "label": "Import Card",
-    "fieldname": "custom_import_card",
-    "insert_after": "custom_import__export"
-  },
-  {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_import__export",
     "dt": "Customer",
@@ -206,124 +361,12 @@
     "module": "Accounting Firms",
     "label": "Import & Export",
     "fieldname": "custom_import__export",
-    "insert_after": "custom_note"
+    "insert_after": "custom_table_license",
+    "collapsible": 1,
+    "unique": 0
   },
   {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_note",
-    "dt": "Customer",
-    "fieldtype": "Small Text",
-    "module": "Accounting Firms",
-    "label": "Note",
-    "fieldname": "custom_note",
-    "insert_after": "custom_license_status",
-    "translatable": 1
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_license_status",
-    "dt": "Customer",
-    "fieldtype": "Select",
-    "module": "Accounting Firms",
-    "label": "License Status",
-    "fieldname": "custom_license_status",
-    "insert_after": "custom_authorized_activity",
-    "translatable": 1
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_authorized_activity",
-    "dt": "Customer",
-    "fieldtype": "Data",
-    "module": "Accounting Firms",
-    "label": "Authorized Activity",
-    "fieldname": "custom_authorized_activity",
-    "insert_after": "custom_column_break_e0urc",
-    "translatable": 1
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_column_break_e0urc",
-    "dt": "Customer",
-    "fieldtype": "Column Break",
-    "module": "Accounting Firms",
-    "fieldname": "custom_column_break_e0urc",
-    "insert_after": "custom_license_address"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_license_address",
-    "dt": "Customer",
-    "fieldtype": "Data",
-    "module": "Accounting Firms",
-    "label": "License Address",
-    "fieldname": "custom_license_address",
-    "insert_after": "custom_license_expiry_date",
-    "translatable": 1
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_license_expiry_date",
-    "dt": "Customer",
-    "fieldtype": "Date",
-    "module": "Accounting Firms",
-    "label": "License Expiry Date",
-    "fieldname": "custom_license_expiry_date",
-    "insert_after": "custom_license_issue_date"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_license_issue_date",
-    "dt": "Customer",
-    "fieldtype": "Date",
-    "module": "Accounting Firms",
-    "label": "License Issue Date",
-    "fieldname": "custom_license_issue_date",
-    "insert_after": "custom_column_break_a9rrf"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_column_break_a9rrf",
-    "dt": "Customer",
-    "fieldtype": "Column Break",
-    "module": "Accounting Firms",
-    "fieldname": "custom_column_break_a9rrf",
-    "insert_after": "custom_licensing_authority"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_licensing_authority",
-    "dt": "Customer",
-    "fieldtype": "Data",
-    "module": "Accounting Firms",
-    "label": "Licensing Authority",
-    "fieldname": "custom_licensing_authority",
-    "insert_after": "custom_license_type",
-    "translatable": 1
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_license_type",
-    "dt": "Customer",
-    "fieldtype": "Select",
-    "module": "Accounting Firms",
-    "label": "License Type",
-    "fieldname": "custom_license_type",
-    "insert_after": "custom_license_number",
-    "translatable": 1
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_license_number",
-    "dt": "Customer",
-    "fieldtype": "Data",
-    "module": "Accounting Firms",
-    "label": "License Number",
-    "fieldname": "custom_license_number",
-    "insert_after": "custom_license",
-    "translatable": 1
-  },
-  {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_license",
     "dt": "Customer",
@@ -331,58 +374,12 @@
     "module": "Accounting Firms",
     "label": "License",
     "fieldname": "custom_license",
-    "insert_after": "custom_vat_expiry_date"
+    "insert_after": "custom_table_vat",
+    "collapsible": 1,
+    "unique": 0
   },
   {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_vat_expiry_date",
-    "dt": "Customer",
-    "fieldtype": "Date",
-    "module": "Accounting Firms",
-    "label": "VAT Expiry Date",
-    "fieldname": "custom_vat_expiry_date",
-    "insert_after": "custom_column_break_e3nuk"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_column_break_e3nuk",
-    "dt": "Customer",
-    "fieldtype": "Column Break",
-    "module": "Accounting Firms",
-    "fieldname": "custom_column_break_e3nuk",
-    "insert_after": "custom_vat_issue_date"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_vat_issue_date",
-    "dt": "Customer",
-    "fieldtype": "Date",
-    "module": "Accounting Firms",
-    "label": "VAT Issue Date",
-    "fieldname": "custom_vat_issue_date",
-    "insert_after": "custom_column_break_8ai1n"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_column_break_8ai1n",
-    "dt": "Customer",
-    "fieldtype": "Column Break",
-    "module": "Accounting Firms",
-    "fieldname": "custom_column_break_8ai1n",
-    "insert_after": "custom_vat_registration"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_vat_registration",
-    "dt": "Customer",
-    "fieldtype": "Select",
-    "module": "Accounting Firms",
-    "label": "VAT Registration",
-    "fieldname": "custom_vat_registration",
-    "insert_after": "custom_vat",
-    "translatable": 1
-  },
-  {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_vat",
     "dt": "Customer",
@@ -390,58 +387,12 @@
     "module": "Accounting Firms",
     "label": "VAT",
     "fieldname": "custom_vat",
-    "insert_after": "custom_tax_card_expiry_date"
+    "insert_after": "custom_table_tax_card",
+    "collapsible": 1,
+    "unique": 0
   },
   {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_tax_card_expiry_date",
-    "dt": "Customer",
-    "fieldtype": "Date",
-    "module": "Accounting Firms",
-    "label": "Tax Card Expiry Date",
-    "fieldname": "custom_tax_card_expiry_date",
-    "insert_after": "custom_tax_card_issuance_date"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_tax_card_issuance_date",
-    "dt": "Customer",
-    "fieldtype": "Date",
-    "module": "Accounting Firms",
-    "label": "Tax Card Issuance Date",
-    "fieldname": "custom_tax_card_issuance_date",
-    "insert_after": "custom_column_break_uny4o"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_column_break_uny4o",
-    "dt": "Customer",
-    "fieldtype": "Column Break",
-    "module": "Accounting Firms",
-    "fieldname": "custom_column_break_uny4o",
-    "insert_after": "custom_company_termination_date"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom_company_termination_date",
-    "dt": "Customer",
-    "fieldtype": "Date",
-    "module": "Accounting Firms",
-    "label": "Company Termination Date",
-    "fieldname": "custom_company_termination_date",
-    "insert_after": "custom__business_commencement_date"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-custom__business_commencement_date",
-    "dt": "Customer",
-    "fieldtype": "Date",
-    "module": "Accounting Firms",
-    "label": " Business Commencement Date",
-    "fieldname": "custom__business_commencement_date",
-    "insert_after": "custom_tax_card"
-  },
-  {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_tax_card",
     "dt": "Customer",
@@ -449,9 +400,12 @@
     "module": "Accounting Firms",
     "label": "Tax Card",
     "fieldname": "custom_tax_card",
-    "insert_after": "custom_other_info"
+    "insert_after": "custom_other_info",
+    "collapsible": 1,
+    "unique": 0
   },
   {
+    "docstatus": 0,
     "doctype": "Custom Field",
     "name": "Customer-custom_other_info",
     "dt": "Customer",
@@ -459,16 +413,8 @@
     "module": "Accounting Firms",
     "label": "Other Info",
     "fieldname": "custom_other_info",
-    "insert_after": "connections_tab"
-  },
-  {
-    "doctype": "Custom Field",
-    "name": "Customer-crm_deal",
-    "dt": "Customer",
-    "fieldtype": "Data",
-    "module": "Accounting Firms",
-    "label": "Frappe CRM Deal",
-    "fieldname": "crm_deal",
-    "insert_after": "prospect_name"
+    "insert_after": "connections_tab",
+    "collapsible": 0,
+    "unique": 0
   }
 ]
