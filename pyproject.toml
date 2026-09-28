@@ -3,7 +3,7 @@ name = "accounting_firms"
 authors = [
     { name = "Mohamed sayed", email = "Mohameddbs53@gmail.com"}
 ]
-description = "Accounting firms management system"
+description = "Customer legal and tax management"
 requires-python = ">=3.14"
 readme = "README.md"
 dynamic = ["version"]

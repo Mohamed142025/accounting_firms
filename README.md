@@ -1,6 +1,6 @@
 ### Accounting Firms
 
-Accounting firms management system
+Customer legal and tax management
 
 ### Installation
 

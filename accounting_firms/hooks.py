@@ -1,19 +1,21 @@
 app_name = "accounting_firms"
 app_title = "Accounting Firms"
 app_publisher = "Mohamed sayed"
-app_description = "Accounting firms management system"
+app_description = "Customer legal and tax management"
 app_email = "Mohameddbs53@gmail.com"
 app_license = "mit"
 
-# Fixtures
-# --------
-
 fixtures = [
-	"Custom Field"
+	{"dt": "Custom Field", "filters": [["dt", "=", "Customer"]]},
+	{"dt": "Custom DocPerm", "filters": [["parent", "=", "Customer"]]},
 ]
 
-override_doctype_class = {
-	"Customer": "accounting_firms.custom.customer.CustomCustomer"
+extend_doctype_class = {
+	"Customer": ["accounting_firms.overrides.customer.AccountingFirmsCustomer"]
+}
+
+doctype_js = {
+	"Customer": "public/js/customer.js",
 }
 
 # Apps
@@ -54,9 +56,7 @@ override_doctype_class = {
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-doctype_js = {
-	"Customer": "public/js/customer.js",
-}
+# doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -151,13 +151,7 @@ doctype_js = {
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {}
 
 # Scheduled Tasks
 # ---------------
