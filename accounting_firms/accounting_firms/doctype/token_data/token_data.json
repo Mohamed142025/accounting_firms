@@ -5,24 +5,111 @@
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
- "field_order": ["issue_date", "expiry_date", "authorized_signatory", "token_type", "issuing_company", "issuer_company_name", "issuer_company_abbr", "issuer_company_phone", "issuer_company_email", "issuer_company_tax_id", "issuer_company_country", "hotline"],
+ "field_order": [
+  "branch",
+  "issue_date",
+  "expiry_date",
+  "authorized_signatory",
+  "token_type",
+  "issuing_company",
+  "issuer_company_name",
+  "issuer_company_abbr",
+  "issuer_company_phone",
+  "issuer_company_email",
+  "issuer_company_tax_id",
+  "issuer_company_country",
+  "hotline"
+ ],
  "fields": [
-  {"fieldname":"issue_date","fieldtype":"Date","label":"تاريخ الإصدار"},
-  {"fieldname":"expiry_date","fieldtype":"Date","label":"تاريخ الانتهاء"},
-  {"fieldname":"authorized_signatory","fieldtype":"Data","label":"صاحب التوقيع"},
-  {"fieldname":"token_type","fieldtype":"Select","label":"نوع التوكن","options":"ختم إلكتروني\nتوقيع إلكتروني\nإيصال إلكتروني"},
-  {"fieldname":"issuing_company","fieldtype":"Link","label":"الشركة المصدرة","options":"Company"},
-  {"fieldname":"issuer_company_name","fieldtype":"Data","label":"اسم الشركة المصدرة","fetch_from":"issuing_company.company_name","read_only":1},
-  {"fieldname":"issuer_company_abbr","fieldtype":"Data","label":"اختصار الشركة","fetch_from":"issuing_company.abbr","read_only":1},
-  {"fieldname":"issuer_company_phone","fieldtype":"Data","label":"رقم هاتف الشركة","fetch_from":"issuing_company.phone_no","read_only":1},
-  {"fieldname":"issuer_company_email","fieldtype":"Data","label":"بريد الشركة","fetch_from":"issuing_company.email","read_only":1},
-  {"fieldname":"issuer_company_tax_id","fieldtype":"Data","label":"الرقم الضريبي للشركة","fetch_from":"issuing_company.tax_id","read_only":1},
-  {"fieldname":"issuer_company_country","fieldtype":"Data","label":"دولة الشركة","fetch_from":"issuing_company.country","read_only":1},
-  {"fieldname":"hotline","fieldtype":"Data","label":"الخط الساخن"}
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "الفرع",
+   "options": "Customer Branch",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "issue_date",
+   "fieldtype": "Date",
+   "label": "تاريخ الإصدار",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "label": "تاريخ الانتهاء",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "authorized_signatory",
+   "fieldtype": "Data",
+   "label": "صاحب التوقيع",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "token_type",
+   "fieldtype": "Select",
+   "label": "نوع التوكن",
+   "options": "ختم إلكتروني\nتوقيع إلكتروني\nإيصال إلكتروني",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "issuing_company",
+   "fieldtype": "Link",
+   "label": "الشركة المصدرة",
+   "options": "Company"
+  },
+  {
+   "fieldname": "issuer_company_name",
+   "fieldtype": "Data",
+   "label": "اسم الشركة المصدرة",
+   "fetch_from": "issuing_company.company_name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "issuer_company_abbr",
+   "fieldtype": "Data",
+   "label": "اختصار الشركة",
+   "fetch_from": "issuing_company.abbr",
+   "read_only": 1
+  },
+  {
+   "fieldname": "issuer_company_phone",
+   "fieldtype": "Data",
+   "label": "رقم هاتف الشركة",
+   "fetch_from": "issuing_company.phone_no",
+   "read_only": 1
+  },
+  {
+   "fieldname": "issuer_company_email",
+   "fieldtype": "Data",
+   "label": "بريد الشركة",
+   "fetch_from": "issuing_company.email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "issuer_company_tax_id",
+   "fieldtype": "Data",
+   "label": "الرقم الضريبي للشركة",
+   "fetch_from": "issuing_company.tax_id",
+   "read_only": 1
+  },
+  {
+   "fieldname": "issuer_company_country",
+   "fieldtype": "Data",
+   "label": "دولة الشركة",
+   "fetch_from": "issuing_company.country",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hotline",
+   "fieldtype": "Data",
+   "label": "الخط الساخن"
+  }
  ],
  "istable": 1,
  "links": [],
- "modified": "2026-09-15 00:00:00.000000",
+ "modified": "2026-10-05 00:00:00.000000",
  "module": "Accounting Firms",
  "name": "Token Data",
  "owner": "Administrator",

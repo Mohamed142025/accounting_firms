@@ -5,9 +5,31 @@
  "docstatus": 0,
  "doctype": "Report",
  "filters": [
-  {"fieldname":"customer","fieldtype":"Link","label":"العميل","options":"Customer"},
-  {"default":"30","fieldname":"days_threshold","fieldtype":"Int","label":"التنبيه قبل (يوم)"},
-  {"default":"All","fieldname":"status","fieldtype":"Select","label":"الحالة","options":"All\nExpired\nDue Soon\nValid"}
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "العميل",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "الفرع",
+   "options": "Customer Branch"
+  },
+  {
+   "default": "30",
+   "fieldname": "days_threshold",
+   "fieldtype": "Int",
+   "label": "التنبيه قبل (يوم)"
+  },
+  {
+   "default": "All",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "الحالة",
+   "options": "All\nExpired\nDue Soon\nValid"
+  }
  ],
  "idx": 0,
  "is_standard": "Yes",
@@ -19,10 +41,20 @@
  "report_name": "Document Expiry Monitor",
  "report_type": "Script Report",
  "roles": [
-  {"role":"Accounts User"},
-  {"role":"Accounts Manager"},
-  {"role":"Sales User"},
-  {"role":"Sales Manager"},
-  {"role":"System Manager"}
+  {
+   "role": "Accounts User"
+  },
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Sales User"
+  },
+  {
+   "role": "Sales Manager"
+  },
+  {
+   "role": "System Manager"
+  }
  ]
 }

@@ -1,0 +1,71 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-05 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "contact_method",
+  "contact_value",
+  "contact_name",
+  "position",
+  "status",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "contact_method",
+   "fieldtype": "Select",
+   "label": "الوسيلة",
+   "options": "تليفون\nإيميل",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "contact_value",
+   "fieldtype": "Data",
+   "label": "رقم التليفون / الإيميل",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "contact_name",
+   "fieldtype": "Data",
+   "label": "الاسم",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "position",
+   "fieldtype": "Select",
+   "label": "المسؤول",
+   "options": "\nمأمور/باحث\nمراجع\nمدير\nرئيس المأمورية",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "الحالة",
+   "options": "\nالحالي\nالسابق",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "ملاحظات"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-10-05 00:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "Tax Authority Contact",
+ "owner": "Administrator",
+ "permissions": [],
+ "states": [],
+ "track_changes": 0
+}

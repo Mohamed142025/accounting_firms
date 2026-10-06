@@ -3,21 +3,24 @@ from frappe import _
 from frappe.utils import date_diff, getdate, today
 
 
+# (label, child table, expiry field, parentfield restriction or None)
 EXPIRY_SOURCES = (
-    ("Tax Card", "tabTax Card", "expiry_date"),
-    ("VAT Registration", "tabVAT Registration", "expiry_date"),
-    ("License", "tabLicense", "expiry_date"),
-    ("Construction Federation Membership", "tabConstruction Federation Membership", "expiry_date"),
-    ("Token Data", "tabToken Data", "expiry_date"),
-    ("Facilitation", "tabFacilitation", "to_date"),
-    ("Advance Payment", "tabAdvance Payment", "subscription_end_date"),
+    ("البطاقة الضريبية", "tabTax Card", "expiry_date", None),
+    ("القيمة المضافة", "tabVAT Registration", "expiry_date", None),
+    ("الرخص", "tabLicense", "expiry_date", None),
+    ("اتحاد التشييد والبناء", "tabConstruction Federation Membership", "expiry_date", None),
+    ("البطاقة الاستيرادية", "tabImport Export Card", "expiry_date", "import_cards"),
+    ("البطاقة التصديرية", "tabImport Export Card", "expiry_date", "export_cards"),
+    ("بيانات التوكن", "tabToken Data", "expiry_date", None),
+    ("التيسرات", "tabFacilitation", "to_date", None),
+    ("الدفعات المقدمة", "tabAdvance Payment", "subscription_end_date", None),
 )
 
 
 def execute(filters=None):
     filters = frappe._dict(filters or {})
     threshold = max(int(filters.get("days_threshold") or 30), 0)
-    rows = get_expiry_rows(filters.get("customer"))
+    rows = get_expiry_rows(filters.get("customer"), filters.get("branch"))
 
     for row in rows:
         row.days_remaining = date_diff(getdate(row.expiry_date), getdate(today()))
@@ -25,7 +28,7 @@ def execute(filters=None):
         row.indicator = get_indicator(row.status)
 
     rows = [row for row in rows if filters.get("status") in (None, "", "All") or row.status == filters.status]
-    rows.sort(key=lambda row: (row.expiry_date, row.customer_name, row.document_type))
+    rows.sort(key=lambda row: (row.expiry_date, row.customer_name or "", row.document_type))
 
     return get_columns(), rows, None, None, get_summary(rows)
 
@@ -48,6 +51,7 @@ def get_customer_expiry_summary(customer):
             alerts.append(
                 {
                     "document_type": row.document_type,
+                    "branch": row.branch,
                     "expiry_date": row.expiry_date,
                     "days_remaining": row.days_remaining,
                     "status": row.status,
@@ -57,15 +61,24 @@ def get_customer_expiry_summary(customer):
     return {"summary": summary, "alerts": alerts}
 
 
-def get_expiry_rows(customer=None):
+def get_expiry_rows(customer=None, branch=None):
     rows = []
     params = {}
-    customer_clause = ""
+    extra_clause = ""
     if customer:
-        customer_clause = " AND child.parent = %(customer)s"
+        extra_clause += " AND child.parent = %(customer)s"
         params["customer"] = customer
+    if branch:
+        extra_clause += " AND child.branch = %(branch)s"
+        params["branch"] = branch
 
-    for document_type, table_name, expiry_field in EXPIRY_SOURCES:
+    for document_type, table_name, expiry_field, parentfield in EXPIRY_SOURCES:
+        parentfield_clause = ""
+        query_params = {**params, "document_type": document_type}
+        if parentfield:
+            parentfield_clause = " AND child.parentfield = %(parentfield)s"
+            query_params["parentfield"] = parentfield
+
         rows.extend(
             frappe.db.sql(
                 f"""
@@ -73,16 +86,20 @@ def get_expiry_rows(customer=None):
                     child.parent AS customer,
                     customer.customer_name,
                     %(document_type)s AS document_type,
+                    child.branch AS branch,
+                    branch.branch_name AS branch_name,
                     child.name AS document_row,
                     child.`{expiry_field}` AS expiry_date
                 FROM `{table_name}` child
                 INNER JOIN `tabCustomer` customer ON customer.name = child.parent
+                LEFT JOIN `tabCustomer Branch` branch ON branch.name = child.branch
                 WHERE child.parenttype = 'Customer'
                   AND child.`{expiry_field}` IS NOT NULL
                   AND child.`{expiry_field}` != ''
-                  {customer_clause}
+                  {parentfield_clause}
+                  {extra_clause}
                 """,
-                {**params, "document_type": document_type},
+                query_params,
                 as_dict=True,
             )
         )
@@ -104,11 +121,13 @@ def get_indicator(status):
 
 def get_columns():
     return [
-        {"fieldname": "customer", "label": _("العميل"), "fieldtype": "Link", "options": "Customer", "width": 210},
+        {"fieldname": "customer", "label": _("العميل"), "fieldtype": "Link", "options": "Customer", "width": 180},
         {"fieldname": "customer_name", "label": _("اسم العميل"), "fieldtype": "Data", "width": 200},
-        {"fieldname": "document_type", "label": _("نوع المستند"), "fieldtype": "Data", "width": 230},
+        {"fieldname": "branch", "label": _("الفرع"), "fieldtype": "Link", "options": "Customer Branch", "width": 150},
+        {"fieldname": "branch_name", "label": _("اسم الفرع"), "fieldtype": "Data", "width": 150},
+        {"fieldname": "document_type", "label": _("نوع المستند"), "fieldtype": "Data", "width": 200},
         {"fieldname": "expiry_date", "label": _("تاريخ الانتهاء"), "fieldtype": "Date", "width": 130},
-        {"fieldname": "days_remaining", "label": _("الأيام المتبقية"), "fieldtype": "Int", "width": 130},
+        {"fieldname": "days_remaining", "label": _("الأيام المتبقية"), "fieldtype": "Int", "width": 120},
         {"fieldname": "status", "label": _("الحالة"), "fieldtype": "Data", "width": 120},
         {"fieldname": "indicator", "label": _("المؤشر"), "fieldtype": "Data", "hidden": 1},
     ]

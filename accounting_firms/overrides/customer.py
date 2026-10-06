@@ -8,10 +8,28 @@ DATE_TABLES = {
     "vat_registration": ("issue_date", "expiry_date"),
     "licenses": ("issue_date", "expiry_date"),
     "construction_federation_membership": ("issue_date", "expiry_date"),
+    "import_cards": ("issue_date", "expiry_date"),
+    "export_cards": ("issue_date", "expiry_date"),
     "token_data": ("issue_date", "expiry_date"),
     "facilitations": ("from_date", "to_date"),
     "advance_payments": ("subscription_start_date", "subscription_end_date"),
 }
+
+# child tables that carry a link to Customer Branch
+BRANCH_TABLES = (
+    "tax_card",
+    "vat_registration",
+    "commercial_register",
+    "licenses",
+    "construction_federation_membership",
+    "import_cards",
+    "export_cards",
+    "tax_email_configuration",
+    "token_data",
+    "facilitations",
+    "advance_payments",
+    "social_insurance",
+)
 
 
 class AccountingFirmsCustomer:
@@ -26,7 +44,7 @@ class AccountingFirmsCustomer:
         self._validate_company_code()
         self._validate_parent_company()
         self._validate_date_ranges()
-        self._validate_branch_codes()
+        self._validate_branches()
 
     def _validate_company_code(self):
         is_new_customer = self.is_new() or not self.name
@@ -74,20 +92,40 @@ class AccountingFirmsCustomer:
                 start = getdate(row.get(start_field)) if row.get(start_field) else None
                 end = getdate(row.get(end_field)) if row.get(end_field) else None
                 if start and end and end < start:
+                    label = frappe.get_meta("Customer").get_label(table_field) or row.doctype
                     frappe.throw(
-                        _("تاريخ الانتهاء لا يمكن أن يكون قبل تاريخ الإصدار في {0}.").format(
-                            row.doctype
+                        _("تاريخ الانتهاء لا يمكن أن يكون قبل تاريخ الإصدار في {0} (صف {1}).").format(
+                            label, row.idx
                         )
                     )
 
-    def _validate_branch_codes(self):
-        seen = set()
-        for row in self.get("customer_branches") or []:
-            code = (row.branch_code or "").strip()
-            if not code:
-                frappe.throw(_("كود الفرع مطلوب لكل فرع."))
-            normalized = code.upper()
-            if normalized in seen:
-                frappe.throw(_("لا يمكن تكرار كود الفرع داخل نفس العميل."))
-            seen.add(normalized)
-            row.branch_code = code
+    def _validate_branches(self):
+        """Every branch referenced in a child row must belong to this customer."""
+        used = set()
+        for table_field in BRANCH_TABLES:
+            for row in self.get(table_field) or []:
+                if row.get("branch"):
+                    used.add(row.branch)
+        if not used:
+            return
+
+        owners = dict(
+            frappe.get_all(
+                "Customer Branch",
+                filters={"name": ["in", list(used)]},
+                fields=["name", "customer"],
+                as_list=True,
+            )
+        )
+        for table_field in BRANCH_TABLES:
+            for row in self.get(table_field) or []:
+                branch = row.get("branch")
+                if not branch:
+                    continue
+                if owners.get(branch) != self.name:
+                    label = frappe.get_meta("Customer").get_label(table_field) or row.doctype
+                    frappe.throw(
+                        _("الفرع {0} لا يتبع هذا العميل (في {1} صف {2}).").format(
+                            frappe.bold(branch), label, row.idx
+                        )
+                    )

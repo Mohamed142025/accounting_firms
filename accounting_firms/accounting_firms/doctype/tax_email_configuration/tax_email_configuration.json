@@ -1,1 +1,64 @@
-{"actions":[],"allow_rename":0,"creation":"2026-09-15 00:00:00.000000","doctype":"DocType","editable_grid":1,"engine":"InnoDB","field_order":["incoming_server","port","tax_email","email_password","show_password"],"fields":[{"fieldname":"incoming_server","fieldtype":"Data","label":"Incoming Server"},{"fieldname":"port","fieldtype":"Int","label":"Port","non_negative":1},{"fieldname":"tax_email","fieldtype":"Data","label":"الإيميل الضريبي","options":"Email"},{"fieldname":"email_password","fieldtype":"Password","label":"Email Password","permlevel":2},{"button_color":"Info","fieldname":"show_password","fieldtype":"Button","label":"عرض كلمة المرور"}],"istable":1,"links":[],"modified":"2026-09-15 00:00:00.000000","module":"Accounting Firms","name":"Tax Email Configuration","owner":"Administrator","permissions":[],"states":[],"track_changes":0}
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-09-15 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "branch",
+  "incoming_server",
+  "port",
+  "tax_email",
+  "email_password",
+  "show_password"
+ ],
+ "fields": [
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "الفرع",
+   "options": "Customer Branch",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "incoming_server",
+   "fieldtype": "Data",
+   "label": "Incoming Server"
+  },
+  {
+   "fieldname": "port",
+   "fieldtype": "Int",
+   "label": "Port",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "tax_email",
+   "fieldtype": "Data",
+   "label": "الإيميل الضريبي",
+   "options": "Email",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "email_password",
+   "fieldtype": "Password",
+   "label": "Email Password",
+   "permlevel": 2
+  },
+  {
+   "button_color": "Info",
+   "fieldname": "show_password",
+   "fieldtype": "Button",
+   "label": "عرض كلمة المرور"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-10-05 00:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "Tax Email Configuration",
+ "owner": "Administrator",
+ "permissions": [],
+ "states": [],
+ "track_changes": 0
+}

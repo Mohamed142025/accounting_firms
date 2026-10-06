@@ -3,9 +3,27 @@ const dateRanges = [
   ["vat_registration", "issue_date", "expiry_date"],
   ["licenses", "issue_date", "expiry_date"],
   ["construction_federation_membership", "issue_date", "expiry_date"],
+  ["import_cards", "issue_date", "expiry_date"],
+  ["export_cards", "issue_date", "expiry_date"],
   ["token_data", "issue_date", "expiry_date"],
   ["facilitations", "from_date", "to_date"],
   ["advance_payments", "subscription_start_date", "subscription_end_date"],
+];
+
+// child tables that carry a `branch` link to Customer Branch
+const branchTables = [
+  "tax_card",
+  "vat_registration",
+  "commercial_register",
+  "licenses",
+  "construction_federation_membership",
+  "import_cards",
+  "export_cards",
+  "tax_email_configuration",
+  "token_data",
+  "facilitations",
+  "advance_payments",
+  "social_insurance",
 ];
 
 frappe.ui.form.on("Customer", {
@@ -13,6 +31,13 @@ frappe.ui.form.on("Customer", {
     frm.set_query("parent_company_group", () => ({
       filters: [["Customer", "name", "!=", frm.doc.name || ""]],
     }));
+
+    // only this customer's active branches are selectable in child rows
+    branchTables.forEach((tableField) => {
+      frm.set_query("branch", tableField, () => ({
+        filters: { customer: frm.doc.name || "", status: "Active" },
+      }));
+    });
   },
 
   refresh(frm) {
@@ -20,6 +45,15 @@ frappe.ui.form.on("Customer", {
     frm.set_df_property("company_code", "reqd", isNew ? 1 : 0);
     frm.set_df_property("company_code", "read_only", isNew ? 0 : 1);
     frm.set_df_property("company_status", "reqd", isNew ? 1 : 0);
+
+    if (!isNew) {
+      frm.add_custom_button(
+        __("فرع جديد"),
+        () => frappe.new_doc("Customer Branch", { customer: frm.doc.name }),
+        __("إنشاء"),
+      );
+    }
+
     loadExpiryAlert(frm);
   },
 
@@ -33,7 +67,6 @@ frappe.ui.form.on("Customer", {
     }
 
     validateDateRanges(frm);
-    validateBranchCodes(frm);
   },
 });
 
@@ -70,25 +103,14 @@ frappe.ui.form.on("Tax Email Configuration", {
 
 function validateDateRanges(frm) {
   dateRanges.forEach(([tableField, startField, endField]) => {
+    const label = frappe.meta.get_label("Customer", tableField, frm.doc.name) || tableField;
     (frm.doc[tableField] || []).forEach((row) => {
       if (row[startField] && row[endField] && row[endField] < row[startField]) {
-        frappe.throw(__("تاريخ الانتهاء لا يمكن أن يكون قبل تاريخ الإصدار."));
+        frappe.throw(
+          __("تاريخ الانتهاء لا يمكن أن يكون قبل تاريخ الإصدار في {0} (صف {1}).", [label, row.idx]),
+        );
       }
     });
-  });
-}
-
-function validateBranchCodes(frm) {
-  const seen = new Set();
-  (frm.doc.customer_branches || []).forEach((row) => {
-    const code = (row.branch_code || "").trim().toUpperCase();
-    if (!code) {
-      frappe.throw(__("كود الفرع مطلوب لكل فرع."));
-    }
-    if (seen.has(code)) {
-      frappe.throw(__("لا يمكن تكرار كود الفرع داخل نفس العميل."));
-    }
-    seen.add(code);
   });
 }
 

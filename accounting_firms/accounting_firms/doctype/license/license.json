@@ -1,1 +1,89 @@
-{"actions":[],"allow_rename":0,"creation":"2026-09-15 00:00:00.000000","doctype":"DocType","editable_grid":1,"engine":"InnoDB","field_order":["license_number","license_type","issuing_authority","issue_date","expiry_date","issue_address","authorized_activity","license_status","notes"],"fields":[{"fieldname":"license_number","fieldtype":"Data","label":"رقم الرخصة"},{"fieldname":"license_type","fieldtype":"Select","label":"نوع الرخصة","options":"تجارية\nصناعية\nخدمية\nمقاولات\nمهنية\nأخرى"},{"fieldname":"issuing_authority","fieldtype":"Data","label":"جهة الإصدار"},{"fieldname":"issue_date","fieldtype":"Date","label":"تاريخ الإصدار"},{"fieldname":"expiry_date","fieldtype":"Date","label":"تاريخ الانتهاء"},{"fieldname":"issue_address","fieldtype":"Small Text","label":"عنوان الإصدار"},{"fieldname":"authorized_activity","fieldtype":"Small Text","label":"النشاط المصرح به"},{"fieldname":"license_status","fieldtype":"Select","label":"حالة الرخصة","options":"سارية\nمنتهية\nموقوفة\nتحت المراجعة"},{"fieldname":"notes","fieldtype":"Small Text","label":"ملاحظات"}],"istable":1,"links":[],"modified":"2026-09-15 00:00:00.000000","module":"Accounting Firms","name":"License","owner":"Administrator","permissions":[],"states":[],"track_changes":0}
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-09-15 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "branch",
+  "license_number",
+  "license_type",
+  "issuing_authority",
+  "issue_date",
+  "expiry_date",
+  "issue_address",
+  "authorized_activity",
+  "license_status",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "الفرع",
+   "options": "Customer Branch",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "license_number",
+   "fieldtype": "Data",
+   "label": "رقم الرخصة",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "license_type",
+   "fieldtype": "Select",
+   "label": "نوع الرخصة",
+   "options": "تجارية\nصناعية\nخدمية\nمقاولات\nمهنية\nأخرى",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "issuing_authority",
+   "fieldtype": "Data",
+   "label": "جهة الإصدار"
+  },
+  {
+   "fieldname": "issue_date",
+   "fieldtype": "Date",
+   "label": "تاريخ الإصدار",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "label": "تاريخ الانتهاء",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "issue_address",
+   "fieldtype": "Small Text",
+   "label": "عنوان الإصدار"
+  },
+  {
+   "fieldname": "authorized_activity",
+   "fieldtype": "Small Text",
+   "label": "النشاط المصرح به"
+  },
+  {
+   "fieldname": "license_status",
+   "fieldtype": "Select",
+   "label": "حالة الرخصة",
+   "options": "سارية\nمنتهية\nموقوفة\nتحت المراجعة"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "ملاحظات"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-10-05 00:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "License",
+ "owner": "Administrator",
+ "permissions": [],
+ "states": [],
+ "track_changes": 0
+}
