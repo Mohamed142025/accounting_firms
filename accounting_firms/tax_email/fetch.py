@@ -13,7 +13,7 @@ from email.utils import parseaddr
 import frappe
 from frappe import _
 from frappe.email.receive import Email
-from frappe.utils import add_days, cint, escape_html, get_datetime, getdate, now_datetime, strip_html, today
+from frappe.utils import add_days, add_to_date, cint, escape_html, get_datetime, getdate, now_datetime, strip_html, today
 from frappe.utils.html_utils import clean_email_html
 from frappe.utils.password import get_decrypted_password
 
@@ -22,6 +22,7 @@ from accounting_firms.tax_email.rules import apply_rules, get_rules
 MONTHS = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 ROW_FIELDS = ["name", "parent", "branch", "tax_email", "incoming_server", "port", "enabled"]
 CONNECT_TIMEOUT = 30
+FAILED_RETRY_HOURS = 6
 
 
 # ---------------------------------------------------------------------------- helpers
@@ -308,12 +309,16 @@ def fetch_all():
         SELECT cfg.name
         FROM `tabTax Email Configuration` cfg
         INNER JOIN `tabCustomer` customer ON customer.name = cfg.parent
+        LEFT JOIN `tabTax Mailbox Sync` state ON state.name = cfg.name
         WHERE cfg.parenttype = 'Customer'
           AND cfg.enabled = 1
           AND IFNULL(cfg.tax_email, '') != ''
           AND IFNULL(cfg.incoming_server, '') != ''
           AND customer.disabled = 0
+          -- back off after a failure (e.g. wrong password) so the mail provider does not lock the account
+          AND NOT (IFNULL(state.status, '') = 'Failed' AND state.last_sync > %(retry_after)s)
         """,
+        {"retry_after": add_to_date(now_datetime(), hours=-FAILED_RETRY_HOURS)},
         pluck=True,
     )
     for name in rows:
