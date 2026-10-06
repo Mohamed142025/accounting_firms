@@ -179,7 +179,7 @@ function extensionHint() {
   if (document.documentElement.dataset.accountingFirmsExtension) {
     return `<p class="text-muted small">${__("تم فتح المنصة وإرسال بيانات الدخول لإضافة المتصفح لملئها تلقائيًا.")}</p>`;
   }
-  const link = "/assets/accounting_firms/extension/accounting-firms-auto-login.zip";
+  const link = `/assets/accounting_firms/extension/extension.zip?v=${Date.now()}`;
   return `<p class="text-muted small">${__("تم فتح المنصة في نافذة جديدة. انسخ البيانات والصقها في صفحة الدخول.")}<br>${__(
     "للتعبئة التلقائية سطّب إضافة المتصفح:",
   )} <a href="${link}" target="_blank">${__("تحميل الإضافة")}</a></p>`;
