@@ -1,11 +1,29 @@
-// Keeps, per portal tab, the credentials that should be filled in that tab.
+// Keeps the credentials that should be filled in a portal tab.
+// State lives in chrome.storage.session so it survives service-worker restarts
+// and is wiped when the browser closes.
 const PENDING_TTL_MS = 3 * 60 * 1000;
-const pending = new Map(); // tabId -> { payload, created }
 
-function cleanup() {
+const log = (...args) => console.log("[AF AutoLogin/bg]", ...args);
+
+async function getState() {
+  const { pending = {}, lastStatus = null } = await chrome.storage.session.get(["pending", "lastStatus"]);
   const now = Date.now();
-  for (const [tabId, item] of pending) {
-    if (now - item.created > PENDING_TTL_MS) pending.delete(tabId);
+  for (const key of Object.keys(pending)) {
+    if (now - pending[key].created > PENDING_TTL_MS) delete pending[key];
+  }
+  return { pending, lastStatus };
+}
+
+async function setStatus(text) {
+  await chrome.storage.session.set({ lastStatus: { text, at: new Date().toLocaleTimeString() } });
+  log(text);
+}
+
+function hostOf(url) {
+  try {
+    return new URL(url).hostname;
+  } catch (e) {
+    return "";
   }
 }
 
@@ -18,32 +36,51 @@ async function findPortalTab(openerTabId) {
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  cleanup();
+  (async () => {
+    const { pending } = await getState();
 
-  if (message.type === "AUTOLOGIN_PAYLOAD") {
-    (async () => {
+    if (message.type === "AUTOLOGIN_PAYLOAD") {
+      const payload = message.payload;
       let tab = sender.tab ? await findPortalTab(sender.tab.id) : null;
-      if (!tab && message.payload.login_url) {
-        // popup was blocked: open the portal ourselves
-        tab = await chrome.tabs.create({ url: message.payload.login_url, active: true });
+      if (!tab && payload.login_url) {
+        tab = await chrome.tabs.create({ url: payload.login_url, active: true });
       }
-      if (tab) pending.set(tab.id, { payload: message.payload, created: Date.now() });
+      const item = { payload, created: Date.now(), tabId: tab ? tab.id : null, host: hostOf(payload.login_url) };
+      if (tab) pending[`tab:${tab.id}`] = item;
+      if (item.host) pending[`host:${item.host}`] = item;
+      await chrome.storage.session.set({ pending });
+      await setStatus(`استلمت بيانات ${payload.platform} (مستخدم: ${payload.username || "-"}, كلمة مرور: ${payload.password ? "نعم" : "لا"}) للتاب ${tab ? tab.id : "?"}`);
       sendResponse({ ok: Boolean(tab) });
-    })();
-    return true;
-  }
+      return;
+    }
 
-  if (message.type === "GET_PENDING") {
-    const item = sender.tab ? pending.get(sender.tab.id) : null;
-    sendResponse(item ? item.payload : null);
-    return false;
-  }
+    if (message.type === "GET_PENDING") {
+      const tabId = sender.tab ? sender.tab.id : null;
+      const host = hostOf(sender.url || sender.tab?.url || "");
+      const item = pending[`tab:${tabId}`] || pending[`host:${host}`] || null;
+      sendResponse(item ? item.payload : null);
+      return;
+    }
 
-  if (message.type === "CLEAR_PENDING") {
-    if (sender.tab) pending.delete(sender.tab.id);
-    sendResponse({ ok: true });
-    return false;
-  }
+    if (message.type === "CLEAR_PENDING") {
+      const tabId = sender.tab ? sender.tab.id : null;
+      const item = pending[`tab:${tabId}`];
+      delete pending[`tab:${tabId}`];
+      if (item?.host) delete pending[`host:${item.host}`];
+      await chrome.storage.session.set({ pending });
+      sendResponse({ ok: true });
+      return;
+    }
+
+    if (message.type === "STATUS") {
+      await setStatus(message.text);
+      sendResponse({ ok: true });
+      return;
+    }
+
+    sendResponse(null);
+  })();
+  return true;
 });
 
-chrome.tabs.onRemoved.addListener((tabId) => pending.delete(tabId));
+chrome.runtime.onInstalled.addListener(() => setStatus("تم تسطيب الإضافة. أعد تحميل صفحة ERPNext."));

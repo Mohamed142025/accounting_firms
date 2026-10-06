@@ -5,6 +5,7 @@
   if (window.__accountingFirmsFillerLoaded) return;
   window.__accountingFirmsFillerLoaded = true;
 
+  const log = (...args) => console.log("[AF AutoLogin/portal]", ...args);
   const WAIT_FOR_PAYLOAD_MS = 20000;
   const WAIT_FOR_FIELDS_MS = 45000;
   const POLL_MS = 500;
@@ -149,9 +150,16 @@
 
   (async () => {
     const payload = await waitForPayload();
-    if (!payload) return;
+    if (!payload) {
+      log("no pending credentials for this tab:", location.href);
+      return;
+    }
+    log("filling", payload.platform, "on", location.href);
+    await send({ type: "STATUS", text: `جاري ملء ${payload.platform} في ${location.hostname}` });
 
     const result = await fill(payload);
+    log("fill result:", result);
+    await send({ type: "STATUS", text: `نتيجة ${payload.platform} في ${location.hostname}: ${result}` });
     if (result === "done") {
       await send({ type: "CLEAR_PENDING" });
       toast("تم ملء بيانات الدخول تلقائيًا");

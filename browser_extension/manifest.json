@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Accounting Firms Auto Login",
   "description": "تسجيل دخول تلقائي للمنصات الضريبية من شاشة العميل في ERPNext",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "default_locale": "ar",
   "permissions": ["tabs", "storage"],
   "host_permissions": ["<all_urls>"],
