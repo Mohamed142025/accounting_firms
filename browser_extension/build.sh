@@ -15,4 +15,6 @@ with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
             p = os.path.join(root, f); z.write(p, os.path.relpath(p, "."))
 PY
 cp "$OUT" "$(dirname "$OUT")/extension.zip"
+VER=$(python3 -c "import json;print(json.load(open('manifest.json'))['version'])")
+cp "$OUT" "$(dirname "$OUT")/extension-$VER.zip"
 echo "built $OUT"
