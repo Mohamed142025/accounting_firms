@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Accounting Firms Auto Login",
+  "description": "تسجيل دخول تلقائي للمنصات الضريبية من شاشة العميل في ERPNext",
+  "version": "1.0.0",
+  "default_locale": "ar",
+  "permissions": ["tabs", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["erpnext_bridge.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["portal_filler.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "action": { "default_title": "Accounting Firms Auto Login", "default_popup": "popup.html" }
+}
