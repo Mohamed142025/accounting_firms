@@ -14,4 +14,5 @@ with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
             if f == "build.sh": continue
             p = os.path.join(root, f); z.write(p, os.path.relpath(p, "."))
 PY
+cp "$OUT" "$(dirname "$OUT")/extension.zip"
 echo "built $OUT"
