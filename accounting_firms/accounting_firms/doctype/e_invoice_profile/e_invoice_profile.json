@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-06 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "branch",
+  "profile_type",
+  "api_version",
+  "column_break_1",
+  "client_id",
+  "client_secret",
+  "device_section",
+  "token_pin",
+  "column_break_2",
+  "device_serial_number",
+  "notes_section",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "الفرع",
+   "options": "Customer Branch",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "profile_type",
+   "fieldtype": "Select",
+   "label": "النوع",
+   "options": "فاتورة إلكترونية\nإيصال إلكتروني",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "default": "1.0",
+   "fieldname": "api_version",
+   "fieldtype": "Data",
+   "label": "إصدار المستند",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "client_id",
+   "fieldtype": "Data",
+   "label": "Client ID",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "client_secret",
+   "fieldtype": "Password",
+   "label": "Client Secret"
+  },
+  {
+   "fieldname": "device_section",
+   "fieldtype": "Section Break",
+   "label": "الجهاز والتوكن"
+  },
+  {
+   "fieldname": "token_pin",
+   "fieldtype": "Password",
+   "label": "Token PIN"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "device_serial_number",
+   "fieldtype": "Data",
+   "label": "Device Serial Number"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "ملاحظات"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-10-06 00:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "E-Invoice Profile",
+ "owner": "Administrator",
+ "permissions": [],
+ "states": [],
+ "track_changes": 0
+}

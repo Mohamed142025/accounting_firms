@@ -24,6 +24,8 @@ const branchTables = [
   "facilitations",
   "advance_payments",
   "social_insurance",
+  "tax_platform_accounts",
+  "e_invoice_profiles",
 ];
 
 frappe.ui.form.on("Customer", {
@@ -100,6 +102,113 @@ frappe.ui.form.on("Tax Email Configuration", {
     });
   },
 });
+
+frappe.ui.form.on("Tax Platform Account", {
+  show_password(frm, cdt, cdn) {
+    const gridRow = getGridRow(frm, cdn);
+    const input =
+      gridRow?.get_field("password")?.$input ||
+      gridRow?.row?.find('[data-fieldname="password"] input');
+    const buttonField = gridRow?.get_field("show_password");
+    if (!input?.length) return;
+
+    if (input.attr("type") === "text") {
+      input.attr("type", "password");
+      buttonField?.set_label(__("عرض كلمة المرور"));
+      return;
+    }
+
+    frappe.call({
+      method: "accounting_firms.accounting_firms.doctype.tax_platform_account.tax_platform_account.get_password",
+      args: { name: cdn, parent: frm.doc.name },
+      btn: buttonField?.$input,
+    }).then(({ message }) => {
+      if (message) {
+        input.attr("type", "text").val(message);
+        buttonField?.set_label(__("إخفاء كلمة المرور"));
+      }
+    });
+  },
+
+  open_link(frm, cdt, cdn) {
+    const row = frappe.get_doc(cdt, cdn);
+    if (row.__islocal || frm.is_dirty()) {
+      frappe.msgprint(__("احفظ العميل أولاً ثم اضغط فتح المنصة."));
+      return;
+    }
+
+    // open synchronously so the browser does not block the popup
+    const portal = window.open(row.login_url || "about:blank", "_blank");
+
+    frappe.call({
+      method: "accounting_firms.accounting_firms.doctype.tax_platform_account.tax_platform_account.get_login_payload",
+      args: { name: cdn, parent: frm.doc.name },
+    }).then(({ message }) => {
+      if (!message) return;
+      if (portal && !row.login_url && message.login_url) {
+        portal.location = message.login_url;
+      }
+      // hand the login data to the browser extension (phase 2); harmless if not installed
+      window.postMessage(
+        { type: "ACCOUNTING_FIRMS_AUTOLOGIN", payload: message },
+        window.location.origin,
+      );
+      showCredentialsDialog(message);
+    });
+  },
+});
+
+function getGridRow(frm, cdn) {
+  const grid = frm.grids
+    .map((tableField) => tableField.grid)
+    .find((tableGrid) => tableGrid.grid_rows_by_docname?.[cdn]);
+  return grid?.grid_rows_by_docname?.[cdn];
+}
+
+function copyToClipboard(text) {
+  if (navigator.clipboard?.writeText) {
+    return navigator.clipboard.writeText(text);
+  }
+  const helper = $("<textarea>").val(text).appendTo("body").select();
+  document.execCommand("copy");
+  helper.remove();
+  return Promise.resolve();
+}
+
+function showCredentialsDialog(data) {
+  const dialog = new frappe.ui.Dialog({
+    title: __("بيانات الدخول: {0}", [data.platform]),
+    fields: [
+      { fieldtype: "Data", fieldname: "username", label: __("اسم المستخدم"), default: data.username || "", read_only: 1 },
+      { fieldtype: "Button", fieldname: "copy_username", label: __("نسخ اسم المستخدم") },
+      { fieldtype: "Column Break" },
+      {
+        fieldtype: "Data",
+        fieldname: "password",
+        label: __("كلمة المرور"),
+        default: data.password ? "••••••••" : __("غير متاحة لصلاحياتك"),
+        read_only: 1,
+      },
+      { fieldtype: "Button", fieldname: "copy_password", label: __("نسخ كلمة المرور"), hidden: data.password ? 0 : 1 },
+      { fieldtype: "Section Break" },
+      {
+        fieldtype: "HTML",
+        fieldname: "hint",
+        options: `<p class="text-muted small">${__("تم فتح المنصة في نافذة جديدة. انسخ البيانات والصقها في صفحة الدخول.")}</p>`,
+      },
+    ],
+    primary_action_label: __("إغلاق"),
+    primary_action: () => dialog.hide(),
+  });
+
+  dialog.fields_dict.copy_username.$input.on("click", () => {
+    copyToClipboard(data.username || "").then(() => frappe.show_alert({ message: __("تم نسخ اسم المستخدم"), indicator: "green" }));
+  });
+  dialog.fields_dict.copy_password.$input.on("click", () => {
+    copyToClipboard(data.password || "").then(() => frappe.show_alert({ message: __("تم نسخ كلمة المرور"), indicator: "green" }));
+  });
+  dialog.show();
+}
 
 function validateDateRanges(frm) {
   dateRanges.forEach(([tableField, startField, endField]) => {

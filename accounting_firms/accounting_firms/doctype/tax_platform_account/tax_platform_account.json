@@ -1,0 +1,93 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-06 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "platform",
+  "branch",
+  "username",
+  "password",
+  "login_url",
+  "column_break_actions",
+  "open_link",
+  "show_password",
+  "notes_section",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "platform",
+   "fieldtype": "Link",
+   "label": "المنصة",
+   "options": "Tax Platform",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 3
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "الفرع",
+   "options": "Customer Branch",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "username",
+   "fieldtype": "Data",
+   "label": "اسم المستخدم",
+   "in_list_view": 1,
+   "columns": 3
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Password",
+   "label": "كلمة المرور",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "login_url",
+   "fieldtype": "Data",
+   "label": "رابط الدخول",
+   "options": "URL",
+   "fetch_from": "platform.login_url",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_actions",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "open_link",
+   "fieldtype": "Button",
+   "label": "فتح المنصة"
+  },
+  {
+   "fieldname": "show_password",
+   "fieldtype": "Button",
+   "label": "عرض كلمة المرور"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "ملاحظات"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-10-06 00:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "Tax Platform Account",
+ "owner": "Administrator",
+ "permissions": [],
+ "states": [],
+ "track_changes": 0
+}

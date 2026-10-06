@@ -29,6 +29,8 @@ BRANCH_TABLES = (
     "facilitations",
     "advance_payments",
     "social_insurance",
+    "tax_platform_accounts",
+    "e_invoice_profiles",
 )
 
 

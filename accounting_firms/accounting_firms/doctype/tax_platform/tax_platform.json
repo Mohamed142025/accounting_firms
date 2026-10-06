@@ -1,0 +1,133 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:platform_name",
+ "creation": "2026-10-06 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "platform_name",
+  "login_url",
+  "column_break_main",
+  "status",
+  "description",
+  "autologin_section",
+  "username_selector",
+  "password_selector",
+  "column_break_auto",
+  "submit_selector",
+  "auto_submit"
+ ],
+ "fields": [
+  {
+   "fieldname": "platform_name",
+   "fieldtype": "Data",
+   "label": "اسم المنصة",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "login_url",
+   "fieldtype": "Data",
+   "label": "رابط صفحة الدخول",
+   "options": "URL",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_main",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "الحالة",
+   "options": "Active\nInactive",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "وصف"
+  },
+  {
+   "fieldname": "autologin_section",
+   "fieldtype": "Section Break",
+   "label": "إعدادات الدخول التلقائي (لإضافة المتصفح)",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "username_selector",
+   "fieldtype": "Data",
+   "label": "محدد حقل اسم المستخدم (CSS Selector)",
+   "description": "مثال: input[name='username'] أو #email"
+  },
+  {
+   "fieldname": "password_selector",
+   "fieldtype": "Data",
+   "label": "محدد حقل كلمة المرور (CSS Selector)",
+   "description": "مثال: input[type='password']"
+  },
+  {
+   "fieldname": "column_break_auto",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "submit_selector",
+   "fieldtype": "Data",
+   "label": "محدد زر الدخول (CSS Selector)",
+   "description": "مثال: button[type='submit']"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_submit",
+   "fieldtype": "Check",
+   "label": "الضغط على زر الدخول تلقائيًا"
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-06 00:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "Tax Platform",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "export": 1,
+   "report": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "export": 1,
+   "report": 1
+  },
+  {
+   "role": "Accounts User",
+   "read": 1,
+   "export": 1,
+   "report": 1
+  },
+  {
+   "role": "Sales User",
+   "read": 1
+  },
+  {
+   "role": "Sales Manager",
+   "read": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
