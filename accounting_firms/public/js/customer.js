@@ -57,6 +57,7 @@ frappe.ui.form.on("Customer", {
     }
 
     loadExpiryAlert(frm);
+    loadNotificationAlert(frm);
   },
 
   validate(frm) {
@@ -73,6 +74,59 @@ frappe.ui.form.on("Customer", {
 });
 
 frappe.ui.form.on("Tax Email Configuration", {
+  test_connection(frm, cdt, cdn) {
+    if (!requireSaved(frm, cdt, cdn)) return;
+    frappe
+      .call({
+        method: "accounting_firms.tax_email.fetch.test_connection",
+        args: { name: cdn, parent: frm.doc.name },
+        freeze: true,
+        freeze_message: __("جاري الاتصال بسيرفر البريد..."),
+      })
+      .then(({ message }) => {
+        if (message?.ok) {
+          frappe.msgprint({
+            title: __("الاتصال ناجح"),
+            indicator: "green",
+            message: __("تم تسجيل الدخول بنجاح. عدد الرسائل في صندوق الوارد: {0}", [message.messages]),
+          });
+        } else {
+          frappe.msgprint({ title: __("فشل الاتصال"), indicator: "red", message: message?.error || __("خطأ غير معروف") });
+        }
+      });
+  },
+
+  fetch_now(frm, cdt, cdn) {
+    if (!requireSaved(frm, cdt, cdn)) return;
+    frappe
+      .call({
+        method: "accounting_firms.tax_email.fetch.fetch_now",
+        args: { name: cdn, parent: frm.doc.name },
+        freeze: true,
+        freeze_message: __("جاري جلب الإشعارات..."),
+      })
+      .then(({ message }) => {
+        if (!message?.ok) {
+          frappe.msgprint({ title: __("فشل الجلب"), indicator: "red", message: message?.error || __("خطأ غير معروف") });
+          return;
+        }
+        let text = __("تم جلب {0} إشعار جديد.", [message.fetched]);
+        if (message.remaining) {
+          text += " " + __("باقي {0} رسالة هتتجلب تلقائيًا في الخلفية.", [message.remaining]);
+        }
+        frappe.msgprint({
+          title: __("تم"),
+          indicator: "green",
+          message: text,
+          primary_action: {
+            label: __("عرض الإشعارات"),
+            action: () => frappe.set_route("List", "Tax Notification", { customer: frm.doc.name }),
+          },
+        });
+        loadNotificationAlert(frm);
+      });
+  },
+
   show_password(frm, cdt, cdn) {
     const grid = frm.grids
       .map((tableField) => tableField.grid)
@@ -218,6 +272,33 @@ function showCredentialsDialog(data) {
     copyToClipboard(data.password || "").then(() => frappe.show_alert({ message: __("تم نسخ كلمة المرور"), indicator: "green" }));
   });
   dialog.show();
+}
+
+function requireSaved(frm, cdt, cdn) {
+  const row = frappe.get_doc(cdt, cdn);
+  if (row.__islocal || frm.is_dirty()) {
+    frappe.msgprint(__("احفظ العميل أولاً."));
+    return false;
+  }
+  return true;
+}
+
+function loadNotificationAlert(frm) {
+  if (frm.is_new()) return;
+  frappe
+    .call({
+      method: "accounting_firms.tax_email.fetch.get_customer_summary",
+      args: { customer: frm.doc.name },
+    })
+    .then(({ message }) => {
+      frm.set_intro("");
+      if (!message || !(message.new || message.overdue)) return;
+      const link = `<a href="/app/tax-notification?customer=${encodeURIComponent(frm.doc.name)}&status=${encodeURIComponent("جديد")}">${__("عرض")}</a>`;
+      const parts = [];
+      if (message.new) parts.push(__("{0} إشعار ضريبي جديد", [message.new]));
+      if (message.overdue) parts.push(__("{0} إشعار متأخر", [message.overdue]));
+      frm.set_intro(`${parts.join(" - ")} ${link}`, message.overdue ? "red" : "blue");
+    });
 }
 
 function validateDateRanges(frm) {

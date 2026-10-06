@@ -1,0 +1,83 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-06 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "initial_sync_days",
+  "max_messages_per_run",
+  "column_break_1",
+  "fetch_attachments",
+  "max_attachment_mb",
+  "todo_max_age_days"
+ ],
+ "fields": [
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "تفعيل القراءة التلقائية للإيميلات الضريبية"
+  },
+  {
+   "default": "30",
+   "fieldname": "initial_sync_days",
+   "fieldtype": "Int",
+   "label": "أول مزامنة: جلب رسائل آخر (يوم)",
+   "description": "عند أول قراءة لأي إيميل بنجيب رسائل المدة دي بس، مش كل الأرشيف"
+  },
+  {
+   "default": "50",
+   "fieldname": "max_messages_per_run",
+   "fieldtype": "Int",
+   "label": "أقصى عدد رسائل لكل إيميل في المرة"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "fetch_attachments",
+   "fieldtype": "Check",
+   "label": "حفظ المرفقات"
+  },
+  {
+   "default": "10",
+   "fieldname": "max_attachment_mb",
+   "fieldtype": "Int",
+   "label": "أقصى حجم للمرفق (ميجابايت)"
+  },
+  {
+   "default": "7",
+   "fieldname": "todo_max_age_days",
+   "fieldtype": "Int",
+   "label": "إنشاء مهام للرسائل الأحدث من (يوم)",
+   "description": "الرسائل الأقدم من كده بتتسجل من غير مهام عشان أول مزامنة ما تغرقش المحاسبين"
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-06 12:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "Tax Email Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "read": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0,
+ "issingle": 1
+}

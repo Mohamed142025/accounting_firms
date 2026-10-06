@@ -18,6 +18,10 @@ doctype_js = {
 	"Customer": "public/js/customer.js",
 }
 
+doctype_list_js = {
+	"Tax Notification": "public/js/tax_notification_list.js",
+}
+
 # Apps
 # ------------------
 
@@ -155,6 +159,13 @@ doc_events = {}
 
 # Scheduled Tasks
 # ---------------
+
+scheduler_events = {
+	"cron": {
+		# read customers' tax mailboxes every 30 minutes
+		"*/30 * * * *": ["accounting_firms.tax_email.fetch.fetch_all"],
+	},
+}
 
 # scheduler_events = {
 # 	"all": [

@@ -1,0 +1,126 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-06 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "config_row",
+  "customer",
+  "tax_email",
+  "column_break_1",
+  "status",
+  "last_sync",
+  "total_fetched",
+  "section_tech",
+  "last_error",
+  "last_uid",
+  "uid_validity"
+ ],
+ "fields": [
+  {
+   "fieldname": "config_row",
+   "fieldtype": "Data",
+   "label": "معرّف صف الإيميل",
+   "reqd": 1,
+   "unique": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "العميل",
+   "options": "Customer",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "tax_email",
+   "fieldtype": "Data",
+   "label": "الإيميل الضريبي",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Never",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "حالة المزامنة",
+   "options": "Never\nSuccess\nFailed",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "last_sync",
+   "fieldtype": "Datetime",
+   "label": "آخر مزامنة",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "total_fetched",
+   "fieldtype": "Int",
+   "label": "إجمالي الرسائل المجلوبة",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_tech",
+   "fieldtype": "Section Break",
+   "label": "تفاصيل"
+  },
+  {
+   "fieldname": "last_error",
+   "fieldtype": "Small Text",
+   "label": "آخر خطأ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_uid",
+   "fieldtype": "Int",
+   "label": "Last UID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "uid_validity",
+   "fieldtype": "Data",
+   "label": "UID Validity",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-06 12:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "Tax Mailbox Sync",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "export": 1,
+   "report": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "read": 1,
+   "export": 1,
+   "report": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0,
+ "autoname": "field:config_row",
+ "naming_rule": "By fieldname",
+ "title_field": "tax_email",
+ "in_create": 1
+}

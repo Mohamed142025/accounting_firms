@@ -1,0 +1,267 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-06 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "subject",
+  "customer",
+  "customer_name",
+  "branch",
+  "column_break_1",
+  "status",
+  "category",
+  "tax_type",
+  "priority",
+  "column_break_2",
+  "received_at",
+  "due_date",
+  "assigned_to",
+  "matched_rule",
+  "message_section",
+  "sender",
+  "sender_name",
+  "column_break_3",
+  "tax_email",
+  "has_attachments",
+  "body_section",
+  "body",
+  "notes_section",
+  "notes",
+  "body_text",
+  "message_hash",
+  "imap_uid"
+ ],
+ "fields": [
+  {
+   "default": "TN-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "TN-.YYYY.-.#####",
+   "hidden": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "subject",
+   "fieldtype": "Data",
+   "label": "العنوان",
+   "reqd": 1,
+   "in_list_view": 1,
+   "length": 255
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "العميل",
+   "options": "Customer",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "اسم العميل",
+   "fetch_from": "customer.customer_name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "الفرع",
+   "options": "Customer Branch"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "جديد",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "الحالة",
+   "options": "جديد\nتحت المراجعة\nتم التعامل\nمؤرشف",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "label": "التصنيف",
+   "options": "Tax Notification Category",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "tax_type",
+   "fieldtype": "Select",
+   "label": "نوع الضريبة",
+   "options": "\nضريبة الدخل\nالقيمة المضافة\nالمرتبات\nالخصم والتحصيل\nالفاتورة الإلكترونية\nالإيصال الإلكتروني\nالدمغة\nأخرى",
+   "in_standard_filter": 1
+  },
+  {
+   "default": "متوسطة",
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "label": "الأولوية",
+   "options": "منخفضة\nمتوسطة\nعالية",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "received_at",
+   "fieldtype": "Datetime",
+   "label": "تاريخ الاستلام",
+   "read_only": 1,
+   "in_list_view": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "تاريخ الاستحقاق"
+  },
+  {
+   "fieldname": "assigned_to",
+   "fieldtype": "Link",
+   "label": "المسؤول",
+   "options": "User",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "matched_rule",
+   "fieldtype": "Link",
+   "label": "القاعدة المطبقة",
+   "options": "Tax Notification Rule",
+   "read_only": 1
+  },
+  {
+   "fieldname": "message_section",
+   "fieldtype": "Section Break",
+   "label": "الرسالة"
+  },
+  {
+   "fieldname": "sender",
+   "fieldtype": "Data",
+   "label": "المرسل",
+   "read_only": 1,
+   "length": 255
+  },
+  {
+   "fieldname": "sender_name",
+   "fieldtype": "Data",
+   "label": "اسم المرسل",
+   "read_only": 1,
+   "length": 255
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tax_email",
+   "fieldtype": "Data",
+   "label": "الإيميل الضريبي",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "has_attachments",
+   "fieldtype": "Check",
+   "label": "بها مرفقات",
+   "read_only": 1
+  },
+  {
+   "fieldname": "body_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "body",
+   "fieldtype": "Text Editor",
+   "label": "نص الرسالة",
+   "read_only": 1
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "المتابعة"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "ملاحظات المكتب"
+  },
+  {
+   "fieldname": "body_text",
+   "fieldtype": "Long Text",
+   "label": "Body Text",
+   "hidden": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "message_hash",
+   "fieldtype": "Data",
+   "label": "Message Hash",
+   "hidden": 1,
+   "read_only": 1,
+   "unique": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "imap_uid",
+   "fieldtype": "Int",
+   "label": "IMAP UID",
+   "hidden": 1,
+   "read_only": 1,
+   "no_copy": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-06 12:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "Tax Notification",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "export": 1,
+   "report": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "export": 1,
+   "report": 1
+  },
+  {
+   "role": "Accounts User",
+   "read": 1,
+   "write": 1,
+   "export": 1,
+   "report": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "naming_series:",
+ "naming_rule": "By \"Naming Series\" field",
+ "title_field": "subject",
+ "search_fields": "subject,customer_name,sender"
+}
