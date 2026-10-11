@@ -384,3 +384,74 @@
 عدد الأعمال,Entries
 ملخص اليوم,Daily Summary
 تقرير ساعات العمل,Work Hours Report
+البيانات الإدارية,Administrative Data
+ممثلو الشركة,Company Representatives
+الصفة / الوظيفة,Designation
+موبايل / واتساب,Mobile / WhatsApp
+الإيميل,Email
+تاريخ البداية,From Date
+تاريخ النهاية,To Date
+جهة الاتصال المرتبطة,Linked Contact
+إضافة كجهة اتصال,Add as Contact
+تم إنشاء جهة الاتصال {0},Contact {0} created
+حالي,Current
+سابق,Previous
+متنازل,Transferred
+مجلس الإدارة,Board of Directors
+تاريخ التشكيل,Formation Date
+اسم العضو,Member Name
+الصفة,Role
+رئيس مجلس الإدارة,Chairman
+نائب رئيس مجلس الإدارة,Vice Chairman
+عضو منتدب,Managing Director
+عضو مجلس إدارة,Board Member
+أمين سر المجلس,Board Secretary
+الصلاحية,Authority
+تاريخ انتهاء الصلاحية,Authority Expiry Date
+صلاحيات مجلس الإدارة,Board Authorities
+رأس المال,Capital
+رأس المال المرخص (الحالي),Authorized Capital (Current)
+رأس المال المصدر (الحالي),Issued Capital (Current)
+رأس المال المدفوع (الحالي),Paid-up Capital (Current)
+إجمالي عدد الأسهم,Total Shares
+القيمة الاسمية للسهم,Share Par Value
+حركات رأس المال,Capital Changes
+نوع الحركة,Change Type
+تأسيس,Incorporation
+زيادة,Increase
+تخفيض,Decrease
+تعديل,Amendment
+رأس المال المرخص,Authorized Capital
+رأس المال المصدر,Issued Capital
+رأس المال المدفوع,Paid-up Capital
+بيانات صحيفة التأسيس / المرجع,Incorporation Record / Reference
+مرفق,Attachment
+رأس المال المصدر لا يمكن أن يتجاوز المرخص (حركة رأس المال صف {0}).,Issued capital cannot exceed authorized capital (capital change row {0}).
+رأس المال المدفوع لا يمكن أن يتجاوز المصدر (حركة رأس المال صف {0}).,Paid-up capital cannot exceed issued capital (capital change row {0}).
+المساهمون,Shareholders
+اسم المساهم,Shareholder Name
+نوع المساهم,Shareholder Type
+شخص,Individual
+شركة,Company
+الجنسية,Nationality
+عدد الأسهم,Number of Shares
+سعر السهم,Share Price
+قيمة الأسهم,Shares Value
+عدد الأسهم × سعر السهم,Number of shares × share price
+نسبة المساهمة %,Share %
+تُحسب من عدد الأسهم إذا كان إجمالي الأسهم معروفًا في رأس المال,Calculated from the number of shares when the total shares are known in the capital section
+تاريخ المساهمة,Contribution Date
+إجمالي نسب المساهمين الحاليين,Total Share % of Current Shareholders
+نسبة المساهمة يجب أن تكون بين 0 و 100 (المساهمون صف {0}).,Share percentage must be between 0 and 100 (shareholders row {0}).
+مجموع نسب المساهمين الحاليين ({0}%) يتجاوز 100%.,The total share of current shareholders ({0}%) exceeds 100%.
+الجمعيات العمومية,General Assemblies
+نوع الجمعية,Assembly Type
+عادية,Ordinary
+غير عادية,Extraordinary
+تاريخ الانعقاد,Meeting Date
+رقم القرار,Decision Number
+حالة التصديق,Ratification Status
+تحت التصديق,Pending Ratification
+تم التصديق,Ratified
+محضر الاجتماع,Meeting Minutes
+بيان القرار,Decision

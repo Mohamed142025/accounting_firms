@@ -1,0 +1,124 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-12 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "shareholder_name",
+  "shareholder_type",
+  "nationality",
+  "column_break_1",
+  "number_of_shares",
+  "share_price",
+  "shares_value",
+  "share_percent",
+  "dates_section",
+  "contribution_date",
+  "column_break_2",
+  "status",
+  "notes_section",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "shareholder_name",
+   "fieldtype": "Data",
+   "label": "اسم المساهم",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 3
+  },
+  {
+   "default": "شخص",
+   "fieldname": "shareholder_type",
+   "fieldtype": "Select",
+   "label": "نوع المساهم",
+   "options": "شخص\nشركة",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "nationality",
+   "fieldtype": "Link",
+   "label": "الجنسية",
+   "options": "Country"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "number_of_shares",
+   "fieldtype": "Int",
+   "label": "عدد الأسهم",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "share_price",
+   "fieldtype": "Currency",
+   "label": "سعر السهم"
+  },
+  {
+   "fieldname": "shares_value",
+   "fieldtype": "Currency",
+   "label": "قيمة الأسهم",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 2,
+   "description": "عدد الأسهم × سعر السهم"
+  },
+  {
+   "fieldname": "share_percent",
+   "fieldtype": "Percent",
+   "label": "نسبة المساهمة %",
+   "in_list_view": 1,
+   "columns": 1,
+   "description": "تُحسب من عدد الأسهم إذا كان إجمالي الأسهم معروفًا في رأس المال"
+  },
+  {
+   "fieldname": "dates_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "contribution_date",
+   "fieldtype": "Date",
+   "label": "تاريخ المساهمة",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "حالي",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "الحالة",
+   "options": "حالي\nسابق\nمتنازل",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "ملاحظات"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-10-12 10:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "Customer Shareholder",
+ "owner": "Administrator",
+ "permissions": [],
+ "states": [],
+ "track_changes": 0
+}

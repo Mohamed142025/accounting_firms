@@ -11,6 +11,7 @@ EXPIRY_SOURCES = (
     ("اتحاد التشييد والبناء", "tabConstruction Federation Membership", "expiry_date", None),
     ("السجل التجاري", "tabCommercial Register", "expiry_5_months", None),
     ("العلامات التجارية", "tabTrademark", "expiry_date", None),
+    ("صلاحيات مجلس الإدارة", "tabBoard Member", "authority_expiry", None),
     ("البطاقة الاستيرادية", "tabImport Export Card", "expiry_date", "import_cards"),
     ("البطاقة التصديرية", "tabImport Export Card", "expiry_date", "export_cards"),
     ("بيانات التوكن", "tabToken Data", "expiry_date", None),
@@ -126,6 +127,12 @@ def get_expiry_rows(customer=None, branch=None):
             parentfield_clause = " AND child.parentfield = %(parentfield)s"
             query_params["parentfield"] = parentfield
 
+        has_branch = frappe.db.has_column(table_name[3:], "branch")
+        branch_expr = "child.branch" if has_branch else "NULL"
+        branch_name_expr = "branch.branch_name" if has_branch else "NULL"
+        branch_join = "LEFT JOIN `tabCustomer Branch` branch ON branch.name = child.branch" if has_branch else ""
+        if branch and not has_branch:
+            continue
         rows.extend(
             frappe.db.sql(
                 f"""
@@ -134,13 +141,13 @@ def get_expiry_rows(customer=None, branch=None):
                     customer.customer_name,
                     %(document_type)s AS document_key,
                     %(document_label)s AS document_type,
-                    child.branch AS branch,
-                    branch.branch_name AS branch_name,
+                    {branch_expr} AS branch,
+                    {branch_name_expr} AS branch_name,
                     child.name AS document_row,
                     child.`{expiry_field}` AS expiry_date
                 FROM `{table_name}` child
                 INNER JOIN `tabCustomer` customer ON customer.name = child.parent
-                LEFT JOIN `tabCustomer Branch` branch ON branch.name = child.branch
+                {branch_join}
                 WHERE child.parenttype = 'Customer'
                   AND child.`{expiry_field}` IS NOT NULL
                   AND child.`{expiry_field}` != ''

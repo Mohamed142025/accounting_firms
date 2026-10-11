@@ -1,6 +1,6 @@
 import frappe
 from frappe import _
-from frappe.utils import add_months, add_years, getdate
+from frappe.utils import add_months, add_years, cint, flt, getdate
 
 
 DATE_TABLES = {
@@ -10,6 +10,7 @@ DATE_TABLES = {
     "construction_federation_membership": ("issue_date", "expiry_date"),
     "commercial_register": ("issue_date", "expiry_5_months"),
     "trademarks": ("filing_date", "expiry_date"),
+    "company_representatives": ("from_date", "to_date"),
     "import_cards": ("issue_date", "expiry_date"),
     "export_cards": ("issue_date", "expiry_date"),
     "token_data": ("issue_date", "expiry_date"),
@@ -52,6 +53,8 @@ class AccountingFirmsCustomer:
         self._validate_date_ranges()
         self._validate_branches()
         self._validate_related_companies()
+        self._update_capital_summary()
+        self._update_shareholders()
 
     def _validate_company_code(self):
         is_new_customer = self.is_new() or not self.name
@@ -158,3 +161,34 @@ class AccountingFirmsCustomer:
                 frappe.throw(_("لا يمكن ربط الشركة بنفسها (صف {0}).").format(row.idx))
             if row.has_share and row.share_percent and not (0 < row.share_percent <= 100):
                 frappe.throw(_("نسبة الحصة يجب أن تكون بين 0 و 100 (صف {0}).").format(row.idx))
+
+    def _update_capital_summary(self):
+        """Current capital = the latest capital change row; also sanity-check each row."""
+        rows = self.get("capital_changes") or []
+        for row in rows:
+            authorized, issued, paid = flt(row.authorized_capital), flt(row.issued_capital), flt(row.paid_capital)
+            if issued and authorized and issued > authorized:
+                frappe.throw(_("رأس المال المصدر لا يمكن أن يتجاوز المرخص (حركة رأس المال صف {0}).").format(row.idx))
+            if paid and issued and paid > issued:
+                frappe.throw(_("رأس المال المدفوع لا يمكن أن يتجاوز المصدر (حركة رأس المال صف {0}).").format(row.idx))
+        latest = max(rows, key=lambda r: (getdate(r.change_date), r.idx)) if rows else None
+        self.authorized_capital = flt(latest.authorized_capital) if latest else 0
+        self.issued_capital = flt(latest.issued_capital) if latest else 0
+        self.paid_capital = flt(latest.paid_capital) if latest else 0
+        self.total_shares = cint(latest.total_shares) if latest else 0
+        self.share_par_value = flt(latest.share_par_value) if latest else 0
+
+    def _update_shareholders(self):
+        total_shares = cint(self.get("total_shares"))
+        total_percent = 0
+        for row in self.get("shareholders") or []:
+            row.shares_value = flt(row.number_of_shares) * flt(row.share_price)
+            if total_shares and row.number_of_shares:
+                row.share_percent = flt(row.number_of_shares) * 100 / total_shares
+            if row.share_percent and not (0 < flt(row.share_percent) <= 100):
+                frappe.throw(_("نسبة المساهمة يجب أن تكون بين 0 و 100 (المساهمون صف {0}).").format(row.idx))
+            if row.status == "حالي":
+                total_percent += flt(row.share_percent)
+        if total_percent > 100.001:
+            frappe.throw(_("مجموع نسب المساهمين الحاليين ({0}%) يتجاوز 100%.").format(flt(total_percent, 2)))
+        self.shareholders_total_percent = flt(total_percent, 2)

@@ -5,6 +5,7 @@ const dateRanges = [
   ["construction_federation_membership", "issue_date", "expiry_date"],
   ["commercial_register", "issue_date", "expiry_5_months"],
   ["trademarks", "filing_date", "expiry_date"],
+  ["company_representatives", "from_date", "to_date"],
   ["import_cards", "issue_date", "expiry_date"],
   ["export_cards", "issue_date", "expiry_date"],
   ["token_data", "issue_date", "expiry_date"],
@@ -103,6 +104,76 @@ frappe.ui.form.on("Trademark", {
     }
   },
 });
+
+frappe.ui.form.on("Company Representative", {
+  create_contact(frm, cdt, cdn) {
+    if (!requireSaved(frm, cdt, cdn)) return;
+    frappe
+      .call({
+        method: "accounting_firms.accounting_firms.doctype.company_representative.company_representative.create_contact",
+        args: { name: cdn, parent: frm.doc.name },
+        freeze: true,
+      })
+      .then(({ message }) => {
+        frappe.model.set_value(cdt, cdn, "contact", message);
+        frappe.show_alert({ message: __("تم إنشاء جهة الاتصال {0}", [message]), indicator: "green" });
+        frm.save();
+      });
+  },
+});
+
+frappe.ui.form.on("Customer Shareholder", {
+  number_of_shares: recalculateShareholder,
+  share_price: recalculateShareholder,
+  share_percent(frm) {
+    updateShareholdersTotal(frm);
+  },
+  status(frm) {
+    updateShareholdersTotal(frm);
+  },
+  shareholders_remove(frm) {
+    updateShareholdersTotal(frm);
+  },
+});
+
+frappe.ui.form.on("Capital Change", {
+  change_date: updateCapitalSummary,
+  authorized_capital: updateCapitalSummary,
+  issued_capital: updateCapitalSummary,
+  paid_capital: updateCapitalSummary,
+  total_shares: updateCapitalSummary,
+  share_par_value: updateCapitalSummary,
+  capital_changes_remove: updateCapitalSummary,
+});
+
+function recalculateShareholder(frm, cdt, cdn) {
+  const row = frappe.get_doc(cdt, cdn);
+  frappe.model.set_value(cdt, cdn, "shares_value", flt(row.number_of_shares) * flt(row.share_price));
+  if (flt(frm.doc.total_shares) && row.number_of_shares) {
+    frappe.model.set_value(cdt, cdn, "share_percent", (flt(row.number_of_shares) * 100) / flt(frm.doc.total_shares));
+  }
+  updateShareholdersTotal(frm);
+}
+
+function updateShareholdersTotal(frm) {
+  const total = (frm.doc.shareholders || [])
+    .filter((r) => r.status === "حالي")
+    .reduce((sum, r) => sum + flt(r.share_percent), 0);
+  frm.set_value("shareholders_total_percent", flt(total, 2));
+}
+
+function updateCapitalSummary(frm) {
+  const rows = frm.doc.capital_changes || [];
+  const latest = rows.reduce((best, r) => (!best || (r.change_date || "") >= (best.change_date || "") ? r : best), null);
+  frm.set_value({
+    authorized_capital: latest ? flt(latest.authorized_capital) : 0,
+    issued_capital: latest ? flt(latest.issued_capital) : 0,
+    paid_capital: latest ? flt(latest.paid_capital) : 0,
+    total_shares: latest ? cint(latest.total_shares) : 0,
+    share_par_value: latest ? flt(latest.share_par_value) : 0,
+  });
+  (frm.doc.shareholders || []).forEach((r) => recalculateShareholder(frm, r.doctype, r.name));
+}
 
 frappe.ui.form.on("Tax Email Configuration", {
   test_connection(frm, cdt, cdn) {
