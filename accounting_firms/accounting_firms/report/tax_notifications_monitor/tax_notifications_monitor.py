@@ -8,7 +8,35 @@ OPEN_STATUSES = ("جديد", "تحت المراجعة")
 def execute(filters=None):
     filters = frappe._dict(filters or {})
     rows = get_rows(filters)
-    return get_columns(), rows, None, None, get_summary(rows)
+    return get_columns(), rows, None, get_chart(rows, filters), get_summary(rows)
+
+
+def get_chart(rows, filters):
+    """Stacked bars per month of receipt, split by category (top 5 + others)."""
+    from collections import Counter
+
+    from frappe.utils import add_months
+
+    start = getdate(filters.get("from_date") or (min((r.received_at for r in rows), default=today())))
+    end = getdate(filters.get("to_date") or today())
+    months = []
+    current = start.replace(day=1)
+    while current <= end and len(months) < 36:
+        months.append(f"{current.month:02d}/{current.year}")
+        current = add_months(current, 1)
+    months = months or [f"{end.month:02d}/{end.year}"]
+
+    other = _("أخرى / غير مصنف")
+    top = [c for c, _n in Counter(r.category for r in rows if r.category).most_common(5)]
+    series = {name: {m: 0 for m in months} for name in top + [other]}
+    for r in rows:
+        d = getdate(r.received_at)
+        key = f"{d.month:02d}/{d.year}"
+        name = r.category if r.category in top else other
+        if key in series[name]:
+            series[name][key] += 1
+    datasets = [{"name": name, "values": [series[name][m] for m in months]} for name in series if any(series[name].values())]
+    return {"data": {"labels": months, "datasets": datasets or [{"name": other, "values": [0] * len(months)}]}, "type": "bar", "fieldtype": "Int"}
 
 
 def get_rows(filters):

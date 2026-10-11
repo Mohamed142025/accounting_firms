@@ -28,9 +28,52 @@ def execute(filters=None):
         row.indicator = get_indicator(row.status)
 
     rows = [row for row in rows if filters.get("status") in (None, "", "All") or row.status == filters.status]
+    if filters.get("from_date"):
+        rows = [row for row in rows if getdate(row.expiry_date) >= getdate(filters.from_date)]
+    if filters.get("to_date"):
+        rows = [row for row in rows if getdate(row.expiry_date) <= getdate(filters.to_date)]
     rows.sort(key=lambda row: (row.expiry_date, row.customer_name or "", row.document_type))
 
-    return get_columns(), rows, None, None, get_summary(rows)
+    return get_columns(), rows, None, get_chart(rows, filters), get_summary(rows)
+
+
+def get_chart(rows, filters):
+    """Stacked bars per month of expiry (Expired / Due Soon / Valid)."""
+    statuses = (("Expired", _("منتهي")), ("Due Soon", _("قريب الانتهاء")), ("Valid", _("ساري")))
+    months = month_labels(filters.get("from_date"), filters.get("to_date"), [r.expiry_date for r in rows])
+    counts = {status: {m: 0 for m in months} for status, _label in statuses}
+    for row in rows:
+        key = month_key(row.expiry_date)
+        if key in counts[row.status]:
+            counts[row.status][key] += 1
+    return {
+        "data": {
+            "labels": months,
+            "datasets": [{"name": label, "values": [counts[status][m] for m in months]} for status, label in statuses],
+        },
+        "type": "bar",
+        "fieldtype": "Int",
+    }
+
+
+def month_key(value):
+    d = getdate(value)
+    return f"{d.month:02d}/{d.year}"
+
+
+def month_labels(from_date, to_date, dates):
+    """Consecutive month labels covering the filter range (or the data range)."""
+    from frappe.utils import add_months
+
+    valid = [getdate(d) for d in dates if d]
+    start = getdate(from_date) if from_date else (min(valid) if valid else getdate(today()))
+    end = getdate(to_date) if to_date else (max(valid) if valid else getdate(today()))
+    labels = []
+    current = start.replace(day=1)
+    while current <= end and len(labels) < 36:
+        labels.append(month_key(current))
+        current = add_months(current, 1)
+    return labels or [month_key(today())]
 
 
 @frappe.whitelist()

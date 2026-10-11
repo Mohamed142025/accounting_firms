@@ -160,6 +160,8 @@ doc_events = {}
 # Scheduled Tasks
 # ---------------
 
+after_migrate = ["accounting_firms.setup.sidebar.after_migrate"]
+
 scheduler_events = {
 	"cron": {
 		# read customers' tax mailboxes every 30 minutes

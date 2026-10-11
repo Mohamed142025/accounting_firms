@@ -29,6 +29,16 @@
    "fieldtype": "Select",
    "label": "الحالة",
    "options": "All\nExpired\nDue Soon\nValid"
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "تاريخ الانتهاء من"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "تاريخ الانتهاء إلى"
   }
  ],
  "idx": 0,
