@@ -23,7 +23,7 @@ class CustomerArchiveFolder(NestedSet):
             {
                 "customer": self.customer,
                 "folder_name": self.folder_name,
-                "parent_customer_archive_folder": self.parent_customer_archive_folder or "",
+                "parent_customer_archive_folder": self.parent_customer_archive_folder if self.parent_customer_archive_folder else ["in", ["", None]],
                 "name": ["!=", self.name],
             },
         )

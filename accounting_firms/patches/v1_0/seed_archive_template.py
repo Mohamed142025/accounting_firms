@@ -29,7 +29,8 @@ TEMPLATE = {
 
 
 def ensure_template_node(folder_name, parent=None):
-    name = frappe.db.get_value("Archive Folder Template", {"folder_name": folder_name, "parent_archive_folder_template": parent or ""})
+    filters = {"folder_name": folder_name, "parent_archive_folder_template": parent if parent else ["in", ["", None]]}
+    name = frappe.db.get_value("Archive Folder Template", filters)
     if name:
         return name
     doc = frappe.get_doc({"doctype": "Archive Folder Template", "folder_name": folder_name, "parent_archive_folder_template": parent})
