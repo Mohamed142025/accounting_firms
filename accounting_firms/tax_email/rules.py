@@ -99,3 +99,34 @@ def reclassify(names=None):
             doc.save(ignore_permissions=True)
             changed += 1
     return {"changed": changed}
+
+
+def ensure_rules(rules):
+    """Insert seed rules that do not exist yet.
+
+    rules: iterable of (name, sequence, sender, subject keywords, body keywords,
+    category, tax type, priority, due days, create todo, assign, auto archive).
+    """
+    for name, seq, sender, subject, body, category, tax_type, priority, due, todo, assign, archive in rules:
+        if frappe.db.exists("Tax Notification Rule", name):
+            continue
+        if category and not frappe.db.exists("Tax Notification Category", category):
+            frappe.get_doc({"doctype": "Tax Notification Category", "category_name": category}).insert(ignore_permissions=True)
+        frappe.get_doc(
+            {
+                "doctype": "Tax Notification Rule",
+                "rule_name": name,
+                "enabled": 1,
+                "sequence": seq,
+                "sender_contains": sender,
+                "subject_keywords": subject,
+                "body_keywords": body,
+                "category": category or None,
+                "tax_type": tax_type,
+                "priority": priority,
+                "due_in_days": due,
+                "create_todo": todo,
+                "assign_to_accountant": assign,
+                "auto_archive": archive,
+            }
+        ).insert(ignore_permissions=True)

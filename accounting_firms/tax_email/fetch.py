@@ -7,6 +7,7 @@ read, moved or deleted in the customer's mailbox.
 import hashlib
 import imaplib
 import socket
+from html import unescape
 from email.header import decode_header, make_header
 from email.utils import parseaddr
 
@@ -148,13 +149,24 @@ def make_body(mail):
     else:
         text = mail.text_content or ""
         html = escape_html(text).replace("\n", "<br>")
+    text = unescape(text).replace("\xa0", " ")
     return html, text[:200000]
+
+
+def real_attachments(mail):
+    """Attachments without the inline images (logos, signatures) referenced from the HTML body."""
+    inline = set(mail.cid_map or {})
+    return [
+        a
+        for a in (mail.attachments or [])
+        if not (a.get("fname") in inline and (a.get("content_type") or "").startswith("image/"))
+    ]
 
 
 def save_attachments(doc, mail, settings):
     saved = 0
     limit = settings.max_attachment_mb * 1024 * 1024
-    for attachment in mail.attachments or []:
+    for attachment in real_attachments(mail):
         content = attachment.get("fcontent")
         if not content or len(content) > limit:
             continue
@@ -179,7 +191,8 @@ def save_attachments(doc, mail, settings):
 def create_notification(row, uid, raw, settings, rules):
     """Store one message. Returns the new document, or None when it already exists."""
     mail = Email(raw)
-    key = mail.message_id or f"{uid}|{mail.date}|{mail.subject}"
+    # some senders reuse Message-IDs across different mails, so the date and subject are part of the key
+    key = f"{mail.message_id or uid}|{mail.date}|{mail.subject}"
     message_hash = hashlib.sha1(f"{row.tax_email}|{key}".encode()).hexdigest()
     if frappe.db.exists("Tax Notification", {"message_hash": message_hash}):
         return None
@@ -198,7 +211,7 @@ def create_notification(row, uid, raw, settings, rules):
             "received_at": mail.date,
             "body": html,
             "body_text": text,
-            "has_attachments": 1 if mail.attachments else 0,
+            "has_attachments": 1 if real_attachments(mail) else 0,
             "message_hash": message_hash,
             "imap_uid": uid,
             "status": "جديد",
@@ -212,7 +225,7 @@ def create_notification(row, uid, raw, settings, rules):
 
     doc.insert(ignore_permissions=True)
 
-    if settings.fetch_attachments and mail.attachments:
+    if settings.fetch_attachments and doc.has_attachments:
         save_attachments(doc, mail, settings)
 
     is_recent = getdate(doc.received_at) >= add_days(getdate(today()), -settings.todo_max_age_days)

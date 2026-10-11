@@ -11,3 +11,4 @@ accounting_firms.patches.v1_0.remove_legacy_customer_fields
 # Patches added in this section will be executed after doctypes are migrated
 accounting_firms.patches.v1_0.create_default_tax_platforms
 accounting_firms.patches.v1_0.seed_tax_notification_defaults
+accounting_firms.patches.v1_0.seed_tax_notification_rules_v2
