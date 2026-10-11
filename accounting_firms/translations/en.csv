@@ -1,0 +1,316 @@
+الكود,Code
+الاسم,Name
+الحالة,Status
+ملاحظات,Notes
+وصف,Description
+النوع,Type
+العميل,Customer
+اسم العميل,Customer Name
+الفرع,Branch
+الفروع,Branches
+اسم الفرع,Branch Name
+كود الفرع,Branch Code
+كود الشركة,Company Code
+كود المحاسب,Accountant
+العنوان,Address
+تفاصيل,Details
+المتابعة,Follow-up
+النتيجة,Result
+الشروط,Conditions
+الترتيب,Sequence
+مفعّلة,Enabled
+الأولوية,Priority
+التصنيف,Category
+المسؤول,Assigned To
+المرسل,Sender
+اسم المرسل,Sender Name
+الرسالة,Message
+نص الرسالة,Message Body
+ملاحظات المكتب,Office Notes
+بها مرفقات,Has Attachments
+القاعدة المطبقة,Matched Rule
+تاريخ الاستحقاق,Due Date
+تاريخ الاستلام,Received At
+تاريخ الإصدار,Issue Date
+تاريخ الانتهاء,Expiry Date
+تاريخ الانتهاء من,Expiry Date From
+تاريخ الانتهاء إلى,Expiry Date To
+من تاريخ,From Date
+إلى تاريخ,To Date
+التاريخ من,From Date
+التاريخ إلى,To Date
+عالية,High
+متوسطة,Medium
+منخفضة,Low
+جديد,New
+تحت المراجعة,Under Review
+تم التعامل,Resolved
+مؤرشف,Archived
+متأخر,Overdue
+منتهي,Expired
+قريب الانتهاء,Due Soon
+ساري,Valid
+منتهية,Expired
+سارية,Valid
+موقوفة,Suspended
+الحالي,Current
+السابق,Previous
+أخرى,Other
+أخرى / غير مصنف,Other / Unclassified
+غير مصنف,Unclassified
+عرض,View
+إغلاق,Close
+إنشاء,Create
+تم,Done
+بدون عنوان,No Subject
+البيانات الأساسية,Basic Data
+بيانات الشركة,Company Data
+الكيان القانوني,Legal Entity
+تابع لمجموعة شركات,Parent Company Group
+الشركة الأم أو مجموعة الشركات.,Parent company or group of companies.
+يتم إدخال الكود يدوياً ولا يمكن تغييره بعد الحفظ.,Entered manually and cannot be changed after saving.
+البطاقة الضريبية,Tax Card
+القيمة المضافة,VAT
+السجل التجاري,Commercial Register
+الرخص,Licenses
+اتحاد التشييد والبناء,Construction Federation
+البطاقة الاستيرادية,Import Card
+البطاقة التصديرية,Export Card
+الميل الضريبي,Tax Email
+بيانات تواصل مصلحة الضرائب,Tax Authority Contacts
+حسابات المنصات الضريبية,Tax Platform Accounts
+بيانات التوكن,Token Data
+ملف الفاتورة الإلكترونية,E-Invoice Profile
+التيسرات,Facilitations
+الدفعات المقدمة,Advance Payments
+التأمينات,Social Insurance
+التأمينات الاجتماعية,Social Insurance
+مأمورية الضرائب,Tax Office
+رقم الملف الضريبي,Tax File Number
+قانون المحاسبة الضريبي,Tax Accounting Law
+الشركة تابعة لقانون,Subject To Law
+تضامن,General Partnership
+توصية بالاسهم,Partnership Limited by Shares
+توصية بسيطة,Limited Partnership
+ذات مسؤولية محدودة,Limited Liability Company
+شخص واحد,Single Person Company
+فردي,Sole Proprietorship
+مساهمه,Joint Stock Company
+تاريخ بدء النشاط,Activity Start Date
+انتهاء مدة الشركة,Company Term Expiry
+مشترك ضريبة القيمة المضافة,VAT Registered
+مشترك,Registered
+غير مشترك,Not Registered
+تاريخ انتهاء (3 شهور),Expiry Date (3 Months)
+تاريخ انتهاء (5 شهور),Expiry Date (5 Months)
+من له حق التوقيع في الشركة,Authorized Signatory
+مكتب السجل,Register Office
+رقم الإيداع,Deposit Number
+تاريخ الإيداع,Deposit Date
+رقم السجل,Register Number
+اسم مكتب السجل,Register Office Name
+رقم الرخصة,License Number
+نوع الرخصة,License Type
+جهة الإصدار,Issuing Authority
+عنوان الإصدار,Issue Address
+النشاط المصرح به,Authorized Activity
+حالة الرخصة,License Status
+تجارية,Commercial
+صناعية,Industrial
+خدمية,Service
+مقاولات,Contracting
+مهنية,Professional
+رقم العضوية,Membership Number
+تاريخ العضوية,Membership Date
+الشعبة,Division
+التخصصات,Specialization
+الفئة,Category
+اسم الشعبة,Division Name
+اسم التخصص,Specialization Name
+اسم الفئة,Category Name
+صاحب التوقيع,Signatory
+نوع التوكن,Token Type
+ختم إلكتروني,Electronic Seal
+توقيع إلكتروني,Electronic Signature
+إيصال إلكتروني,Electronic Receipt
+الشركة المصدرة,Issuing Company
+اسم الشركة المصدرة,Issuing Company Name
+اختصار الشركة,Company Abbreviation
+رقم هاتف الشركة,Company Phone
+بريد الشركة,Company Email
+الرقم الضريبي للشركة,Company Tax ID
+دولة الشركة,Company Country
+الخط الساخن,Hotline
+رقم التيسرات,Facilitation Number
+تاريخ بداية الاشتراك,Subscription Start Date
+تاريخ نهاية الاشتراك,Subscription End Date
+تاريخ التجديد,Renewal Date
+رقم الشهادة,Certificate Number
+رقم البطاقة,Card Number
+فاتورة إلكترونية,E-Invoice
+الإيصال الإلكتروني,E-Receipt
+الفاتورة الإلكترونية,E-Invoice
+إصدار المستند,Document Version
+الجهاز والتوكن,Device and Token
+رقم التأمين,Insurance Number
+مكتب التأمينات,Insurance Office
+اسم مكتب التأمينات,Insurance Office Name
+اسم المأمورية,Tax Office Name
+اسم قانون المحاسبة الضريبي,Tax Accounting Law Name
+الوسيلة,Contact Method
+تليفون,Phone
+إيميل,Email
+رقم التليفون / الإيميل,Phone / Email
+مأمور/باحث,Officer / Researcher
+مراجع,Reviewer
+مدير,Manager
+رئيس المأمورية,Head of Tax Office
+اسم المنصة,Platform Name
+المنصة,Platform
+رابط صفحة الدخول,Login Page URL
+رابط الدخول,Login URL
+إعدادات الدخول التلقائي (لإضافة المتصفح),Auto-login Settings (Browser Extension)
+محدد حقل اسم المستخدم (CSS Selector),Username Field Selector (CSS)
+محدد حقل كلمة المرور (CSS Selector),Password Field Selector (CSS)
+محدد زر الدخول (CSS Selector),Login Button Selector (CSS)
+الضغط على زر الدخول تلقائيًا,Click the login button automatically
+مثال: input[name='username'] أو #email,Example: input[name='username'] or #email
+مثال: input[type='password'],Example: input[type='password']
+مثال: button[type='submit'],Example: button[type='submit']
+مثال: eta.gov.eg,Example: eta.gov.eg
+مثال: mail.inmotionhosting.com,Example: mail.inmotionhosting.com
+اسم المستخدم,Username
+كلمة المرور,Password
+فتح المنصة,Open Platform
+عرض كلمة المرور,Show Password
+إخفاء كلمة المرور,Hide Password
+فرع جديد,New Branch
+نسخ اسم المستخدم,Copy Username
+نسخ كلمة المرور,Copy Password
+تحميل الإضافة,Download Extension
+بيانات الدخول: {0},Login Details: {0}
+غير متاحة لصلاحياتك,Not available for your role
+تم نسخ اسم المستخدم,Username copied
+تم نسخ كلمة المرور,Password copied
+تم فتح المنصة في نافذة جديدة. انسخ البيانات والصقها في صفحة الدخول.,The platform opened in a new tab. Copy the details and paste them into the login page.
+تم فتح المنصة وإرسال بيانات الدخول لإضافة المتصفح لملئها تلقائيًا.,The platform opened and the login details were sent to the browser extension to fill in automatically.
+للتعبئة التلقائية سطّب إضافة المتصفح:,"For automatic filling, install the browser extension:"
+احفظ العميل أولاً ثم اضغط فتح المنصة.,"Save the customer first, then click Open Platform."
+احفظ العميل أولاً.,Save the customer first.
+رابط صفحة الدخول يجب أن يبدأ بـ http:// أو https://,The login URL must start with http:// or https://
+صف غير صالح.,Invalid row.
+تم عرض,Viewed
+تم استخدام,Used
+{0} كلمة مرور منصة {1} بواسطة {2},{0} the password of platform {1} by {2}
+منظومة الضرائب الجديدة,New Tax System
+منظومة الضرائب القديمة,Old Tax System
+ضريبة المرتبات - قطاع خاص,Payroll Tax - Private Sector
+ضريبة المرتبات - قطاع عام,Payroll Tax - Public Sector
+مصر الرقمية,Digital Egypt
+وزارة السياحة,Ministry of Tourism
+نافذة الجمارك,Nafeza (Customs)
+الإيميل الضريبي,Tax Email
+اتصال مشفر (SSL),Encrypted Connection (SSL)
+قراءة الإشعارات تلقائيًا,Read notifications automatically
+اختبار الاتصال,Test Connection
+جلب الإشعارات الآن,Fetch Notifications Now
+معرّف صف الإيميل,Email Row ID
+حالة المزامنة,Sync Status
+آخر مزامنة,Last Sync
+آخر خطأ,Last Error
+إجمالي الرسائل المجلوبة,Total Messages Fetched
+تفعيل القراءة التلقائية للإيميلات الضريبية,Enable automatic reading of tax mailboxes
+أول مزامنة: جلب رسائل آخر (يوم),First sync: fetch messages of the last (days)
+عند أول قراءة لأي إيميل بنجيب رسائل المدة دي بس، مش كل الأرشيف,"On the first read of a mailbox only this period is fetched, not the whole archive"
+أقصى عدد رسائل لكل إيميل في المرة,Max messages per mailbox per run
+حفظ المرفقات,Save attachments
+أقصى حجم للمرفق (ميجابايت),Max attachment size (MB)
+إنشاء مهام للرسائل الأحدث من (يوم),Create ToDos for messages newer than (days)
+الرسائل الأقدم من كده بتتسجل من غير مهام عشان أول مزامنة ما تغرقش المحاسبين,Older messages are stored without ToDos so the first sync does not flood the accountants
+الاتصال ناجح,Connection successful
+فشل الاتصال,Connection failed
+فشل الجلب,Fetch failed
+خطأ غير معروف,Unknown error
+جاري الاتصال بسيرفر البريد...,Connecting to the mail server...
+جاري جلب الإشعارات...,Fetching notifications...
+تم تسجيل الدخول بنجاح. عدد الرسائل في صندوق الوارد: {0},Logged in successfully. Messages in inbox: {0}
+تم جلب {0} إشعار جديد.,{0} new notification(s) fetched.
+باقي {0} رسالة هتتجلب تلقائيًا في الخلفية.,{0} remaining message(s) will be fetched automatically in the background.
+عرض الإشعارات,View Notifications
+صف الإيميل الضريبي غير موجود. احفظ العميل أولاً.,Tax email row not found. Save the customer first.
+بيانات الإيميل ناقصة: السيرفر والإيميل وكلمة المرور مطلوبين.,"Incomplete mailbox details: server, email and password are required."
+فشل تسجيل الدخول: اسم المستخدم أو كلمة المرور غير صحيحة. ({0}),Login failed: incorrect username or password. ({0})
+خطأ من سيرفر البريد: {0},Mail server error: {0}
+عنوان السيرفر غير صحيح أو غير متاح: {0},Server address is invalid or unreachable: {0}
+انتهت مهلة الاتصال بالسيرفر.,Connection to the server timed out.
+تعذر الاتصال بالسيرفر: {0},Could not connect to the server: {0}
+ليس لديك صلاحية على هذا العميل.,You do not have permission on this customer.
+ليس لديك صلاحية قراءة بيانات هذا العميل.,You do not have permission to read this customer.
+إشعار ضريبي للعميل {0}: {1},Tax notification for customer {0}: {1}
+الإشعارات الضريبية,Tax Notifications
+الإشعار,Notification
+نوع الضريبة,Tax Type
+نوع المستند,Document Type
+ضريبة الدخل,Income Tax
+المرتبات,Payroll
+الخصم والتحصيل,Withholding Tax
+الدمغة,Stamp Tax
+اسم التصنيف,Category Name
+اسم القاعدة,Rule Name
+القواعد بتتجرب من الأصغر للأكبر، وأول قاعدة تتحقق هي اللي بتتطبق,Rules are tried from the lowest sequence up; the first matching rule is applied
+كل شرط مكتوب لازم يتحقق. داخل الشرط الواحد يكفي تحقق أي كلمة (كلمة في كل سطر).,Every filled condition must match. Within one condition any keyword is enough (one keyword per line).
+المرسل يحتوي على,Sender contains
+العنوان يحتوي على,Subject contains
+نص الرسالة يحتوي على,Body contains
+مهلة التعامل (أيام),Handling period (days)
+0 = بدون تاريخ استحقاق,0 = no due date
+تعيين لمحاسب العميل,Assign to the customer's accountant
+إنشاء مهمة (ToDo) للمحاسب,Create a ToDo for the accountant
+أرشفة تلقائية (رسائل غير مهمة),Archive automatically (unimportant mail)
+إعادة تطبيق القواعد,Re-apply Rules
+إعادة تصنيف {0} إشعار محدد؟,Re-classify {0} selected notification(s)?
+إعادة تصنيف كل الإشعارات المفتوحة حسب القواعد الحالية؟,Re-classify all open notifications using the current rules?
+تم تحديث {0} إشعار,{0} notification(s) updated
+{0} إشعار ضريبي جديد,{0} new tax notification(s)
+{0} إشعار متأخر,{0} overdue notification(s)
+أولوية عالية,High Priority
+أيام التأخير,Days Overdue
+فحص ضريبي,Tax Audit
+مطالبات وسداد,Claims and Payments
+إقرارات ضريبية,Tax Returns
+بيانات الدخول ورموز التحقق,Login Details and Verification Codes
+إخطارات مصلحة الضرائب,Tax Authority Notices
+رموز التحقق وكلمات المرور,Verification Codes and Passwords
+رسائل مصلحة الضرائب,Tax Authority Mail
+نوع الضريبة: المرتبات,Tax Type: Payroll
+نوع الضريبة: القيمة المضافة,Tax Type: VAT
+نوع الضريبة: الخصم والتحصيل,Tax Type: Withholding
+رفض طلب,Request Rejected
+قبول طلب,Request Accepted
+تنبيه هام من المصلحة,Important Alert from the Authority
+تأكيد سداد,Payment Confirmation
+الفاتورة الإلكترونية - تحديث حالة المستندات,E-Invoice - Document Status Update
+الأيام المتبقية,Days Remaining
+المؤشر,Indicator
+التنبيه قبل (يوم),Alert before (days)
+يوجد {0} مستند منتهي و{1} مستند قريب الانتهاء.,{0} expired document(s) and {1} due soon.
+يوجد {0} مستند قريب الانتهاء خلال 30 يوم.,{0} document(s) expire within 30 days.
+تاريخ الانتهاء لا يمكن أن يكون قبل تاريخ الإصدار في {0} (صف {1}).,Expiry date cannot be before issue date in {0} (row {1}).
+الفرع {0} لا يتبع هذا العميل (في {1} صف {2}).,Branch {0} does not belong to this customer (in {1} row {2}).
+كود الشركة مطلوب عند إنشاء عميل جديد.,Company code is required when creating a new customer.
+لا يمكن تعديل كود الشركة بعد الحفظ لأنه معرف ثابت للعميل.,Company code cannot be changed after saving; it is the customer's permanent identifier.
+كود الشركة مستخدم بالفعل، برجاء إدخال كود مختلف.,"Company code is already in use, please enter a different code."
+لا يمكن أن تكون الشركة تابعة لنفسها.,A company cannot be its own parent.
+لا يمكن إنشاء علاقة دائرية بين الشركات.,Circular company relationships are not allowed.
+كود الفرع مطلوب.,Branch code is required.
+كود الفرع مستخدم بالفعل لهذا العميل.,Branch code is already used for this customer.
+مكتب المحاسبة,Accounting Firm
+لوحة مكتب المحاسبة,Accounting Firm Dashboard
+مستندات منتهية,Expired Documents
+تنتهي خلال 30 يوم,Expiring within 30 days
+إشعارات ضريبية جديدة,New Tax Notifications
+إشعارات ضريبية متأخرة,Overdue Tax Notifications
+انتهاء المستندات حسب الشهر (من أول السنة),Document Expiry by Month (Year to Date)
+الإشعارات الضريبية حسب الشهر (من أول السنة),Tax Notifications by Month (Year to Date)
+تقرير انتهاء المستندات,Document Expiry Report
+تقرير الإشعارات الضريبية,Tax Notifications Report

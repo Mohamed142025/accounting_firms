@@ -1,0 +1,57 @@
+Accounting Firms,مكتب المحاسبة
+Customer Branch,فرع العميل
+Insurance Office,مكتب التأمينات
+Social Insurance,التأمينات الاجتماعية
+Tax Authority Contact,جهة تواصل مصلحة الضرائب
+Import Export Card,بطاقة استيراد / تصدير
+Tax Platform,منصة ضريبية
+Tax Platform Account,حساب منصة ضريبية
+E-Invoice Profile,ملف الفاتورة الإلكترونية
+Mail Server,سيرفر البريد
+Tax Mailbox Sync,مزامنة الإيميل الضريبي
+Tax Notification,إشعار ضريبي
+Tax Notification Category,تصنيف الإشعارات الضريبية
+Tax Notification Rule,قاعدة تصنيف الإشعارات
+Tax Email Settings,إعدادات الإيميل الضريبي
+Tax Email Configuration,الميل الضريبي
+Tax Notifications Monitor,متابعة الإشعارات الضريبية
+Document Expiry Monitor,متابعة انتهاء المستندات
+Tax Card,البطاقة الضريبية
+VAT Registration,تسجيل القيمة المضافة
+Commercial Register,السجل التجاري
+Commercial Register Office,مكتب السجل التجاري
+License,رخصة
+Construction Federation Membership,عضوية اتحاد التشييد
+Construction Federation Category,فئة اتحاد التشييد
+Construction Federation Division,شعبة اتحاد التشييد
+Construction Federation Specialization,تخصص اتحاد التشييد
+Token Data,بيانات التوكن
+Facilitation,تيسيرات
+Advance Payment,دفعة مقدمة
+Tax Accounting Law,قانون المحاسبة الضريبي
+Tax Office,مأمورية الضرائب
+Customer Name in Arabic,اسم العميل بالعربي
+Is customer exempted from sales tax?,هل العميل معفى من ضريبة المبيعات؟
+Incoming Server,سيرفر الوارد
+Port,المنفذ
+Email Password,كلمة مرور الإيميل
+Client ID,Client ID
+Client Secret,Client Secret
+Token PIN,رقم التوكن السري
+Device Serial Number,الرقم التسلسلي للجهاز
+Last UID,آخر UID
+UID Validity,صلاحية UID
+Message Hash,بصمة الرسالة
+Body Text,نص الرسالة
+IMAP UID,IMAP UID
+Series,التسلسل
+Active,نشط
+Inactive,غير نشط
+Success,نجح
+Failed,فشل
+Never,لم تتم
+All,الكل
+Expired,منتهي
+Due Soon,قريب الانتهاء
+Valid,ساري
+Reports,التقارير
