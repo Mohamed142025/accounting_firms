@@ -103,7 +103,7 @@ doctype_list_js = {
 # ------------
 
 # before_install = "accounting_firms.install.before_install"
-# after_install = "accounting_firms.install.after_install"
+after_install = "accounting_firms.install.after_install"
 
 # Uninstallation
 # ------------
