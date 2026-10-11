@@ -50,6 +50,9 @@ def ensure_cards():
             "is_standard": 0,
             "module": MODULE,
             "show_percentage_stats": 0,
+            # plain counts: no currency symbol, and the full number (the shortener turns 0 into NaN)
+            "currency": "",
+            "show_full_number": 1,
         }
         if name:
             doc = frappe.get_doc("Number Card", name)
