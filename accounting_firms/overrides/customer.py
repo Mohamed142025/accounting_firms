@@ -1,6 +1,6 @@
 import frappe
 from frappe import _
-from frappe.utils import getdate
+from frappe.utils import add_months, add_years, getdate
 
 
 DATE_TABLES = {
@@ -8,6 +8,8 @@ DATE_TABLES = {
     "vat_registration": ("issue_date", "expiry_date"),
     "licenses": ("issue_date", "expiry_date"),
     "construction_federation_membership": ("issue_date", "expiry_date"),
+    "commercial_register": ("issue_date", "expiry_5_months"),
+    "trademarks": ("filing_date", "expiry_date"),
     "import_cards": ("issue_date", "expiry_date"),
     "export_cards": ("issue_date", "expiry_date"),
     "token_data": ("issue_date", "expiry_date"),
@@ -21,6 +23,7 @@ BRANCH_TABLES = (
     "vat_registration",
     "commercial_register",
     "licenses",
+    "trademarks",
     "construction_federation_membership",
     "import_cards",
     "export_cards",
@@ -45,8 +48,10 @@ class AccountingFirmsCustomer:
         super().validate()
         self._validate_company_code()
         self._validate_parent_company()
+        self._set_default_expiry_dates()
         self._validate_date_ranges()
         self._validate_branches()
+        self._validate_related_companies()
 
     def _validate_company_code(self):
         is_new_customer = self.is_new() or not self.name
@@ -131,3 +136,25 @@ class AccountingFirmsCustomer:
                             frappe.bold(branch), label, row.idx
                         )
                     )
+
+    def _set_default_expiry_dates(self):
+        """Fill expiry dates the user left empty (commercial register: 3 months / 5 years, trademark: 10 years)."""
+        for row in self.get("commercial_register") or []:
+            if row.issue_date:
+                if not row.expiry_3_months:
+                    row.expiry_3_months = add_months(getdate(row.issue_date), 3)
+                if not row.expiry_5_months:
+                    row.expiry_5_months = add_years(getdate(row.issue_date), 5)
+        for row in self.get("trademarks") or []:
+            if row.filing_date and not row.expiry_date:
+                row.expiry_date = add_years(getdate(row.filing_date), 10)
+
+    def _validate_related_companies(self):
+        rows = self.get("related_companies") or []
+        if rows and not self.get("has_related_companies"):
+            frappe.throw(_("جدول الشركات المرتبطة به بيانات. علّم على \"يوجد ارتباط مع شركات أخرى\" أو احذف الصفوف."))
+        for row in rows:
+            if row.related_customer and row.related_customer == self.name:
+                frappe.throw(_("لا يمكن ربط الشركة بنفسها (صف {0}).").format(row.idx))
+            if row.has_share and row.share_percent and not (0 < row.share_percent <= 100):
+                frappe.throw(_("نسبة الحصة يجب أن تكون بين 0 و 100 (صف {0}).").format(row.idx))

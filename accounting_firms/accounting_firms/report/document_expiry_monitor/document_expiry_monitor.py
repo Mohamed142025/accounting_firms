@@ -9,6 +9,8 @@ EXPIRY_SOURCES = (
     ("القيمة المضافة", "tabVAT Registration", "expiry_date", None),
     ("الرخص", "tabLicense", "expiry_date", None),
     ("اتحاد التشييد والبناء", "tabConstruction Federation Membership", "expiry_date", None),
+    ("السجل التجاري", "tabCommercial Register", "expiry_5_months", None),
+    ("العلامات التجارية", "tabTrademark", "expiry_date", None),
     ("البطاقة الاستيرادية", "tabImport Export Card", "expiry_date", "import_cards"),
     ("البطاقة التصديرية", "tabImport Export Card", "expiry_date", "export_cards"),
     ("بيانات التوكن", "tabToken Data", "expiry_date", None),
@@ -21,6 +23,8 @@ def execute(filters=None):
     filters = frappe._dict(filters or {})
     threshold = max(int(filters.get("days_threshold") or 30), 0)
     rows = get_expiry_rows(filters.get("customer"), filters.get("branch"))
+    if filters.get("document_type"):
+        rows = [row for row in rows if row.document_key == filters.document_type]
 
     for row in rows:
         row.days_remaining = date_diff(getdate(row.expiry_date), getdate(today()))
@@ -117,7 +121,7 @@ def get_expiry_rows(customer=None, branch=None):
 
     for document_type, table_name, expiry_field, parentfield in EXPIRY_SOURCES:
         parentfield_clause = ""
-        query_params = {**params, "document_type": document_type}
+        query_params = {**params, "document_type": document_type, "document_label": _(document_type)}
         if parentfield:
             parentfield_clause = " AND child.parentfield = %(parentfield)s"
             query_params["parentfield"] = parentfield
@@ -128,7 +132,8 @@ def get_expiry_rows(customer=None, branch=None):
                 SELECT
                     child.parent AS customer,
                     customer.customer_name,
-                    %(document_type)s AS document_type,
+                    %(document_type)s AS document_key,
+                    %(document_label)s AS document_type,
                     child.branch AS branch,
                     branch.branch_name AS branch_name,
                     child.name AS document_row,
@@ -186,3 +191,8 @@ def get_summary(rows):
         {"value": counts["Due Soon"], "indicator": "Orange", "label": _("قريب الانتهاء"), "datatype": "Int"},
         {"value": counts["Valid"], "indicator": "Green", "label": _("ساري"), "datatype": "Int"},
     ]
+
+
+def get_document_types():
+    """Options for the document type filter (raw keys; labels are translated on the client)."""
+    return [source[0] for source in EXPIRY_SOURCES]

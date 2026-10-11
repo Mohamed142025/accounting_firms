@@ -1,0 +1,179 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-11 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "user",
+  "column_break_1",
+  "summary_date",
+  "total_hours",
+  "needs_follow_up",
+  "work_section",
+  "work_items",
+  "notes_section",
+  "general_notes",
+  "manager_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "الموظف",
+   "options": "Employee",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "اسم الموظف",
+   "fetch_from": "employee.employee_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "المستخدم",
+   "options": "User",
+   "fetch_from": "employee.user_id",
+   "read_only": 1,
+   "hidden": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "summary_date",
+   "fieldtype": "Date",
+   "label": "التاريخ",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "total_hours",
+   "fieldtype": "Float",
+   "label": "إجمالي الساعات",
+   "read_only": 1,
+   "in_list_view": 1,
+   "precision": "1"
+  },
+  {
+   "default": "0",
+   "fieldname": "needs_follow_up",
+   "fieldtype": "Check",
+   "label": "يحتاج متابعة من المدير",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "work_section",
+   "fieldtype": "Section Break",
+   "label": "أعمال اليوم"
+  },
+  {
+   "fieldname": "work_items",
+   "fieldtype": "Table",
+   "label": "أعمال اليوم",
+   "options": "Daily Summary Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "ملاحظات"
+  },
+  {
+   "fieldname": "general_notes",
+   "fieldtype": "Text Editor",
+   "label": "ملاحظات عامة"
+  },
+  {
+   "fieldname": "manager_notes",
+   "fieldtype": "Small Text",
+   "label": "رد المدير",
+   "permlevel": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-11 12:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "Employee Daily Summary",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "export": 1,
+   "report": 1
+  },
+  {
+   "role": "HR Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "export": 1,
+   "report": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "read": 1,
+   "write": 1,
+   "export": 1,
+   "report": 1
+  },
+  {
+   "role": "Employee",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "if_owner": 1,
+   "report": 1
+  },
+  {
+   "role": "System Manager",
+   "permlevel": 1,
+   "read": 1,
+   "write": 1
+  },
+  {
+   "role": "HR Manager",
+   "permlevel": 1,
+   "read": 1,
+   "write": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "permlevel": 1,
+   "read": 1,
+   "write": 1
+  },
+  {
+   "role": "Employee",
+   "permlevel": 1,
+   "read": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "format:DS-{summary_date}-{employee}",
+ "naming_rule": "Expression",
+ "title_field": "employee_name",
+ "search_fields": "employee_name"
+}

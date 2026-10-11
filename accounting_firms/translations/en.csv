@@ -106,7 +106,7 @@
 من له حق التوقيع في الشركة,Authorized Signatory
 مكتب السجل,Register Office
 رقم الإيداع,Deposit Number
-تاريخ الإيداع,Deposit Date
+تاريخ الإيداع,Filing Date
 رقم السجل,Register Number
 اسم مكتب السجل,Register Office Name
 رقم الرخصة,License Number
@@ -314,3 +314,73 @@
 الإشعارات الضريبية حسب الشهر (من أول السنة),Tax Notifications by Month (Year to Date)
 تقرير انتهاء المستندات,Document Expiry Report
 تقرير الإشعارات الضريبية,Tax Notifications Report
+العلامات التجارية,Trademarks
+اسم العلامة (عربي),Trademark Name (Arabic)
+اسم العلامة (إنجليزي),Trademark Name (English)
+شعار العلامة,Trademark Logo
+المنتجات / الخدمات المشمولة,Covered Products / Services
+بيانات التسجيل,Registration Details
+رقم الطلب,Application Number
+جهة التسجيل,Registration Authority
+رقم التسجيل,Registration Number
+تاريخ التسجيل,Registration Date
+يُحسب تلقائيًا 10 سنوات من تاريخ الإيداع إذا تُرك فارغًا,Calculated automatically as 10 years from the filing date when left empty
+تحت الفحص,Under Examination
+مسجلة,Registered
+مجددة,Renewed
+مرفوضة,Rejected
+متنازل عنها,Assigned
+المالك المسجل (إن اختلف عن العميل),Registered Owner (if different from the customer)
+رقم الفئة,Class Number
+وصف الفئة,Class Description
+رقم الفئة يجب أن يكون بين 1 و 45 (تصنيف نيس).,Class number must be between 1 and 45 (Nice classification).
+تاريخ انتهاء (5 سنوات),Expiry Date (5 Years)
+يُحسب تلقائيًا 5 سنوات من تاريخ الإصدار إذا تُرك فارغًا,Calculated automatically as 5 years from the issue date when left empty
+يُحسب تلقائيًا 3 شهور من تاريخ الإصدار إذا تُرك فارغًا,Calculated automatically as 3 months from the issue date when left empty
+الارتباط بشركات أخرى,Related Companies
+يوجد ارتباط مع شركات أخرى,Has related companies
+الشركات المرتبطة,Related Companies
+اسم الشركة,Company Name
+عميل لدينا (اختياري),Our Customer (optional)
+نوع الارتباط,Relation Type
+له نسبة حصة,Has share percentage
+عند التعليم يظهر حقل نسبة الحصة في جدول الشركات المرتبطة,"When checked, the share percentage field appears in the related companies table"
+نسبة الحصة %,Share %
+قابضة,Holding
+تابعة,Subsidiary
+مستقلة,Independent
+شريك بحصة,Shareholder Partner
+"جدول الشركات المرتبطة به بيانات. علّم على ""يوجد ارتباط مع شركات أخرى"" أو احذف الصفوف.","The related companies table has rows. Tick ""Has related companies"" or remove the rows."
+لا يمكن ربط الشركة بنفسها (صف {0}).,A company cannot be related to itself (row {0}).
+نسبة الحصة يجب أن تكون بين 0 و 100 (صف {0}).,Share percentage must be between 0 and 100 (row {0}).
+جدول الشركات المرتبطة به {0} صف. حذف الصفوف؟,The related companies table has {0} row(s). Remove them?
+الموظف,Employee
+اسم الموظف,Employee Name
+المستخدم,User
+التاريخ,Date
+إجمالي الساعات,Total Hours
+يحتاج متابعة من المدير,Needs manager follow-up
+أعمال اليوم,Today's Work
+ملاحظات عامة,General Notes
+رد المدير,Manager's Reply
+نوع العمل,Work Type
+الوصف,Description
+الساعات,Hours
+إقرار ضريبي,Tax Return
+زيارة مأمورية,Tax Office Visit
+مراجعة,Review
+اجتماع مع العميل,Client Meeting
+أعمال مكتبية,Office Work
+مستمر,In Progress
+إجمالي ساعات اليوم لا يمكن أن يتجاوز 24 ساعة.,Total hours for a day cannot exceed 24.
+يمكنك تسجيل ملخص يومك فقط.,You can only record your own daily summary.
+يوجد ملخص مسجل بالفعل لهذا الموظف في {0}.,A summary already exists for this employee on {0}.
+لا يمكن تعديل الملخص بعد مرور {0} يوم من تاريخه. تواصل مع المدير.,The summary cannot be edited more than {0} day(s) after its date. Contact your manager.
+هذا الملخص يحتاج متابعة من المدير,This summary needs manager follow-up
+يحتاج متابعة,Needs follow-up
+{0} ساعة,{0} h
+تجميع حسب,Group By
+أيام,Days
+عدد الأعمال,Entries
+ملخص اليوم,Daily Summary
+تقرير ساعات العمل,Work Hours Report

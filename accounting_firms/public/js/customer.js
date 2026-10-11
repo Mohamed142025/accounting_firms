@@ -3,6 +3,8 @@ const dateRanges = [
   ["vat_registration", "issue_date", "expiry_date"],
   ["licenses", "issue_date", "expiry_date"],
   ["construction_federation_membership", "issue_date", "expiry_date"],
+  ["commercial_register", "issue_date", "expiry_5_months"],
+  ["trademarks", "filing_date", "expiry_date"],
   ["import_cards", "issue_date", "expiry_date"],
   ["export_cards", "issue_date", "expiry_date"],
   ["token_data", "issue_date", "expiry_date"],
@@ -16,6 +18,7 @@ const branchTables = [
   "vat_registration",
   "commercial_register",
   "licenses",
+  "trademarks",
   "construction_federation_membership",
   "import_cards",
   "export_cards",
@@ -60,6 +63,16 @@ frappe.ui.form.on("Customer", {
     loadNotificationAlert(frm);
   },
 
+  has_related_companies(frm) {
+    if (!frm.doc.has_related_companies && (frm.doc.related_companies || []).length) {
+      frappe.confirm(
+        __("جدول الشركات المرتبطة به {0} صف. حذف الصفوف؟", [frm.doc.related_companies.length]),
+        () => frm.clear_table("related_companies") || frm.refresh_field("related_companies"),
+        () => frm.set_value("has_related_companies", 1),
+      );
+    }
+  },
+
   validate(frm) {
     if (frm.doc.company_code) {
       frm.set_value("company_code", frm.doc.company_code.trim().toUpperCase());
@@ -70,6 +83,24 @@ frappe.ui.form.on("Customer", {
     }
 
     validateDateRanges(frm);
+  },
+});
+
+frappe.ui.form.on("Commercial Register", {
+  issue_date(frm, cdt, cdn) {
+    const row = frappe.get_doc(cdt, cdn);
+    if (!row.issue_date) return;
+    if (!row.expiry_3_months) frappe.model.set_value(cdt, cdn, "expiry_3_months", frappe.datetime.add_months(row.issue_date, 3));
+    if (!row.expiry_5_months) frappe.model.set_value(cdt, cdn, "expiry_5_months", frappe.datetime.add_months(row.issue_date, 60));
+  },
+});
+
+frappe.ui.form.on("Trademark", {
+  filing_date(frm, cdt, cdn) {
+    const row = frappe.get_doc(cdt, cdn);
+    if (row.filing_date && !row.expiry_date) {
+      frappe.model.set_value(cdt, cdn, "expiry_date", frappe.datetime.add_months(row.filing_date, 120));
+    }
   },
 });
 

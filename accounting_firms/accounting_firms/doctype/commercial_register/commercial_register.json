@@ -7,12 +7,14 @@
  "engine": "InnoDB",
  "field_order": [
   "branch",
+  "register_number",
+  "issue_date",
   "expiry_3_months",
   "expiry_5_months",
-  "authorized_signatory",
   "commercial_register_office",
   "deposit_number",
-  "deposit_date"
+  "deposit_date",
+  "authorized_signatory"
  ],
  "fields": [
   {
@@ -23,21 +25,32 @@
    "in_list_view": 1
   },
   {
+   "fieldname": "register_number",
+   "fieldtype": "Data",
+   "label": "رقم السجل",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "issue_date",
+   "fieldtype": "Date",
+   "label": "تاريخ الإصدار",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
    "fieldname": "expiry_3_months",
    "fieldtype": "Date",
    "label": "تاريخ انتهاء (3 شهور)",
-   "in_list_view": 1
+   "in_list_view": 1,
+   "description": "يُحسب تلقائيًا 3 شهور من تاريخ الإصدار إذا تُرك فارغًا"
   },
   {
    "fieldname": "expiry_5_months",
    "fieldtype": "Date",
-   "label": "تاريخ انتهاء (5 شهور)",
-   "in_list_view": 1
-  },
-  {
-   "fieldname": "authorized_signatory",
-   "fieldtype": "Small Text",
-   "label": "من له حق التوقيع في الشركة"
+   "label": "تاريخ انتهاء (5 سنوات)",
+   "in_list_view": 1,
+   "description": "يُحسب تلقائيًا 5 سنوات من تاريخ الإصدار إذا تُرك فارغًا"
   },
   {
    "fieldname": "commercial_register_office",
@@ -56,11 +69,16 @@
    "fieldname": "deposit_date",
    "fieldtype": "Date",
    "label": "تاريخ الإيداع"
+  },
+  {
+   "fieldname": "authorized_signatory",
+   "fieldtype": "Small Text",
+   "label": "من له حق التوقيع في الشركة"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2026-10-05 00:00:00.000000",
+ "modified": "2026-10-11 12:00:00.000000",
  "module": "Accounting Firms",
  "name": "Commercial Register",
  "owner": "Administrator",

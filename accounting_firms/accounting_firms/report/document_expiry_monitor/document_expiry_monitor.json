@@ -18,6 +18,12 @@
    "options": "Customer Branch"
   },
   {
+   "fieldname": "document_type",
+   "fieldtype": "Select",
+   "label": "نوع المستند",
+   "options": "\nالبطاقة الضريبية\nالقيمة المضافة\nالرخص\nاتحاد التشييد والبناء\nالسجل التجاري\nالعلامات التجارية\nالبطاقة الاستيرادية\nالبطاقة التصديرية\nبيانات التوكن\nالتيسرات\nالدفعات المقدمة"
+  },
+  {
    "default": "30",
    "fieldname": "days_threshold",
    "fieldtype": "Int",
