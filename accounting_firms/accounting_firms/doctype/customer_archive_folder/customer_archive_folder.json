@@ -1,0 +1,142 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-12 14:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "folder_name",
+  "parent_customer_archive_folder",
+  "is_group",
+  "is_root",
+  "template_path",
+  "lft",
+  "rgt",
+  "old_parent"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "العميل",
+   "options": "Customer",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "folder_name",
+   "fieldtype": "Data",
+   "label": "اسم المجلد",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "parent_customer_archive_folder",
+   "fieldtype": "Link",
+   "label": "المجلد الأب",
+   "options": "Customer Archive Folder",
+   "ignore_user_permissions": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "مجموعة",
+   "hidden": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_root",
+   "fieldtype": "Check",
+   "label": "جذر أرشيف العميل",
+   "read_only": 1
+  },
+  {
+   "fieldname": "template_path",
+   "fieldtype": "Data",
+   "label": "مسار القالب",
+   "read_only": 1,
+   "hidden": 1,
+   "length": 500
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "label": "Left",
+   "hidden": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "label": "Right",
+   "hidden": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "label": "Old Parent",
+   "options": "Customer Archive Folder",
+   "hidden": 1,
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-12 14:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "Customer Archive Folder",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "export": 1,
+   "report": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "export": 1,
+   "report": 1
+  },
+  {
+   "role": "Accounts User",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "export": 1,
+   "report": 1
+  },
+  {
+   "role": "Sales User",
+   "read": 1,
+   "export": 1,
+   "report": 1
+  },
+  {
+   "role": "Sales Manager",
+   "read": 1,
+   "export": 1,
+   "report": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "hash",
+ "is_tree": 1,
+ "nsm_parent_field": "parent_customer_archive_folder",
+ "title_field": "folder_name",
+ "show_title_field_in_link": 1,
+ "search_fields": "folder_name,customer"
+}

@@ -455,3 +455,73 @@
 تم التصديق,Ratified
 محضر الاجتماع,Meeting Minutes
 بيان القرار,Decision
+الأرشيف,Archive
+أرشيف العميل,Customer Archive
+اسم المجلد,Folder Name
+المجلد الأب,Parent Folder
+مجموعة,Group
+جذر أرشيف العميل,Customer Archive Root
+مسار القالب,Template Path
+يوجد مجلد بنفس الاسم في نفس المستوى.,A folder with the same name exists at this level.
+اسم المجلد مطلوب.,Folder name is required.
+المجلد الأب يتبع عميلًا آخر.,The parent folder belongs to another customer.
+لا يمكن إنشاء مجلد بدون مجلد أب.,A folder needs a parent folder.
+لا يمكن حذف المجلد الرئيسي لأرشيف العميل.,The customer's root archive folder cannot be deleted.
+المجلد يحتوي على ملفات. انقل الملفات أو احذفها أولاً.,The folder contains files. Move or delete them first.
+المجلد يحتوي على مجلدات فرعية. احذفها أولاً.,The folder contains subfolders. Delete them first.
+المجلد,Folder
+الملف,File
+اسم الملف,File Name
+الحجم (بايت),Size (bytes)
+الفترة والبيانات,Period and Details
+تاريخ المستند,Document Date
+السنة,Year
+الشهر,Month
+كلمات مفتاحية,Keywords
+تاريخ الانتهاء (اختياري),Expiry Date (optional)
+رفعه,Uploaded By
+تاريخ الرفع,Uploaded On
+المجلد المختار لا يتبع هذا العميل.,The selected folder does not belong to this customer.
+تم رفع ملف {0} في مجلد {1},File {0} uploaded to folder {1}
+تم حذف ملف {0} من مجلد {1},File {0} deleted from folder {1}
+الملف غير مرتبط بهذا العميل.,The file is not attached to this customer.
+لا يمكن إعادة تسمية المجلد الرئيسي.,The root folder cannot be renamed.
+لا يمكن نقل الملف إلى مجلد عميل آخر.,A file cannot be moved to another customer's folder.
+لم يتم تحديد ملفات.,No files selected.
+مستندات الأرشيف,Archive Documents
+ملخص الأرشيف,Archive Summary
+الهيكل الافتراضي للأرشيف,Default Archive Structure
+تاريخ الرفع من,Uploaded From
+تاريخ الرفع إلى,Uploaded To
+عدد الملفات,Files
+الحجم (ميجابايت),Size (MB)
+آخر رفع,Last Upload
+لا يوجد أرشيف,No archive
+مجلد جديد,New Folder
+إعادة تسمية,Rename
+حذف المجلد,Delete Folder
+الهيكل الافتراضي,Default Structure
+إضافة المجلدات الناقصة من الهيكل الافتراضي,Add missing folders from the default structure
+رفع ملفات,Upload Files
+تنزيل المحدد,Download Selected
+نقل المحدد,Move Selected
+حذف المحدد,Delete Selected
+كل السنوات,All Years
+بحث بالاسم أو الوصف,Search by name or description
+شامل المجلدات الفرعية,Include subfolders
+لا توجد ملفات في هذا المجلد,No files in this folder
+الفترة,Period
+الحجم,Size
+فتح السجل,Open record
+حدد ملفًا واحدًا على الأقل.,Select at least one file.
+مجلد جديد داخل: {0},New folder inside: {0}
+اختر مجلدًا غير المجلد الرئيسي.,Select a folder other than the root.
+حذف المجلد {0}؟ (يجب أن يكون فارغًا),Delete folder {0}? (it must be empty)
+تمت إضافة {0} مجلد,{0} folder(s) added
+رفع ملفات إلى: {0},Upload files to: {0}
+الوصف (لكل الملفات),Description (for all files)
+تم حفظ {0},{0} saved
+إلى المجلد,To folder
+تم نقل {0} ملف,{0} file(s) moved
+نقل {0} ملف,Move {0} file(s)
+حذف {0} ملف نهائيًا؟,Permanently delete {0} file(s)?

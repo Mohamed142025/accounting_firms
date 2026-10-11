@@ -14,3 +14,4 @@ accounting_firms.patches.v1_0.seed_tax_notification_defaults
 accounting_firms.patches.v1_0.seed_tax_notification_rules_v2
 accounting_firms.patches.v1_0.create_accounting_dashboard
 accounting_firms.patches.v1_0.seed_relation_types_and_trademark_classes
+accounting_firms.patches.v1_0.seed_archive_template

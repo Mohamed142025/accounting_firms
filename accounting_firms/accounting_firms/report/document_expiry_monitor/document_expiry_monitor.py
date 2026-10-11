@@ -159,7 +159,27 @@ def get_expiry_rows(customer=None, branch=None):
             )
         )
 
+    if not branch:
+        rows.extend(get_archive_expiry_rows(customer))
     return rows
+
+
+def get_archive_expiry_rows(customer=None):
+    """Archive documents with an expiry date (standalone doctype, linked by the customer field)."""
+    filters = {"expiry_date": ["is", "set"]}
+    if customer:
+        filters["customer"] = customer
+    docs = frappe.get_all(
+        "Customer Document", filters=filters, fields=["name", "customer", "customer_name", "expiry_date", "file_name"]
+    )
+    label = "مستندات الأرشيف"
+    return [
+        frappe._dict(
+            customer=d.customer, customer_name=d.customer_name, document_key=label, document_type=_(label),
+            branch=None, branch_name=None, document_row=d.name, expiry_date=d.expiry_date,
+        )
+        for d in docs
+    ]
 
 
 def get_status(days_remaining, threshold):
@@ -202,4 +222,4 @@ def get_summary(rows):
 
 def get_document_types():
     """Options for the document type filter (raw keys; labels are translated on the client)."""
-    return [source[0] for source in EXPIRY_SOURCES]
+    return [source[0] for source in EXPIRY_SOURCES] + ["مستندات الأرشيف"]

@@ -13,6 +13,9 @@ REPORT_LINKS = (
     {"label": "الإشعارات الضريبية", "type": "Link", "link_type": "DocType", "link_to": "Tax Notification"},
     {"label": "ملخص اليوم", "type": "Link", "link_type": "DocType", "link_to": "Employee Daily Summary"},
     {"label": "تقرير ساعات العمل", "type": "Link", "link_type": "Report", "link_to": "Daily Work Hours"},
+    {"label": "مستندات الأرشيف", "type": "Link", "link_type": "DocType", "link_to": "Customer Document"},
+    {"label": "ملخص الأرشيف", "type": "Link", "link_type": "Report", "link_to": "Archive Summary"},
+    {"label": "الهيكل الافتراضي للأرشيف", "type": "Link", "link_type": "DocType", "link_to": "Archive Folder Template"},
 )
 OWN_LINKS = {(d["link_type"], d["link_to"]) for d in (DASHBOARD_LINK, *REPORT_LINKS)}
 

@@ -15,7 +15,7 @@ extend_doctype_class = {
 }
 
 doctype_js = {
-	"Customer": "public/js/customer.js",
+	"Customer": ["public/js/customer.js", "public/js/customer_archive.js"],
 }
 
 doctype_list_js = {
@@ -155,7 +155,11 @@ doctype_list_js = {
 # ---------------
 # Hook on document methods and events
 
-doc_events = {}
+doc_events = {
+	"Customer": {
+		"after_insert": "accounting_firms.archive.api.ensure_tree_for_customer",
+	},
+}
 
 # Scheduled Tasks
 # ---------------
