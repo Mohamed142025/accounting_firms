@@ -168,8 +168,8 @@ after_migrate = ["accounting_firms.setup.sidebar.after_migrate"]
 
 scheduler_events = {
 	"cron": {
-		# read customers' tax mailboxes every 30 minutes
-		"*/30 * * * *": ["accounting_firms.tax_email.fetch.fetch_all"],
+		# every 5 minutes: read the tax mailboxes that are due (interval in Tax Email Settings)
+		"*/5 * * * *": ["accounting_firms.tax_email.fetch.fetch_all"],
 	},
 }
 

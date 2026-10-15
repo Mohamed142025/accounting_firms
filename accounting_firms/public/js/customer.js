@@ -62,6 +62,11 @@ frappe.ui.form.on("Customer", {
 
     loadExpiryAlert(frm);
     loadNotificationAlert(frm);
+
+    if (frappe.utils.get_url_arg("oauth") === "linked") {
+      frappe.show_alert({ message: __("تم ربط حساب OAuth للإيميل الضريبي."), indicator: "green" }, 7);
+      window.history.replaceState(null, "", window.location.pathname);
+    }
   },
 
   has_related_companies(frm) {
@@ -187,11 +192,14 @@ frappe.ui.form.on("Tax Email Configuration", {
       })
       .then(({ message }) => {
         if (message?.ok) {
-          frappe.msgprint({
-            title: __("الاتصال ناجح"),
-            indicator: "green",
-            message: __("تم تسجيل الدخول بنجاح. عدد الرسائل في صندوق الوارد: {0}", [message.messages]),
-          });
+          let text = __("تم تسجيل الدخول بنجاح. عدد الرسائل في صندوق الوارد: {0}", [message.messages]);
+          if (message.junk?.length) {
+            text += "<br>" + __("فولدر الرسائل غير المرغوب فيها: {0}", [message.junk.map(frappe.utils.escape_html).join("، ")]);
+          }
+          if (message.folders?.length) {
+            text += "<br><br>" + __("الفولدرات الموجودة:") + "<br>" + message.folders.map(frappe.utils.escape_html).join("<br>");
+          }
+          frappe.msgprint({ title: __("الاتصال ناجح"), indicator: "green", message: text });
         } else {
           frappe.msgprint({ title: __("فشل الاتصال"), indicator: "red", message: message?.error || __("خطأ غير معروف") });
         }
@@ -216,6 +224,9 @@ frappe.ui.form.on("Tax Email Configuration", {
         if (message.remaining) {
           text += " " + __("باقي {0} رسالة هتتجلب تلقائيًا في الخلفية.", [message.remaining]);
         }
+        if (message.warnings?.length) {
+          text += "<br>" + message.warnings.map(frappe.utils.escape_html).join("<br>");
+        }
         frappe.msgprint({
           title: __("تم"),
           indicator: "green",
@@ -226,6 +237,19 @@ frappe.ui.form.on("Tax Email Configuration", {
           },
         });
         loadNotificationAlert(frm);
+      });
+  },
+
+  authorize_oauth(frm, cdt, cdn) {
+    if (!requireSaved(frm, cdt, cdn)) return;
+    frappe
+      .call({
+        method: "accounting_firms.tax_email.oauth.authorize",
+        args: { name: cdn, parent: frm.doc.name },
+        freeze: true,
+      })
+      .then(({ message }) => {
+        if (message) window.location.href = message;
       });
   },
 
@@ -394,12 +418,25 @@ function loadNotificationAlert(frm) {
     })
     .then(({ message }) => {
       frm.set_intro("");
-      if (!message || !(message.new || message.overdue)) return;
-      const link = `<a href="/app/tax-notification?customer=${encodeURIComponent(frm.doc.name)}&status=${encodeURIComponent("جديد")}">${__("عرض")}</a>`;
-      const parts = [];
-      if (message.new) parts.push(__("{0} إشعار ضريبي جديد", [message.new]));
-      if (message.overdue) parts.push(__("{0} إشعار متأخر", [message.overdue]));
-      frm.set_intro(`${parts.join(" - ")} ${link}`, message.overdue ? "red" : "blue");
+      if (!message) return;
+      const lines = [];
+      if (message.new || message.overdue) {
+        const link = `<a href="/app/tax-notification?customer=${encodeURIComponent(frm.doc.name)}&status=${encodeURIComponent("جديد")}">${__("عرض")}</a>`;
+        const parts = [];
+        if (message.new) parts.push(__("{0} إشعار ضريبي جديد", [message.new]));
+        if (message.overdue) parts.push(__("{0} إشعار متأخر", [message.overdue]));
+        lines.push(`${parts.join(" - ")} ${link}`);
+      }
+      if (message.no_assignee) {
+        lines.push(
+          message.has_accountant_user
+            ? __("محاسب العميل مستخدمه غير مفعّل، ومفيش «مسؤول افتراضي» في إعدادات الإيميل الضريبي: الإشعارات الجديدة مش هتوصل لحد.")
+            : __("العميل مالوش محاسب مربوط بمستخدم (خانة «المحاسب» + مستخدم الموظف)، ومفيش «مسؤول افتراضي» في إعدادات الإيميل الضريبي: الإشعارات الجديدة مش هتوصل لحد."),
+        );
+      }
+      if (!lines.length) return;
+      const color = message.overdue ? "red" : message.no_assignee ? "orange" : "blue";
+      frm.set_intro(lines.join("<br>"), color);
     });
 }
 

@@ -11,7 +11,18 @@
   "column_break_1",
   "fetch_attachments",
   "max_attachment_mb",
-  "todo_max_age_days"
+  "todo_max_age_days",
+  "fetch_section",
+  "fetch_interval_minutes",
+  "read_junk_folder",
+  "column_break_fetch",
+  "archive_older_than_days",
+  "assignment_section",
+  "default_assignee",
+  "column_break_assignment",
+  "failure_alert_after",
+  "oauth_section",
+  "oauth_redirect_uri"
  ],
  "fields": [
   {
@@ -55,10 +66,78 @@
    "fieldtype": "Int",
    "label": "إنشاء مهام للرسائل الأحدث من (يوم)",
    "description": "الرسائل الأقدم من كده بتتسجل من غير مهام عشان أول مزامنة ما تغرقش المحاسبين"
+  },
+  {
+   "fieldname": "fetch_section",
+   "fieldtype": "Section Break",
+   "label": "الجلب"
+  },
+  {
+   "default": "30",
+   "fieldname": "fetch_interval_minutes",
+   "fieldtype": "Select",
+   "label": "الجلب كل (دقيقة)",
+   "options": "5\n10\n15\n30\n60",
+   "description": "كل إيميل بيتقري مرة كل المدة دي. زرار «جلب الإشعارات الآن» بيجلب فوراً في أي وقت."
+  },
+  {
+   "default": "1",
+   "fieldname": "read_junk_folder",
+   "fieldtype": "Check",
+   "label": "قراءة فولدر الرسائل غير المرغوب فيها (Spam / Junk)",
+   "description": "عشان رسائل المصلحة اللي بتقع في الـ Spam ما تضيعش."
+  },
+  {
+   "fieldname": "column_break_fetch",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "30",
+   "fieldname": "archive_older_than_days",
+   "fieldtype": "Int",
+   "label": "أرشفة الرسائل الأقدم من (يوم)",
+   "description": "الرسائل القديمة اللي بتيجي في أول مزامنة بتتسجل «مؤرشف» ومن غير تاريخ استحقاق، عشان ما تطلعش إشعارات متأخرة. 0 = بدون أرشفة."
+  },
+  {
+   "fieldname": "assignment_section",
+   "fieldtype": "Section Break",
+   "label": "التعيين والتنبيهات"
+  },
+  {
+   "fieldname": "default_assignee",
+   "fieldtype": "Link",
+   "options": "User",
+   "label": "المسؤول الافتراضي",
+   "description": "بيستلم إشعارات العملاء اللي مالهمش محاسب (أو محاسبهم مش مربوط بمستخدم)، وتنبيهات فشل القراءة."
+  },
+  {
+   "fieldname": "column_break_assignment",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "2",
+   "fieldname": "failure_alert_after",
+   "fieldtype": "Int",
+   "label": "تنبيه بعد عدد مرات فشل متتالية",
+   "description": "لما قراءة إيميل تفشل العدد ده من المرات ورا بعض، بيوصل تنبيه لمحاسب العميل والمسؤول الافتراضي (أو مدير النظام). 0 = بدون تنبيه."
+  },
+  {
+   "fieldname": "oauth_section",
+   "fieldtype": "Section Break",
+   "label": "OAuth (Gmail / Microsoft 365)",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "oauth_redirect_uri",
+   "fieldtype": "Data",
+   "label": "Redirect URI",
+   "read_only": 1,
+   "is_virtual": 1,
+   "description": "اعمل Connected App لـ Google أو Microsoft، وسجّل الرابط ده عندهم كـ Redirect URI. بعدها في صف الإيميل اختار «OAuth» والـ Connected App واضغط «ربط حساب OAuth»."
   }
  ],
  "links": [],
- "modified": "2026-10-06 12:00:00.000000",
+ "modified": "2026-10-15 12:00:00.000000",
  "module": "Accounting Firms",
  "name": "Tax Email Settings",
  "owner": "Administrator",

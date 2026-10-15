@@ -525,3 +525,38 @@
 تم نقل {0} ملف,{0} file(s) moved
 نقل {0} ملف,Move {0} file(s)
 حذف {0} ملف نهائيًا؟,Permanently delete {0} file(s)?
+الجلب,Fetching
+الجلب كل (دقيقة),Fetch every (minutes)
+كل إيميل بيتقري مرة كل المدة دي. زرار «جلب الإشعارات الآن» بيجلب فوراً في أي وقت.,"Each mailbox is read once every this many minutes. The ""Fetch notifications now"" button fetches immediately at any time."
+قراءة فولدر الرسائل غير المرغوب فيها (Spam / Junk),Read the Spam / Junk folder
+عشان رسائل المصلحة اللي بتقع في الـ Spam ما تضيعش.,So tax authority messages that land in Spam are not missed.
+أرشفة الرسائل الأقدم من (يوم),Archive messages older than (days)
+الرسائل القديمة اللي بتيجي في أول مزامنة بتتسجل «مؤرشف» ومن غير تاريخ استحقاق، عشان ما تطلعش إشعارات متأخرة. 0 = بدون أرشفة.,"Old messages brought in by the first sync are stored as archived without a due date, so they never show as overdue. 0 = no archiving."
+التعيين والتنبيهات,Assignment and Alerts
+المسؤول الافتراضي,Default Assignee
+بيستلم إشعارات العملاء اللي مالهمش محاسب (أو محاسبهم مش مربوط بمستخدم)، وتنبيهات فشل القراءة.,"Receives the notifications of customers without an accountant (or whose accountant has no user), and mailbox failure alerts."
+تنبيه بعد عدد مرات فشل متتالية,Alert after consecutive failures
+لما قراءة إيميل تفشل العدد ده من المرات ورا بعض، بيوصل تنبيه لمحاسب العميل والمسؤول الافتراضي (أو مدير النظام). 0 = بدون تنبيه.,"When reading a mailbox fails this many times in a row, the customer's accountant and the default assignee (or the System Managers) are alerted. 0 = no alert."
+اعمل Connected App لـ Google أو Microsoft، وسجّل الرابط ده عندهم كـ Redirect URI. بعدها في صف الإيميل اختار «OAuth» والـ Connected App واضغط «ربط حساب OAuth».,"Create a Connected App for Google or Microsoft and register this link there as the Redirect URI. Then, on the mailbox row, choose ""OAuth"", the Connected App, and click ""Link OAuth account""."
+طريقة الدخول,Sign-in Method
+ربط حساب OAuth,Link OAuth account
+فولدرات إضافية,Extra Folders
+فولدر في كل سطر. صندوق الوارد (INBOX) بيتقري دايماً، والـ Spam حسب الإعدادات. «اختبار الاتصال» بيعرض أسماء الفولدرات.,"One folder per line. The INBOX is always read, and Spam per the settings. ""Test connection"" lists the folder names."
+تفاصيل آخر مزامنة,Last Sync Details
+مرات فشل متتالية,Consecutive Failures
+اتعامل معه,Handled By
+تاريخ التعامل,Handled At
+أرشفة,Archive
+إعادة فتح,Reopen
+جرّب القاعدة,Test Rule
+تجربة القاعدة,Rule Test
+حالة مزامنة الإيميلات,Mailbox Sync Status
+قواعد التصنيف,Classification Rules
+قواعد تصنيف الإشعارات,Notification Rules
+فئات الإشعارات,Notification Categories
+إعدادات الإيميل الضريبي,Tax Email Settings
+⚠ OAuth غير مربوط,⚠ OAuth not linked
+موقوف,Stopped
+لم تتم بعد,Not yet
+ناجحة,Successful
+فشلت,Failed

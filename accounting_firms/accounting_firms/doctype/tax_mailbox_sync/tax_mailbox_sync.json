@@ -12,10 +12,12 @@
   "status",
   "last_sync",
   "total_fetched",
+  "consecutive_failures",
   "section_tech",
   "last_error",
   "last_uid",
-  "uid_validity"
+  "uid_validity",
+  "folder_state"
  ],
  "fields": [
   {
@@ -71,6 +73,13 @@
    "read_only": 1
   },
   {
+   "default": "0",
+   "fieldname": "consecutive_failures",
+   "fieldtype": "Int",
+   "label": "مرات فشل متتالية",
+   "read_only": 1
+  },
+  {
    "fieldname": "section_tech",
    "fieldtype": "Section Break",
    "label": "تفاصيل"
@@ -92,10 +101,17 @@
    "fieldtype": "Data",
    "label": "UID Validity",
    "read_only": 1
+  },
+  {
+   "fieldname": "folder_state",
+   "fieldtype": "Long Text",
+   "label": "Folder State",
+   "read_only": 1,
+   "hidden": 1
   }
  ],
  "links": [],
- "modified": "2026-10-06 12:00:00.000000",
+ "modified": "2026-10-15 12:00:00.000000",
  "module": "Accounting Firms",
  "name": "Tax Mailbox Sync",
  "owner": "Administrator",

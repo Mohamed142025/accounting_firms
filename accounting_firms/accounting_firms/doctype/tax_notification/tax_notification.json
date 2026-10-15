@@ -20,6 +20,8 @@
   "due_date",
   "assigned_to",
   "matched_rule",
+  "handled_by",
+  "handled_at",
   "message_section",
   "sender",
   "sender_name",
@@ -145,6 +147,21 @@
    "read_only": 1
   },
   {
+   "fieldname": "handled_by",
+   "fieldtype": "Link",
+   "options": "User",
+   "label": "اتعامل معه",
+   "read_only": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "handled_at",
+   "fieldtype": "Datetime",
+   "label": "تاريخ التعامل",
+   "read_only": 1,
+   "no_copy": 1
+  },
+  {
    "fieldname": "message_section",
    "fieldtype": "Section Break",
    "label": "الرسالة"
@@ -226,7 +243,7 @@
   }
  ],
  "links": [],
- "modified": "2026-10-06 12:00:00.000000",
+ "modified": "2026-10-15 12:00:00.000000",
  "module": "Accounting Firms",
  "name": "Tax Notification",
  "owner": "Administrator",

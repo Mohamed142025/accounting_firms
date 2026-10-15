@@ -57,7 +57,7 @@
    "fieldname": "conditions_section",
    "fieldtype": "Section Break",
    "label": "الشروط",
-   "description": "كل شرط مكتوب لازم يتحقق. داخل الشرط الواحد يكفي تحقق أي كلمة (كلمة في كل سطر)."
+   "description": "كل شرط مكتوب لازم يتحقق. داخل الشرط الواحد يكفي تحقق أي كلمة (كلمة أو جملة في كل سطر). كلمات العنوان والنص بتتطابق ككلمة كاملة (مع ال/و/ب/ل/ف/ك في أولها)، فـ«فحص» تطابق «الفحص» لكن مش «تفحص». المرسل بيتطابق بأي جزء منه."
   },
   {
    "fieldname": "sender_contains",
@@ -144,7 +144,7 @@
   }
  ],
  "links": [],
- "modified": "2026-10-06 12:00:00.000000",
+ "modified": "2026-10-15 12:00:00.000000",
  "module": "Accounting Firms",
  "name": "Tax Notification Rule",
  "owner": "Administrator",

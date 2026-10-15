@@ -52,6 +52,7 @@ class AccountingFirmsCustomer:
         self._set_default_expiry_dates()
         self._validate_date_ranges()
         self._validate_branches()
+        self._validate_tax_emails()
         self._validate_related_companies()
         self._update_capital_summary()
         self._update_shareholders()
@@ -139,6 +140,41 @@ class AccountingFirmsCustomer:
                             frappe.bold(branch), label, row.idx
                         )
                     )
+
+    def _validate_tax_emails(self):
+        """A tax mailbox belongs to one customer and appears once: each row is read on its own,
+        so a repeated one would bring every message twice."""
+        seen = {}
+        for row in self.get("tax_email_configuration") or []:
+            # stripped only: the stored address is part of each message's duplicate key
+            row.tax_email = (row.tax_email or "").strip() or row.tax_email
+            email = (row.tax_email or "").lower()
+            if not email:
+                continue
+            if email in seen:
+                frappe.throw(
+                    _("الإيميل الضريبي {0} مكرر في الصفين {1} و{2}.").format(frappe.bold(email), seen[email], row.idx)
+                )
+            seen[email] = row.idx
+            if row.get("auth_method") == "OAuth" and not row.get("connected_app"):
+                frappe.throw(_("اختار Connected App للإيميل {0} (صف {1}).").format(frappe.bold(email), row.idx))
+        if not seen:
+            return
+        other = frappe.db.sql(
+            """select cfg.tax_email, cfg.parent, c.customer_name
+            from `tabTax Email Configuration` cfg
+            join `tabCustomer` c on c.name = cfg.parent
+            where cfg.parenttype = 'Customer' and cfg.parent != %s and lower(trim(cfg.tax_email)) in %s
+            limit 1""",
+            (self.name or "", tuple(seen)),
+            as_dict=True,
+        )
+        if other:
+            frappe.throw(
+                _("الإيميل الضريبي {0} مسجل بالفعل للعميل {1}.").format(
+                    frappe.bold(other[0].tax_email), frappe.bold(f"{other[0].customer_name} ({other[0].parent})")
+                )
+            )
 
     def _set_default_expiry_dates(self):
         """Fill expiry dates the user left empty (commercial register: 3 months / 5 years, trademark: 10 years)."""
