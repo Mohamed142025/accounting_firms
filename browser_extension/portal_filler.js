@@ -108,33 +108,35 @@
     const deadline = Date.now() + WAIT_FOR_FIELDS_MS;
     let usernameDone = false;
     let passwordDone = false;
+    let nextClicked = false;
 
-    while (Date.now() < deadline && !(usernameDone && passwordDone)) {
+    while (Date.now() < deadline) {
       const passwordEl = findPassword(payload.password_selector);
       const usernameEl = findUsername(payload.username_selector, passwordEl);
 
       if (usernameEl && !usernameDone && payload.username) {
         setValue(usernameEl, payload.username);
         usernameDone = true;
+        log("username filled");
       }
       if (passwordEl && !passwordDone && payload.password) {
         setValue(passwordEl, payload.password);
         passwordDone = true;
+        log("password filled");
       }
 
-      // multi-step logins (username first, password on the next screen)
-      if (usernameDone && !passwordEl && !passwordDone) {
-        if (payload.auto_submit) {
-          const next = findSubmit(payload.submit_selector, usernameEl);
-          if (next) {
-            next.click();
-            return "partial";
-          }
+      if (passwordDone || !payload.password) break;
+
+      // multi-step logins: username first, the password field appears later
+      // (same page) or on the next page (the pending login survives navigation)
+      if (usernameDone && !passwordEl && payload.auto_submit && !nextClicked) {
+        const next = findSubmit(payload.submit_selector, usernameEl);
+        if (next) {
+          nextClicked = true;
+          log("clicked next, waiting for the password field");
+          next.click();
         }
-        return "partial";
       }
-
-      if (usernameDone && passwordDone) break;
       await sleep(POLL_MS);
     }
 
