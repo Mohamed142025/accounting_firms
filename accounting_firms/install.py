@@ -29,3 +29,7 @@ def after_install():
     ):
         patch.execute()
         frappe.db.commit()
+
+    from accounting_firms.office_services.setup import setup as setup_office_services
+
+    setup_office_services()

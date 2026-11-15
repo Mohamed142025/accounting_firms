@@ -164,7 +164,10 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-after_migrate = ["accounting_firms.setup.sidebar.after_migrate"]
+after_migrate = [
+	"accounting_firms.office_services.setup.after_migrate",
+	"accounting_firms.setup.sidebar.after_migrate",
+]
 
 scheduler_events = {
 	"cron": {
