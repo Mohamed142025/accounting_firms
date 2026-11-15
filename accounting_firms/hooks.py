@@ -15,7 +15,13 @@ extend_doctype_class = {
 }
 
 doctype_js = {
-	"Customer": ["public/js/customer.js", "public/js/customer_archive.js", "public/js/customer_services.js"],
+	"Customer": [
+		"public/js/customer.js",
+		"public/js/customer_archive.js",
+		"public/js/customer_services.js",
+		"public/js/customer_service_tasks.js",
+	],
+	"Task": "public/js/task_office_service.js",
 }
 
 doctype_list_js = {
@@ -158,6 +164,10 @@ after_install = "accounting_firms.install.after_install"
 doc_events = {
 	"Customer": {
 		"after_insert": "accounting_firms.archive.api.ensure_tree_for_customer",
+	},
+	"Task": {
+		"before_validate": "accounting_firms.office_services.tasks.before_validate_task",
+		"on_update": "accounting_firms.office_services.tasks.on_task_update",
 	},
 }
 

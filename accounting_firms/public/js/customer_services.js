@@ -86,11 +86,19 @@
       this.groups.forEach((g) => (this.children[g.parent || ""] ||= []).push(g));
       this.services_of = {};
       this.services.forEach((s) => (this.services_of[s.item_group] ||= []).push(s));
-      // the top levels open by default, the first time only
-      if (!this.loaded_once) (this.children[""] || []).forEach((g) => {
-        this.expanded.add(g.name);
-        (this.children[g.name] || []).forEach((c) => this.expanded.add(c.name));
-      });
+      // the first time: the top levels open, and every group holding a checked service
+      if (!this.loaded_once) {
+        (this.children[""] || []).forEach((g) => {
+          this.expanded.add(g.name);
+          (this.children[g.name] || []).forEach((c) => this.expanded.add(c.name));
+        });
+        const parent_of = {};
+        this.groups.forEach((g) => (parent_of[g.name] = g.parent));
+        const checked = this.rows();
+        this.services.filter((s) => checked[s.name]).forEach((s) => {
+          for (let g = s.item_group; g; g = parent_of[g]) this.expanded.add(g);
+        });
+      }
       this.loaded_once = true;
       this.render();
     }
