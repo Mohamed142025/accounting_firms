@@ -1,0 +1,109 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "field:service",
+ "creation": "2026-11-15 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "service",
+  "service_name",
+  "service_group",
+  "column_break_1",
+  "enabled",
+  "notes",
+  "tasks_section",
+  "tasks",
+  "preview_section",
+  "map_preview"
+ ],
+ "fields": [
+  {
+   "fieldname": "service",
+   "fieldtype": "Link",
+   "label": "الخدمة",
+   "options": "Item",
+   "reqd": 1,
+   "unique": 1,
+   "set_only_once": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "link_filters": "[[\"Item\",\"is_office_service\",\"=\",1]]"
+  },
+  {
+   "fieldname": "service_name",
+   "fieldtype": "Data",
+   "label": "اسم الخدمة",
+   "fetch_from": "service.item_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "service_group",
+   "fieldtype": "Link",
+   "label": "مجموعة الخدمة",
+   "options": "Item Group",
+   "fetch_from": "service.item_group",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "مفعّلة",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "ملاحظات"
+  },
+  {
+   "fieldname": "tasks_section",
+   "fieldtype": "Section Break",
+   "label": "المهام"
+  },
+  {
+   "fieldname": "tasks",
+   "fieldtype": "Table",
+   "label": "المهام",
+   "options": "Service Task Map Row",
+   "reqd": 1
+  },
+  {
+   "fieldname": "preview_section",
+   "fieldtype": "Section Break",
+   "label": "شكل المهام"
+  },
+  {
+   "fieldname": "map_preview",
+   "fieldtype": "HTML",
+   "label": "شكل المهام"
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-15 12:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "Service Task Map",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {"role": "System Manager", "create": 1, "read": 1, "write": 1, "delete": 1, "export": 1, "report": 1, "print": 1, "share": 1},
+  {"role": "Accounts Manager", "create": 1, "read": 1, "write": 1, "delete": 1, "export": 1, "report": 1, "print": 1},
+  {"role": "Projects Manager", "create": 1, "read": 1, "write": 1, "delete": 1, "export": 1, "report": 1, "print": 1},
+  {"role": "Accounts User", "read": 1, "report": 1, "print": 1},
+  {"role": "Projects User", "read": 1, "report": 1, "print": 1}
+ ],
+ "search_fields": "service_name",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "service_name",
+ "track_changes": 1
+}

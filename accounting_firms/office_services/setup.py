@@ -18,6 +18,17 @@ FIELDS = {
             "module": MODULE,
         },
     ],
+    "Department": [
+        {
+            "fieldname": "af_manager",
+            "label": "مدير القسم",
+            "fieldtype": "Link",
+            "options": "Employee",
+            "insert_after": "parent_department",
+            "description": "مهام الخدمات المسندة لـ«مدير قسم» بتروح له.",
+            "module": MODULE,
+        },
+    ],
 }
 
 

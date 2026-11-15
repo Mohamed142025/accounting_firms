@@ -11,6 +11,7 @@ REPORT_LINKS = (
     {"label": "تقرير انتهاء المستندات", "type": "Link", "link_type": "Report", "link_to": "Document Expiry Monitor"},
     {"label": "تقرير الإشعارات الضريبية", "type": "Link", "link_type": "Report", "link_to": "Tax Notifications Monitor"},
     {"label": "الإشعارات الضريبية", "type": "Link", "link_type": "DocType", "link_to": "Tax Notification"},
+    {"label": "خرائط مهام الخدمات", "type": "Link", "link_type": "DocType", "link_to": "Service Task Map"},
     {"label": "قواعد تصنيف الإشعارات", "type": "Link", "link_type": "DocType", "link_to": "Tax Notification Rule"},
     {"label": "فئات الإشعارات", "type": "Link", "link_type": "DocType", "link_to": "Tax Notification Category"},
     {"label": "إعدادات الإيميل الضريبي", "type": "Link", "link_type": "DocType", "link_to": "Tax Email Settings"},

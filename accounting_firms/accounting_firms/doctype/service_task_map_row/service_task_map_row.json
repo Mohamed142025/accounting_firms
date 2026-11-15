@@ -1,0 +1,153 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-11-15 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "task_no",
+  "task_title",
+  "assign_to_type",
+  "department",
+  "role",
+  "employee",
+  "column_break_1",
+  "execution",
+  "expected_days",
+  "mandatory",
+  "requires_attachment",
+  "section_break_2",
+  "applies_to",
+  "choose_entities",
+  "column_break_3",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "task_no",
+   "fieldtype": "Data",
+   "label": "رقم",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 1,
+   "description": "1، 2، 3 للمهام. 1.1، 1.2 للمهام الفرعية تحت المهمة 1."
+  },
+  {
+   "fieldname": "task_title",
+   "fieldtype": "Data",
+   "label": "المهمة",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 3
+  },
+  {
+   "fieldname": "assign_to_type",
+   "fieldtype": "Select",
+   "label": "إسناد إلى",
+   "options": "\nقسم\nمدير قسم\nرول\nموظف",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "القسم",
+   "options": "Department",
+   "in_list_view": 1,
+   "columns": 2,
+   "mandatory_depends_on": "eval:in_list(['قسم', 'مدير قسم'], doc.assign_to_type)",
+   "description": "في «موظف» بيتملي من قسم الموظف. في «رول» اختياري للتقارير."
+  },
+  {
+   "fieldname": "role",
+   "fieldtype": "Link",
+   "label": "الرول",
+   "options": "Role",
+   "depends_on": "eval:doc.assign_to_type == 'رول'",
+   "mandatory_depends_on": "eval:doc.assign_to_type == 'رول'",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "الموظف",
+   "options": "Employee",
+   "depends_on": "eval:doc.assign_to_type == 'موظف'",
+   "mandatory_depends_on": "eval:doc.assign_to_type == 'موظف'"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "تسلسلي",
+   "fieldname": "execution",
+   "fieldtype": "Select",
+   "label": "التنفيذ",
+   "options": "تسلسلي\nمتوازي",
+   "in_list_view": 1,
+   "columns": 1,
+   "description": "تسلسلي: تبدأ بعد ما المهام اللي قبلها في نفس المستوى تخلص. متوازي: تبدأ مع اللي قبلها."
+  },
+  {
+   "fieldname": "expected_days",
+   "fieldtype": "Int",
+   "label": "المدة (يوم)",
+   "non_negative": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "mandatory",
+   "fieldtype": "Check",
+   "label": "إجبارية",
+   "description": "الاختيارية ممكن تتقفل «لا ينطبق»."
+  },
+  {
+   "default": "0",
+   "fieldname": "requires_attachment",
+   "fieldtype": "Check",
+   "label": "تحتاج مرفق",
+   "description": "المهمة ما تتقفلش من غير ملف مرفق."
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "applies_to",
+   "fieldtype": "Small Text",
+   "label": "ينطبق على الكيانات",
+   "description": "كيان في كل سطر. فاضي = كل الكيانات. المهمة بتتشال لو كيان العميل مش منهم."
+  },
+  {
+   "fieldname": "choose_entities",
+   "fieldtype": "Button",
+   "label": "اختيار الكيانات"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "وصف / تعليمات"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-11-15 12:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "Service Task Map Row",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}
