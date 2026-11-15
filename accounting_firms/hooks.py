@@ -15,7 +15,7 @@ extend_doctype_class = {
 }
 
 doctype_js = {
-	"Customer": ["public/js/customer.js", "public/js/customer_archive.js"],
+	"Customer": ["public/js/customer.js", "public/js/customer_archive.js", "public/js/customer_services.js"],
 }
 
 doctype_list_js = {

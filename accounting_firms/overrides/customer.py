@@ -53,6 +53,7 @@ class AccountingFirmsCustomer:
         self._validate_date_ranges()
         self._validate_branches()
         self._validate_tax_emails()
+        self._validate_office_services()
         self._validate_related_companies()
         self._update_capital_summary()
         self._update_shareholders()
@@ -175,6 +176,25 @@ class AccountingFirmsCustomer:
                     frappe.bold(other[0].tax_email), frappe.bold(f"{other[0].customer_name} ({other[0].parent})")
                 )
             )
+
+    def _validate_office_services(self):
+        """Each office service once, and only items marked as office services."""
+        seen = {}
+        rows = self.get("office_services") or []
+        services = {r.service for r in rows if r.service}
+        allowed = set(
+            frappe.get_all("Item", filters={"name": ["in", list(services)], "is_office_service": 1}, pluck="name")
+        ) if services else set()
+        for row in rows:
+            if not row.service:
+                continue
+            if row.service not in allowed:
+                frappe.throw(_("الصنف {0} مش خدمة مكتب (صف {1}).").format(frappe.bold(row.service), row.idx))
+            if row.service in seen:
+                frappe.throw(
+                    _("الخدمة {0} مكررة في الصفين {1} و{2}.").format(frappe.bold(row.service_name or row.service), seen[row.service], row.idx)
+                )
+            seen[row.service] = row.idx
 
     def _set_default_expiry_dates(self):
         """Fill expiry dates the user left empty (commercial register: 3 months / 5 years, trademark: 10 years)."""

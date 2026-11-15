@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-11-15 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "service",
+  "service_name",
+  "service_group",
+  "status",
+  "recurrence",
+  "column_break_1",
+  "start_date",
+  "responsible",
+  "agreed_fee",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "service",
+   "fieldtype": "Link",
+   "label": "الخدمة",
+   "options": "Item",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 2,
+   "link_filters": "[[\"Item\",\"is_office_service\",\"=\",1],[\"Item\",\"disabled\",\"=\",0]]"
+  },
+  {
+   "fieldname": "service_name",
+   "fieldtype": "Data",
+   "label": "اسم الخدمة",
+   "fetch_from": "service.item_name",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 4
+  },
+  {
+   "fieldname": "service_group",
+   "fieldtype": "Link",
+   "label": "مجموعة الخدمة",
+   "options": "Item Group",
+   "fetch_from": "service.item_group",
+   "read_only": 1
+  },
+  {
+   "default": "نشطة",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "الحالة",
+   "options": "نشطة\nموقوفة",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "default": "مرة واحدة",
+   "fieldname": "recurrence",
+   "fieldtype": "Select",
+   "label": "التكرار",
+   "options": "مرة واحدة\nشهري\nربع سنوي\nنصف سنوي\nسنوي",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "تاريخ البداية"
+  },
+  {
+   "fieldname": "responsible",
+   "fieldtype": "Link",
+   "label": "المسؤول عن الخدمة",
+   "options": "Employee",
+   "description": "اختياري. لو فاضي، المسؤول هو محاسب العميل."
+  },
+  {
+   "fieldname": "agreed_fee",
+   "fieldtype": "Currency",
+   "label": "الأتعاب المتفق عليها",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "ملاحظات"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-11-15 12:00:00.000000",
+ "module": "Accounting Firms",
+ "name": "Customer Office Service",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}
