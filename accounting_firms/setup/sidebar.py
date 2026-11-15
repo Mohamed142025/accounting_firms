@@ -8,6 +8,7 @@ import frappe
 SIDEBAR = "Selling"
 DASHBOARD_LINK = {"label": "لوحة مكتب المحاسبة", "type": "Link", "link_type": "Dashboard", "link_to": "مكتب المحاسبة"}
 REPORT_LINKS = (
+    {"label": "دليل الاستخدام", "type": "Link", "link_type": "URL", "url": "/accounting-guide"},
     {"label": "تقرير انتهاء المستندات", "type": "Link", "link_type": "Report", "link_to": "Document Expiry Monitor"},
     {"label": "تقرير الإشعارات الضريبية", "type": "Link", "link_type": "Report", "link_to": "Tax Notifications Monitor"},
     {"label": "الإشعارات الضريبية", "type": "Link", "link_type": "DocType", "link_to": "Tax Notification"},
@@ -22,7 +23,12 @@ REPORT_LINKS = (
     {"label": "ملخص الأرشيف", "type": "Link", "link_type": "Report", "link_to": "Archive Summary"},
     {"label": "الهيكل الافتراضي للأرشيف", "type": "Link", "link_type": "DocType", "link_to": "Archive Folder Template"},
 )
-OWN_LINKS = {(d["link_type"], d["link_to"]) for d in (DASHBOARD_LINK, *REPORT_LINKS)}
+def _key(item):
+    """A link by what it opens: its target, or its address for a URL link."""
+    return (item.get("link_type"), item.get("link_to") or item.get("url"))
+
+
+OWN_LINKS = {_key(d) for d in (DASHBOARD_LINK, *REPORT_LINKS)}
 
 
 def _item(spec, child=0):
@@ -36,7 +42,7 @@ def sync_sidebar():
         return
 
     sidebar = frappe.get_doc("Workspace Sidebar", SIDEBAR)
-    items = [row for row in sidebar.items if (row.link_type, row.link_to) not in OWN_LINKS]
+    items = [row for row in sidebar.items if _key(row) not in OWN_LINKS]
     rows = [row.as_dict() for row in items]
 
     # dashboard link right after the standard "Dashboard" entry (or at the top)

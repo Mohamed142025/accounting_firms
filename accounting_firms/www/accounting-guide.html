@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<!-- The office guide, served to logged-in users at /accounting-guide. Source of truth for its text. -->
+<title>دليل مكتب المحاسبة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a Roots-green masthead, then a reading column beside a sticky contents rail (stacks on phones). */
+:root {
+  --roots: #0E3B2E;
+  --emerald: #197B57;
+  --mint: #34D399;
+  --sand: #F4F1EA;
+  --ink: #16211C;
+
+  --bg: #F4F1EA;
+  --surface: #FFFFFF;
+  --surface-2: #EDE9DF;
+  --fg: #16211C;
+  --muted: #4E5B54;
+  --line: rgba(14, 59, 46, .14);
+  --accent: #197B57;
+  --accent-soft: rgba(25, 123, 87, .10);
+  --mast-bg: #0E3B2E;
+  --mast-fg: #F4F1EA;
+  --mast-accent: #34D399;
+  --code-bg: rgba(14, 59, 46, .07);
+  --warn: #8A5A12;
+  --warn-bg: rgba(183, 121, 31, .12);
+  --danger: #A8352F;
+  --danger-bg: rgba(194, 65, 59, .10);
+  --info: #22657F;
+  --info-bg: rgba(40, 122, 155, .10);
+  --new: #197B57;
+
+  --font-body: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A1F18; --surface: #0E2A21; --surface-2: #123428; --fg: #F4F1EA; --muted: #A9B8AF;
+    --line: rgba(244, 241, 234, .12); --accent: #34D399; --accent-soft: rgba(52, 211, 153, .12);
+    --mast-bg: #0E3B2E; --mast-fg: #F4F1EA; --mast-accent: #34D399; --code-bg: rgba(244, 241, 234, .07);
+    --warn: #E3B66B; --warn-bg: rgba(227, 182, 107, .12); --danger: #F08A84; --danger-bg: rgba(240, 138, 132, .12);
+    --info: #7CC3DE; --info-bg: rgba(124, 195, 222, .12); --new: #34D399;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A1F18; --surface: #0E2A21; --surface-2: #123428; --fg: #F4F1EA; --muted: #A9B8AF;
+  --line: rgba(244, 241, 234, .12); --accent: #34D399; --accent-soft: rgba(52, 211, 153, .12);
+  --mast-bg: #0E3B2E; --mast-fg: #F4F1EA; --mast-accent: #34D399; --code-bg: rgba(244, 241, 234, .07);
+  --warn: #E3B66B; --warn-bg: rgba(227, 182, 107, .12); --danger: #F08A84; --danger-bg: rgba(240, 138, 132, .12);
+  --info: #7CC3DE; --info-bg: rgba(124, 195, 222, .12); --new: #34D399;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--mast-bg); }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+code, .path { font-family: var(--font-mono); font-size: .86em; background: var(--code-bg); padding: 1px 6px; border-radius: 5px; direction: ltr; unicode-bidi: isolate; white-space: nowrap; }
+kbd { font-family: var(--font-mono); font-size: .82em; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 0 5px; background: var(--surface); }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* masthead */
+.mast { background: var(--mast-bg); color: var(--mast-fg); }
+.mast .wrap { padding-block: 40px 34px; display: grid; gap: 22px; }
+.brand { display: flex; align-items: center; gap: 12px; font-size: 14px; letter-spacing: .02em; opacity: .92; }
+.brand svg { width: 38px; height: 38px; flex: none; }
+.brand b { font-weight: 600; }
+.mast h1 { margin: 0; font-size: clamp(30px, 5vw, 46px); line-height: 1.25; font-weight: 700; text-wrap: balance; }
+.mast h1 span { color: var(--mast-accent); }
+.mast p.lead { margin: 0; max-width: 68ch; font-size: 17px; color: rgba(244, 241, 234, .86); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: rgba(244, 241, 234, .74); }
+.meta span::before { content: "•"; margin-inline-end: 8px; color: var(--mast-accent); }
+.meta span:first-child::before { content: none; }
+
+/* toolbar */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding-block: 10px; }
+.search { flex: 1 1 260px; min-width: 0; position: relative; }
+.search input { width: 100%; font: inherit; font-size: 15px; padding: 8px 38px 8px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--fg); }
+.search svg { position: absolute; top: 50%; right: 13px; transform: translateY(-50%); width: 16px; height: 16px; color: var(--muted); }
+.aud { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; color: var(--muted); }
+.aud button { font: inherit; font-size: 13px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.aud button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.hits { font-size: 13px; color: var(--muted); }
+
+/* page grid */
+.page { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 40px; padding-block: 32px 80px; }
+.toc { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 96px); overflow: auto; font-size: 14px; }
+.toc h2 { font-size: 12px; letter-spacing: .08em; color: var(--muted); margin: 0 0 8px; font-weight: 600; }
+.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.toc a { display: flex; gap: 8px; padding: 5px 10px; border-radius: 8px; color: var(--fg); text-decoration: none; }
+.toc a .n { color: var(--muted); font-variant-numeric: tabular-nums; min-width: 1.6em; }
+.toc a:hover { background: var(--accent-soft); }
+.toc a.on { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.toc a.dim { opacity: .45; }
+.toc-m { display: none; }
+
+main { min-width: 0; }
+section.ch { padding-block: 8px 34px; border-bottom: 1px solid var(--line); }
+section.ch:last-of-type { border-bottom: none; }
+section.ch[hidden] { display: none !important; }
+section.ch.dim > *:not(h2) { opacity: .5; }
+h2.t { font-size: clamp(22px, 3vw, 28px); line-height: 1.35; margin: 18px 0 6px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; text-wrap: balance; }
+h2.t .n { color: var(--accent); font-variant-numeric: tabular-nums; }
+h3 { font-size: 19px; margin: 26px 0 6px; line-height: 1.4; }
+p, li { max-width: 72ch; }
+.sum { color: var(--muted); margin-top: 0; }
+.tags { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+.tag { font-size: 11.5px; font-weight: 600; letter-spacing: .03em; padding: 2px 9px; border-radius: 999px; background: var(--surface-2); color: var(--muted); }
+.tag.new { background: var(--accent-soft); color: var(--new); }
+ul, ol { padding-inline-start: 22px; }
+li + li { margin-top: 4px; }
+
+/* blocks */
+.note { border-radius: var(--radius); padding: 12px 16px; margin: 16px 0; background: var(--info-bg); }
+.note b:first-child { color: var(--info); }
+.note.warn { background: var(--warn-bg); }
+.note.warn b:first-child { color: var(--warn); }
+.note.tip { background: var(--accent-soft); }
+.note.tip b:first-child { color: var(--accent); }
+.note p { margin: 4px 0; }
+
+.tbl { overflow-x: auto; margin: 14px 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+table { width: 100%; border-collapse: collapse; font-size: 14.5px; line-height: 1.7; }
+th, td { text-align: start; padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; font-size: 13px; color: var(--muted); background: var(--surface-2); white-space: nowrap; }
+tr:last-child td { border-bottom: none; }
+td:first-child { font-weight: 600; }
+
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 14px 0; display: grid; gap: 10px; }
+.steps > li { counter-increment: s; position: relative; padding: 12px 16px 12px 16px; padding-inline-start: 54px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); max-width: none; }
+.steps > li::before { content: counter(s); position: absolute; inset-inline-start: 14px; top: 12px; width: 26px; height: 26px; border-radius: 50%; background: var(--roots); color: var(--sand); font-size: 13px; font-weight: 600; display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+:root[data-theme="dark"] .steps > li::before { background: var(--mint); color: var(--roots); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .steps > li::before { background: var(--mint); color: var(--roots); } }
+.steps > li b { display: block; }
+
+.mods { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin: 16px 0; }
+.mod { display: grid; gap: 4px; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); text-decoration: none; color: var(--fg); }
+.mod:hover { border-color: var(--accent); }
+.mod b { font-size: 16px; display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.mod span { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+.num { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 14.5px; margin: 12px 0; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.num code { justify-self: start; }
+
+.copy { font: inherit; font-size: 12px; margin-inline-start: 6px; padding: 1px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; }
+.copy.ok { color: var(--accent); border-color: var(--accent); }
+
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; margin: 16px 0; overflow-x: auto; }
+.flow ol { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.flow li { margin: 0; padding: 6px 12px; border-radius: 8px; background: var(--surface-2); font-size: 14px; max-width: none; }
+.flow li.arrow { background: none; padding: 0; color: var(--muted); }
+.flow li.key { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+
+details.faq { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 0 16px; margin: 8px 0; }
+details.faq summary { cursor: pointer; padding: 12px 0; font-weight: 600; }
+details.faq[open] summary { border-bottom: 1px solid var(--line); }
+details.faq > div { padding: 8px 0 12px; }
+
+mark { background: rgba(52, 211, 153, .35); color: inherit; border-radius: 3px; padding: 0 2px; }
+.empty { padding: 30px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--radius); }
+
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+footer .wrap { padding-block: 22px; display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; }
+
+@media (max-width: 900px) {
+  .page { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-block: 18px 60px; }
+  .toc { display: none; }
+  .toc-m { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 0 14px; }
+  .toc-m summary { padding: 10px 0; font-weight: 600; cursor: pointer; }
+  .toc-m ol { list-style: none; padding: 0 0 10px; margin: 0; columns: 2; column-gap: 14px; font-size: 14px; }
+  .toc-m li { break-inside: avoid; }
+  .toc-m a { color: var(--fg); text-decoration: none; display: block; padding: 3px 0; }
+  body { font-size: 15.5px; }
+}
+@media (max-width: 480px) { .toc-m ol { columns: 1; } .mast .wrap { padding-block: 28px 24px; } }
+.back { justify-self: end; color: var(--mast-fg); opacity: .8; font-size: 13px; text-decoration: none; border: 1px solid rgba(244, 241, 234, .3); border-radius: 999px; padding: 3px 12px; }
+.back:hover { opacity: 1; }
+</style>
+</head>
+<body>
+
+
+<div dir="rtl" lang="ar">
+<header class="mast">
+  <div class="wrap">
+    <a class="back" href="/app">← الرجوع للنظام</a>
+    <div class="brand">
+      <svg viewBox="0 0 512 512" role="img" aria-label="Digital Roots">
+        <rect width="512" height="512" rx="86" fill="#0E3B2E" stroke="rgba(244,241,234,.25)" stroke-width="10"/>
+        <g fill="#34D399"><rect x="120" y="168" width="54" height="84" rx="27"/><rect x="229" y="112" width="54" height="140" rx="27"/><rect x="338" y="66" width="54" height="186" rx="27"/><rect x="83" y="273" width="346" height="34" rx="17"/></g>
+        <g fill="#F4F1EA"><rect x="132" y="320" width="28" height="70" rx="14"/><circle cx="146" cy="392" r="29"/><rect x="241" y="320" width="28" height="100" rx="14"/><circle cx="255" cy="424" r="29"/><rect x="350" y="320" width="28" height="132" rx="14"/><circle cx="364" cy="456" r="29"/></g>
+      </svg>
+      <span><b>Digital Roots</b> · Solutions</span>
+    </div>
+    <h1>دليل <span>مكتب المحاسبة</span></h1>
+    <p class="lead">كل ما تم بناؤه في تطبيق accounting_firms على ERPNext، وطريقة استخدام كل شاشة، وأفضل طريقة لتشغيل المكتب عليه: من بيانات العميل وأرشيفه، إلى الإيميل الضريبي، إلى خدمات المكتب ومهامها.</p>
+    <div class="meta"><span>الإصدار 2.0</span><span>نوفمبر 2026</span><span>Frappe / ERPNext 16</span><span>التطبيق: accounting_firms</span></div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <label class="search" for="q">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="ابحث في الدليل: مثلاً «استلام المهمة» أو «OAuth»" autocomplete="off">
+    </label>
+    <div class="aud" role="group" aria-label="اعرض حسب الدور">
+      <span>أنا:</span>
+      <button type="button" data-aud="all" aria-pressed="true">الكل</button>
+      <button type="button" data-aud="staff" aria-pressed="false">موظف / محاسب</button>
+      <button type="button" data-aud="manager" aria-pressed="false">مدير</button>
+      <button type="button" data-aud="tech" aria-pressed="false">مسؤول فني</button>
+    </div>
+    <span class="hits" id="hits" aria-live="polite"></span>
+  </div>
+</div>
+
+<div class="wrap page">
+  <nav class="toc" aria-label="المحتويات">
+    <h2>المحتويات</h2>
+    <ol id="toc"></ol>
+  </nav>
+
+  <main id="main">
+    <details class="toc-m"><summary>المحتويات</summary><ol id="tocm"></ol></details>
+
+    <!-- 1 -->
+    <section class="ch" id="overview" data-aud="staff manager tech">
+      <h2 class="t"><span class="n">1</span> نظرة عامة</h2>
+      <p class="sum">التطبيق يحوّل ERPNext إلى نظام تشغيل كامل لمكتب محاسبة وضرائب. كل التعديلات داخل تطبيق واحد (accounting_firms) دون المساس بـ ERPNext نفسه، فيمكن نقله وتثبيته على أي خادم.</p>
+      <div class="mods">
+        <a class="mod" href="#customer"><b>ملف العميل</b><span>بيانات الشركة القانونية والضريبية والإدارية في تابات منظمة، والفروع كسجل مستقل.</span></a>
+        <a class="mod" href="#services"><b>خدمات المكتب والمهام <span class="tag new">جديد</span></b><span>شجرة خدمات لكل عميل، وخريطة مهام لكل خدمة، ومهام تُسند وتتسلسل تلقائيًا.</span></a>
+        <a class="mod" href="#tax"><b>الضرائب والمنصات</b><span>بيانات المأمورية، حسابات المنصات بدخول تلقائي، ملف الفاتورة الإلكترونية.</span></a>
+        <a class="mod" href="#taxmail"><b>الإيميل الضريبي <span class="tag new">مُحدّث</span></b><span>قراءة صناديق العملاء، تصنيف الإشعارات بقواعد، تعيين ومتابعة.</span></a>
+        <a class="mod" href="#archive"><b>الأرشيف</b><span>شجرة مجلدات لكل عميل، رفع وتنزيل ونقل وبحث.</span></a>
+        <a class="mod" href="#expiry"><b>انتهاء المستندات</b><span>تقرير وتنبيهات لكل تاريخ انتهاء في النظام.</span></a>
+        <a class="mod" href="#daily"><b>ملخص اليوم</b><span>كل موظف يسجل أعماله وساعاته، والمدير يتابع ويرد.</span></a>
+        <a class="mod" href="#extension"><b>إضافة المتصفح</b><span>دخول تلقائي على المنصات الحكومية من شاشة العميل.</span></a>
+      </div>
+      <h3>لمن كل جزء</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>الدور</th><th>ابدأ من</th></tr></thead>
+        <tbody>
+          <tr><td>موظف / محاسب</td><td>ملف العميل، الخدمات والمهام، الإشعارات الضريبية، الأرشيف، ملخص اليوم، أفضل طريقة للاستخدام</td></tr>
+          <tr><td>مدير المكتب</td><td>الإعداد لأول مرة، خرائط المهام، اللوحة والتقارير، الصلاحيات</td></tr>
+          <tr><td>المسؤول الفني</td><td>الإعداد لأول مرة، الإيميل الضريبي (OAuth والإعدادات)، ملاحظات فنية، سجل التعديلات</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note tip"><b>استخدم الشريط العلوي:</b> اختر دورك ليتم إبراز الفصول التي تخصك، أو اكتب كلمة في البحث لعرض الفصول التي تذكرها فقط.</div>
+    </section>
+
+    <!-- 2 -->
+    <section class="ch" id="setup" data-aud="manager tech">
+      <h2 class="t"><span class="n">2</span> الإعداد لأول مرة</h2>
+      <p class="sum">مرة واحدة قبل تشغيل المكتب، وبهذا الترتيب. كل خطوة تعتمد على التي قبلها.</p>
+      <ol class="steps">
+        <li><b>الموظفون والمستخدمون</b>كل موظف في شاشة Employee يجب أن يكون له <em>مستخدم</em> (User ID) وقسم. الموظف بلا مستخدم لا تصله مهام ولا إشعارات.</li>
+        <li><b>الأقسام ومديروها</b>في شاشة Department افتح كل قسم واختر <em>مدير القسم</em>. المهام المسندة إلى «مدير قسم» تذهب إليه.</li>
+        <li><b>الرولات</b>أنشئ الرولات الوظيفية التي يحتاجها المكتب (مثل مراجع ضرائب، محاسب) وأعطها للمستخدمين. المهمة المسندة لرول تذهب لكل من يحمله.</li>
+        <li><b>العملاء: الكيان القانوني</b>املأ حقل «الكيان القانوني» لكل عميل (تضامن، ذات مسؤولية محدودة…). خرائط المهام تعتمد عليه لاختيار المهام المناسبة.</li>
+        <li><b>العملاء: المحاسب المسؤول</b>حقل «كود المحاسب» في العميل. إليه تذهب الإشعارات الضريبية، وهو المسؤول الافتراضي عن خدمات العميل.</li>
+        <li><b>دليل الخدمات</b>كل خدمة يقدمها المكتب هي صنف (Item) معلّم عليه <em>«خدمة مكتب»</em>، داخل شجرة مجموعات الأصناف. الخدمات الحالية (160) معلّمة بالفعل.</li>
+        <li><b>خرائط المهام</b>لكل خدمة تُنفذ بخطوات، أنشئ «خريطة مهام الخدمة» (الفصل 4). ابدأ بالخدمات الأكثر تكرارًا.</li>
+        <li><b>إعدادات الإيميل الضريبي</b>اختر «المسؤول الافتراضي»، ومدة الجلب، وقراءة الـ Spam (الفصل 7).</li>
+        <li><b>المنصات والأرشيف</b>راجع روابط المنصات في Tax Platform، والهيكل الافتراضي للأرشيف في Archive Folder Template.</li>
+      </ol>
+    </section>
+
+    <!-- 3 -->
+    <section class="ch" id="customer" data-aud="staff manager">
+      <h2 class="t"><span class="n">3</span> ملف العميل</h2>
+      <p class="sum">شاشة العميل (Customer) هي مركز العمل. كل نوع بيانات في تاب خاص به.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>التاب</th><th>المحتوى</th></tr></thead>
+        <tbody>
+          <tr><td>التفاصيل</td><td>اسم العميل، كود الشركة، الحالة، الكيان القانوني، تابع لمجموعة شركات، كود المحاسب، الارتباط بشركات أخرى</td></tr>
+          <tr><td>البيانات الأساسية</td><td>البطاقة الضريبية، القيمة المضافة، السجل التجاري، الرخص، العلامات التجارية، اتحاد التشييد والبناء، البطاقة الاستيرادية والتصديرية</td></tr>
+          <tr><td>البيانات الإدارية</td><td>ممثلو الشركة، مجلس الإدارة، رأس المال وحركاته، المساهمون، الجمعيات العمومية</td></tr>
+          <tr><td>Tax</td><td>المأمورية، الملف الضريبي، الميل الضريبي، تواصل المصلحة، حسابات المنصات، التوكن، ملف الفاتورة الإلكترونية، التيسيرات، الدفعات المقدمة</td></tr>
+          <tr><td>التأمينات</td><td>التأمينات الاجتماعية لكل فرع</td></tr>
+          <tr><td>الأرشيف</td><td>شجرة مجلدات العميل وملفاته (الفصل 9)</td></tr>
+          <tr><td>الخدمات <span class="tag new">جديد</span></td><td>شجرة خدمات المكتب التي يتعامل بها العميل (الفصل 4)</td></tr>
+          <tr><td>Connections</td><td>الفروع، مهام الخدمات، الإشعارات الضريبية، وباقي روابط ERPNext</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>كود الشركة والحالة</h3>
+      <ul>
+        <li>كود الشركة مطلوب عند إنشاء العميل ويصبح اسمه الثابت. لا يُعدل بعد الحفظ ولا يتكرر.</li>
+        <li>الحالة الافتراضية للعميل الجديد Active.</li>
+        <li>«تابع لمجموعة شركات» يحدد الشركة الأم، والنظام يمنع ربط الشركة بنفسها أو أي علاقة دائرية.</li>
+      </ul>
+      <h3>الارتباط بشركات أخرى</h3>
+      <p>علّم «يوجد ارتباط مع شركات أخرى» ليظهر جدول الشركات المرتبطة: اسم الشركة، عميل لدينا (اختياري)، نوع الارتباط (قابضة، تابعة، مستقلة، شريك بحصة… من شاشة Company Relation Type)، ونسبة الحصة للأنواع التي لها حصة.</p>
+      <h3>الفروع</h3>
+      <ol>
+        <li>احفظ العميل، ثم من <b>إنشاء ← فرع جديد</b>.</li>
+        <li>اكتب كود الفرع واسمه وبيانات سجله وعنوانه. اسم السجل يتكون من كود العميل وكود الفرع، مثل <code>ABC-CAI</code>.</li>
+        <li>في كل جداول العميل، حقل الفرع يعرض فروع هذا العميل النشطة فقط. اتركه فارغًا للمركز الرئيسي.</li>
+      </ol>
+      <h3>البيانات الأساسية</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>الجدول</th><th>ملاحظات</th></tr></thead>
+        <tbody>
+          <tr><td>السجل التجاري</td><td>تاريخا «3 شهور» و«5 سنوات» يُحسبان من الإصدار إذا تُركا فارغين، وتاريخ الـ 5 سنوات يدخل تقرير الانتهاء</td></tr>
+          <tr><td>العلامات التجارية</td><td>الانتهاء يُحسب 10 سنوات من الإيداع إذا تُرك فارغًا، وفئات نيس الـ 45 في شاشة Trademark Class</td></tr>
+          <tr><td>البطاقة الضريبية، القيمة المضافة، الرخص، اتحاد التشييد، البطاقة الاستيرادية والتصديرية</td><td>كلها تدخل تقرير انتهاء المستندات</td></tr>
+        </tbody>
+      </table></div>
+      <h3>البيانات الإدارية</h3>
+      <ul>
+        <li><b>ممثلو الشركة:</b> زر «إضافة كجهة اتصال» ينشئ Contact مرتبطًا بالعميل دون تكرار.</li>
+        <li><b>مجلس الإدارة:</b> كل عضو صف بتاريخ تشكيله، وتاريخ انتهاء الصلاحية يدخل تقرير الانتهاء.</li>
+        <li><b>رأس المال:</b> الحقول العلوية تتحدث تلقائيًا من آخر حركة. المدفوع لا يتجاوز المصدر، والمصدر لا يتجاوز المرخص.</li>
+        <li><b>المساهمون:</b> النسبة تُحسب من عدد الأسهم إذا كان إجمالي الأسهم معروفًا، والحفظ مرفوض إذا تجاوز إجمالي الحاليين 100%.</li>
+      </ul>
+      <div class="note"><b>قاعدة عامة:</b> النظام يرفض أي صف تاريخ انتهائه قبل تاريخ إصداره، ويذكر اسم الجدول ورقم الصف.</div>
+    </section>
+
+    <!-- 4 -->
+    <section class="ch" id="services" data-aud="staff manager">
+      <h2 class="t"><span class="n">4</span> خدمات المكتب والمهام <span class="tags"><span class="tag new">جديد</span></span></h2>
+      <p class="sum">الفكرة: كل عميل له قائمة خدمات يتعامل بها، وكل خدمة لها خريطة مهام تقول ماذا يُنفذ وبأي ترتيب ومن ينفذه. عند فتح مهمة على خدمة، النظام ينشئ كل مهامها ويسندها في وقتها.</p>
+      <div class="flow"><ol>
+        <li class="key">خدمة مكتب (صنف)</li><li class="arrow">←</li>
+        <li>خريطة مهام الخدمة</li><li class="arrow">←</li>
+        <li>تعليم الخدمة للعميل</li><li class="arrow">←</li>
+        <li class="key">+ مهمة</li><li class="arrow">←</li>
+        <li>مهمة رئيسية ومهام فرعية</li><li class="arrow">←</li>
+        <li>إسناد واستلام وإنجاز</li>
+      </ol></div>
+
+      <h3>4.1 دليل الخدمات</h3>
+      <p>الخدمة صنف (Item) غير مخزني معلّم عليه <b>«خدمة مكتب»</b>. مجموعات الأصناف تكوّن الشجرة: الإدارة ← القسم ← مجموعة الخدمات ← الخدمة. أي خدمة أو مجموعة جديدة تُضاف من شاشة الأصناف تظهر تلقائيًا في كل مكان. كون الخدمة صنفًا يجعلها جاهزة للفوترة لاحقًا.</p>
+
+      <h3>4.2 تاب «الخدمات» في شاشة العميل</h3>
+      <ul>
+        <li>شجرة المجموعات وتحتها الخدمات، وأمام كل خدمة checkbox. تعليم المجموعة يعلّم كل خدماتها، وإلغاؤه يلغيها.</li>
+        <li>مربع المجموعة يوضح حالتها: معلّم بالكامل، أو جزئي (علامة شرطة) إذا كان بعض خدماتها فقط معلّمًا. وبجانبها عدّاد (المعلّم / الكل).</li>
+        <li>بحث بالاسم، وفلتر «المتعلّم فقط»، و«فتح الكل / طي الكل». المجموعات التي فيها خدمات معلّمة تُفتح تلقائيًا.</li>
+        <li>بجانب كل خدمة معلّمة: زر <b>+ مهمة</b>، وعدد المهام المفتوحة عليها، وتاريخ آخر تنفيذ.</li>
+        <li>الضغط على اسم خدمة معلّمة يفتح تفاصيلها في جدول «تفاصيل الخدمات» أسفل الشجرة.</li>
+      </ul>
+      <div class="tbl"><table>
+        <thead><tr><th>تفاصيل الخدمة</th><th>الاستخدام</th></tr></thead>
+        <tbody>
+          <tr><td>الحالة</td><td>نشطة / موقوفة. الموقوفة تبقى في السجل ولا تظهر عند إنشاء المهام</td></tr>
+          <tr><td>التكرار</td><td>مرة واحدة، شهري، ربع سنوي، نصف سنوي، سنوي. يحدد «الفترة» المقترحة عند إنشاء المهمة</td></tr>
+          <tr><td>تاريخ البداية</td><td>بداية تعامل العميل بالخدمة</td></tr>
+          <tr><td>المسؤول عن الخدمة</td><td>اختياري. يُستخدم لإسناد الخدمة التي ليس لها خريطة</td></tr>
+          <tr><td>الأتعاب المتفق عليها</td><td>للفوترة لاحقًا</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note"><b>التعليم يُحفظ مع حفظ العميل.</b> أي إضافة أو إزالة تظهر في سجل التعديلات أسفل شاشة العميل باسم المستخدم والوقت. إزالة خدمة عليها مهام مفتوحة تظهر لها رسالة تنبيه.</div>
+
+      <h3>4.3 خريطة مهام الخدمة</h3>
+      <p>من السايدبار: <b>خرائط مهام الخدمات</b>. خريطة واحدة لكل خدمة، فيها جدول المهام.</p>
+      <h3>ترقيم المهام والمهام الفرعية</h3>
+      <p>خانة <b>«رقم»</b> هي التي تحدد الشكل الشجري:</p>
+      <div class="num">
+        <code>1</code><span>مهمة رئيسية: تجهيز ملف التسجيل</span>
+        <code>1.1</code><span>فرعية تحت 1: استلام المستندات من العميل</span>
+        <code>1.2</code><span>فرعية تحت 1: مراجعة المستندات</span>
+        <code>2</code><span>مهمة رئيسية: تقديم للمأمورية</span>
+        <code>2.1.1</code><span>مستوى ثالث تحت 2.1</span>
+      </div>
+      <ul>
+        <li>لا يلزم كتابة الصفوف بالترتيب. عند الحفظ يُرتب الجدول بالأرقام، وتظهر الفرعية تحت أمها بإزاحة وسهم ↳.</li>
+        <li>الحفظ يرفض: رقمًا فرعيًا بلا أم (3.1 بدون 3)، أو رقمًا مكررًا، أو رقمًا غير صحيح (1.a).</li>
+        <li>أسفل الجدول «شكل المهام»: عرض شجري للخريطة كلها بالمسؤول والتنفيذ والمدة.</li>
+      </ul>
+      <h3>إسناد المهمة</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>إسناد إلى</th><th>القيمة</th><th>من يستلم المهمة</th></tr></thead>
+        <tbody>
+          <tr><td>قسم</td><td>القسم</td><td>كل موظفي القسم (والأقسام التابعة له). أول من يضغط «استلام المهمة» تصبح له</td></tr>
+          <tr><td>مدير قسم</td><td>القسم</td><td>مدير القسم المحدد في شاشة Department</td></tr>
+          <tr><td>رول</td><td>الرول</td><td>كل من يحمل الرول في المكتب. أول من يستلمها تصبح له</td></tr>
+          <tr><td>موظف</td><td>الموظف</td><td>الموظف بالاسم (يجب أن يكون له مستخدم)</td></tr>
+        </tbody>
+      </table></div>
+      <p>خانة <b>القسم</b> تبقى مسجلة على المهمة في كل الحالات للتقارير: في «موظف» تُملأ من قسمه، وفي «رول» اختيارية.</p>
+      <h3>باقي خانات المهمة</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>الخانة</th><th>المعنى</th></tr></thead>
+        <tbody>
+          <tr><td>التنفيذ</td><td><b>تسلسلي</b> (الافتراضي): تبدأ بعد انتهاء المهام التي قبلها في نفس المستوى. <b>متوازي</b>: تبدأ مع المهمة التي قبلها</td></tr>
+          <tr><td>المدة (يوم)</td><td>منها يُحسب تاريخ التسليم المتوقع عند بدء المهمة</td></tr>
+          <tr><td>إجبارية</td><td>غير الإجبارية يمكن إغلاقها «لا ينطبق» أو استبعادها عند الإنشاء</td></tr>
+          <tr><td>تحتاج مرفق</td><td>المهمة لا تُغلق دون ملف مرفق (مثل خطوة الـ scan)</td></tr>
+          <tr><td>ينطبق على الكيانات</td><td>فارغ = كل العملاء. أو اختر كيانات (زر «اختيار الكيانات»)، فلا تُنشأ المهمة إلا لعميل كيانه منها، وتُستبعد معها مهامها الفرعية</td></tr>
+          <tr><td>وصف / تعليمات</td><td>يظهر في وصف المهمة للمنفذ</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note warn"><b>الكيانات:</b> هي قيم «الكيان القانوني» في شاشة العميل: تضامن، توصية بالأسهم، توصية بسيطة، ذات مسؤولية محدودة، شخص واحد، فردي، مساهمة. إذا كان الكيان فارغًا عند العميل، فكل مهمة محدد لها كيانات لن تُنشأ له.</div>
+
+      <h3>4.4 إنشاء مهام خدمة</h3>
+      <ol class="steps">
+        <li><b>من شاشة العميل</b>زر <b>+ مهمة</b> بجانب الخدمة في تاب الخدمات، أو <b>إنشاء ← مهمة خدمة</b> أعلى الشاشة. النافذة تسأل عن الخدمة أولًا، من الخدمات النشطة للعميل فقط.</li>
+        <li><b>الفترة والتسليم</b>للخدمة الدورية تُقترح الفترة: <code>2026-11</code> للشهري، <code>Q4-2026</code> للربع سنوي، <code>H2-2026</code> لنصف السنوي، <code>2026</code> للسنوي. ثم تاريخ التسليم والأولوية والملاحظات.</li>
+        <li><b>معاينة المهام</b>جدول بالمهام التي ستُنشأ، ومن سيستلم كل واحدة، والمستبعد منها لكيان العميل مع السبب. يمكنك إلغاء علامة المهام الاختيارية، أو اختيار موظف آخر لأي مهمة.</li>
+        <li><b>إنشاء</b>تُنشأ مهمة رئيسية باسم «الخدمة — العميل — الفترة»، وتحتها المهام والفرعية بنفس شجرة الخريطة، وتُفتح المهمة الرئيسية.</li>
+      </ol>
+      <div class="note"><b>منع التكرار:</b> إذا كانت هناك مهمة مفتوحة على نفس الخدمة ونفس الفترة، تظهر رسالة، ويمكنك الإنشاء رغم ذلك بعد التأكيد.<br><b>خدمة بلا خريطة:</b> تُنشأ مهمة واحدة، تُسند لمن تختاره في النافذة أو للمسؤول عن الخدمة.</div>
+
+      <h3>4.5 دورة حياة المهام</h3>
+      <div class="flow"><ol>
+        <li>منتظرة</li><li class="arrow">←</li><li class="key">بدأت وأُسندت</li><li class="arrow">←</li><li>استلام (للقسم أو الرول)</li><li class="arrow">←</li><li>قيد التنفيذ</li><li class="arrow">←</li><li class="key">مكتملة</li><li class="arrow">←</li><li>تبدأ التالية</li>
+      </ol></div>
+      <ul>
+        <li><b>المهمة لا تُسند إلا عندما يحين دورها.</b> قبل ذلك تظهر عليها رسالة «لسه ما بدأتش»، ولا يمكن تغيير حالتها.</li>
+        <li><b>عند البدء:</b> تاريخ البداية اليوم، وتاريخ التسليم = اليوم + المدة (دون تجاوز تاريخ المهمة الأم).</li>
+        <li><b>استلام المهمة:</b> المسندة لقسم أو رول تظهر عند الجميع مع زر <b>استلام المهمة</b>. أول من يضغطه تصبح له وتختفي من قوائم الباقين. ومن يكمل المهمة مباشرة دون استلام يُعتبر قد استلمها.</li>
+        <li><b>المهمة الأم تُغلق وحدها</b> عندما تكتمل كل مهامها الفرعية، والخدمة كلها تكتمل عندما تكتمل كل مهامها.</li>
+        <li><b>لا ينطبق:</b> زر في المهمة غير الإجبارية، يغلقها مع ذكر السبب. الإجبارية لا يلغيها إلا مدير (System Manager أو Projects Manager أو Accounts Manager).</li>
+        <li><b>سبب الانتظار:</b> «منتظر الجهة» أو «منتظر العميل»، لتوضيح سبب توقف المهمة دون إغلاقها.</li>
+        <li><b>المرفق:</b> المهمة التي «تحتاج مرفق» ترفض الإغلاق حتى يُرفع ملف عليها.</li>
+        <li><b>تاريخ الإنجاز ومن أنجز</b> يُسجلان تلقائيًا عند الإكمال.</li>
+        <li><b>إلغاء المهمة الرئيسية</b> يلغي كل مهام الخدمة ويغلق إسناداتها.</li>
+        <li><b>لا أحد يستلم؟</b> إذا لم يوجد من ينطبق عليه الإسناد (قسم بلا مدير مثلًا)، تبدأ المهمة ويُكتب عليها تعليق «أسندها يدويًا».</li>
+      </ul>
+      <div class="note tip"><b>صلاحيات الموظف على مهمته:</b> عند الإسناد تُشارك المهمة مع الموظف بصلاحية تعديل عليها هي فقط. فيمكن لموظف ليس له أي دور على شاشة المهام أن يفتح مهمته ويكملها، دون أن يرى باقي المهام.</div>
+      <div class="note"><b>تعديل الخريطة</b> يؤثر على المهام التي تُنشأ بعده فقط، والمهام الموجودة تبقى كما هي.</div>
+    </section>
+
+    <!-- 5 -->
+    <section class="ch" id="tax" data-aud="staff manager">
+      <h2 class="t"><span class="n">5</span> الضرائب والمنصات</h2>
+      <h3>بيانات تواصل مصلحة الضرائب</h3>
+      <p>الوسيلة (تليفون / إيميل)، الرقم أو الإيميل، الاسم، المسؤول (مأمور/باحث، مراجع، مدير، رئيس المأمورية)، الحالة.</p>
+      <h3>حسابات المنصات الضريبية</h3>
+      <ul>
+        <li>كل صف: المنصة، الفرع، اسم المستخدم، كلمة المرور (مشفرة)، ملاحظات. المنصات تُدار من شاشة Tax Platform.</li>
+        <li><b>عرض كلمة المرور:</b> لـ System Manager فقط، وكل عرض يُسجل في سجل العميل.</li>
+        <li><b>فتح المنصة:</b> يفتح صفحة الدخول ونافذة لنسخ البيانات. ومع إضافة المتصفح يتم الدخول تلقائيًا.</li>
+      </ul>
+      <h3>ملف الفاتورة الإلكترونية والتوكن</h3>
+      <p>النوع، Client ID، Client Secret، Token PIN، Device Serial، والبيانات السرية مشفرة. بيانات الختم (الإصدار والانتهاء) في جدول «بيانات التوكن» وتدخل تقرير الانتهاء.</p>
+      <div class="note warn"><b>احفظ العميل أولًا</b> قبل استخدام أزرار «عرض كلمة المرور» و«فتح المنصة» و«اختبار الاتصال».</div>
+    </section>
+
+    <!-- 6 -->
+    <section class="ch" id="extension" data-aud="staff tech">
+      <h2 class="t"><span class="n">6</span> إضافة المتصفح للدخول التلقائي</h2>
+      <p class="sum">إضافة Chrome / Edge باسم Accounting Firms Auto Login. «فتح المنصة» من شاشة العميل يفتح صفحة الدخول ويملأ البيانات ويضغط دخول. الإصدار الحالي 1.0.3.</p>
+      <ol class="steps">
+        <li><b>التحميل</b><span class="path">/assets/accounting_firms/extension/extension-1.0.3.zip</span><button class="copy" type="button" data-copy="/assets/accounting_firms/extension/extension-1.0.3.zip">نسخ</button><br>افتح الرابط على عنوان النظام نفسه.</li>
+        <li><b>فك الضغط</b>في مجلد ثابت لا يُحذف، مثل <code>C:\accounting-firms-extension</code>.</li>
+        <li><b>التثبيت</b>افتح <code>chrome://extensions</code>، فعّل Developer mode، ثم Load unpacked واختر المجلد.</li>
+        <li><b>إعادة تحميل النظام</b><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd></li>
+      </ol>
+      <ul>
+        <li>المنصات التي تطلب captcha أو OTP تحتاج الخطوة الأخيرة يدويًا.</li>
+        <li>منصة لا تُملأ: أيقونة الإضافة تعرض «آخر حالة». وفي Tax Platform قسم «إعدادات الدخول التلقائي» لكتابة محددات الحقول.</li>
+        <li>التحديث: حمّل ملف الإصدار الجديد، استبدل الملفات في نفس المجلد، ثم سهم التحديث في صفحة الإضافات.</li>
+      </ul>
+    </section>
+
+    <!-- 7 -->
+    <section class="ch" id="taxmail" data-aud="staff manager tech">
+      <h2 class="t"><span class="n">7</span> الإيميل الضريبي والإشعارات <span class="tags"><span class="tag new">مُحدّث</span></span></h2>
+      <p class="sum">النظام يقرأ صندوق بريد كل عميل المسجل عند المصلحة، ويحول كل رسالة إلى «إشعار ضريبي» مصنف ومسند لمسؤول. القراءة بلا أثر: لا تُعلّم الرسائل كمقروءة ولا يُحذف شيء.</p>
+
+      <h3>7.1 إضافة إيميل لعميل</h3>
+      <ol class="steps">
+        <li><b>جدول الميل الضريبي</b>في تاب Tax: الفرع، الإيميل، طريقة الدخول (كلمة المرور أو OAuth)، Incoming Server، علامة «قراءة الإشعارات تلقائيًا».</li>
+        <li><b>اختبار الاتصال</b>يعرض عدد الرسائل، وأسماء الفولدرات الموجودة، وفولدر الـ Spam الذي تم اكتشافه.</li>
+        <li><b>فولدرات إضافية (اختياري)</b>فولدر في كل سطر بالاسم الذي ظهر في اختبار الاتصال. الوارد يُقرأ دائمًا، والـ Spam حسب الإعدادات.</li>
+        <li><b>جلب الإشعارات الآن</b>يجلب حتى 15 رسالة فورًا، والباقي في الخلفية.</li>
+      </ol>
+      <ul>
+        <li>عمود <b>حالة المزامنة</b> في الجدول: آخر مزامنة ناجحة، أو «فشل» وعدد مرات الفشل، أو «OAuth غير مربوط». وداخل الصف «تفاصيل آخر مزامنة» مع آخر خطأ.</li>
+        <li>نفس الإيميل لا يُسجل مرتين، لا عند نفس العميل ولا عند عميل آخر.</li>
+        <li>إذا لم يكن للعميل محاسب له مستخدم ولا يوجد مسؤول افتراضي، يظهر تنبيه برتقالي أعلى شاشة العميل لأن الإشعارات لن تصل لأحد.</li>
+      </ul>
+
+      <h3>7.2 كيف يعمل الجلب</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>البند</th><th>السلوك</th></tr></thead>
+        <tbody>
+          <tr><td>التوقيت</td><td>كل إيميل يُقرأ مرة كل «الجلب كل (دقيقة)»: 5 أو 10 أو 15 أو 30 أو 60</td></tr>
+          <tr><td>أول مزامنة</td><td>رسائل آخر X يوم فقط («أول مزامنة» في الإعدادات). بعدها الجديد فقط</td></tr>
+          <tr><td>الرسائل القديمة</td><td>الأقدم من «أرشفة الرسائل الأقدم من (يوم)» تُسجل «مؤرشف» بلا تاريخ استحقاق، فلا تظهر متأخرة</td></tr>
+          <tr><td>الحد</td><td>أقصى عدد رسائل لكل إيميل في المرة، والباقي في المرات التالية</td></tr>
+          <tr><td>الفشل</td><td>بعد فشل الدخول ينتظر 6 ساعات قبل المحاولة التالية حتى لا يُقفل الحساب. وبعد عدد مرات فشل متتالية يصل تنبيه مرة واحدة لمحاسب العميل والمسؤول الافتراضي</td></tr>
+          <tr><td>التكرار</td><td>الرسالة الواحدة لا تُسجل مرتين، حتى لو انتقلت من الـ Spam إلى الوارد</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>7.3 الإشعار الضريبي</h3>
+      <p>العميل، الفرع، المرسل، العنوان، تاريخ الاستلام، النص، المرفقات (ملفات خاصة)، التصنيف، نوع الضريبة، الأولوية، تاريخ الاستحقاق، الحالة، المسؤول، ملاحظات المكتب.</p>
+      <ul>
+        <li>أزرار في الإشعار: <b>تم التعامل</b>، <b>تحت المراجعة</b>، <b>أرشفة</b>، و<b>إعادة فتح</b> للمغلق.</li>
+        <li>يُسجل <b>من تعامل معه ومتى</b>، وتُغلق مهامه تلقائيًا عند التعامل أو الأرشفة.</li>
+        <li>من قائمة الإشعارات: حدد عدة إشعارات ثم <b>الإجراءات ← تغيير الحالة</b>.</li>
+        <li>«متأخر» ليست حالة مخزنة: الإشعار متأخر إذا فات تاريخ استحقاقه وهو جديد أو تحت المراجعة.</li>
+      </ul>
+
+      <h3>7.4 قواعد التصنيف</h3>
+      <p>شاشة <b>قواعد تصنيف الإشعارات</b>. القواعد تُجرب من الترتيب الأصغر للأكبر، وأول قاعدة تتحقق تحدد التصنيف والأولوية والاستحقاق. القواعد التالية تكمل التصنيف أو نوع الضريبة إذا تركته الأولى فارغًا.</p>
+      <ul>
+        <li><b>الشروط:</b> المرسل يحتوي على، العنوان يحتوي على، النص يحتوي على. كلمة أو جملة في كل سطر، ويكفي تحقق أي كلمة، ويجب تحقق كل الشروط المكتوبة.</li>
+        <li><b>المطابقة بالكلمة الكاملة:</b> «فحص» تطابق «الفحص» و«بالفحص» و«فحصها»، ولا تطابق «تفحص». و«VAT» لا تطابق «private». المرسل وحده يُطابق بأي جزء منه (مثل <code>eta.gov.eg</code>).</li>
+        <li>لا فرق بين أ/إ/آ و ا، ولا ة و ه، ولا ى و ي، والتشكيل مُتجاهل.</li>
+        <li><b>النتيجة:</b> التصنيف، نوع الضريبة، الأولوية، مهلة التعامل، تعيين لمحاسب العميل، إنشاء مهمة له، أرشفة تلقائية.</li>
+        <li><b>جرّب القاعدة:</b> زر في شاشة القاعدة يعرض الإشعارات التي تنطبق عليها من آخر 500، وفي أيها ستكون هي القاعدة المحددة، حتى قبل الحفظ.</li>
+        <li><b>إعادة تطبيق القواعد:</b> زر في قائمة الإشعارات يعيد تصنيف المفتوحة (أو المحددة)، ويسند غير المسندة.</li>
+      </ul>
+      <div class="note tip"><b>قواعد من نص الرسالة:</b> رسائل المصلحة كثيرًا ما يكون عنوانها عامًا («تنبيه هام»). القواعد الجاهزة تشمل «مساهمة تكافلية»، و«فحص ضريبي» و«مطالبات وسداد» و«إقرارات» من نص الرسالة. أضف كلمات من نص الرسائل الحقيقية التي تصلكم.</div>
+
+      <h3>7.5 الإعدادات</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>الإعداد (Tax Email Settings)</th><th>الوظيفة</th></tr></thead>
+        <tbody>
+          <tr><td>تفعيل القراءة التلقائية</td><td>إيقاف أو تشغيل الجلب كله</td></tr>
+          <tr><td>أول مزامنة: آخر (يوم)</td><td>مدة رسائل أول قراءة لأي إيميل جديد</td></tr>
+          <tr><td>أقصى عدد رسائل في المرة</td><td>للجلب التلقائي (زر «جلب الآن» ثابت على 15)</td></tr>
+          <tr><td>حفظ المرفقات وأقصى حجم</td><td>للرسائل الجديدة</td></tr>
+          <tr><td>إنشاء مهام للرسائل الأحدث من (يوم)</td><td>حتى لا تغرق أول مزامنة المحاسبين بالمهام</td></tr>
+          <tr><td>الجلب كل (دقيقة)</td><td>5 / 10 / 15 / 30 / 60</td></tr>
+          <tr><td>قراءة فولدر الـ Spam / Junk</td><td>حتى لا تضيع رسائل المصلحة التي تقع في الـ Spam</td></tr>
+          <tr><td>أرشفة الرسائل الأقدم من (يوم)</td><td>0 = بدون أرشفة</td></tr>
+          <tr><td>المسؤول الافتراضي</td><td>يستلم إشعارات العملاء بلا محاسب، وتنبيهات الفشل</td></tr>
+          <tr><td>تنبيه بعد عدد مرات فشل</td><td>0 = بدون تنبيه</td></tr>
+        </tbody>
+      </table></div>
+      <p>«أول مزامنة» لا تُطبق على إيميل سبقت مزامنته. لإعادة مزامنته من البداية بالمدة الجديدة، احذف سجله من «حالة مزامنة الإيميلات»، والرسائل السابقة لن تتكرر.</p>
+
+      <h3>7.6 Gmail و Microsoft 365 (OAuth)</h3>
+      <ol class="steps">
+        <li><b>Connected App</b>أنشئ Connected App لـ Google أو Microsoft (Client ID و Secret ورابطا Authorization و Token). الـ Scopes: لـ Google <code>https://mail.google.com/</code>، ولـ Microsoft <code>https://outlook.office.com/IMAP.AccessAsUser.All</code> و <code>offline_access</code>.</li>
+        <li><b>Redirect URI</b>سجّل عند المزود الرابط الظاهر في Tax Email Settings (قسم OAuth)، وصيغته:<br><span class="path">/api/method/accounting_firms.tax_email.oauth.callback</span><button class="copy" type="button" data-copy="/api/method/accounting_firms.tax_email.oauth.callback">نسخ</button></li>
+        <li><b>الربط</b>في صف الإيميل: طريقة الدخول OAuth، Incoming Server (<code>imap.gmail.com</code> أو <code>outlook.office365.com</code>)، الـ Connected App، احفظ ثم <b>ربط حساب OAuth</b> وسجل الدخول بحساب العميل.</li>
+      </ol>
+      <div class="note"><b>كل صف له توكن خاص به،</b> فـ Connected App واحد يخدم كل إيميلات العملاء على نفس المزود.</div>
+
+      <h3>7.7 شاشات المتابعة</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>الشاشة</th><th>الاستخدام</th></tr></thead>
+        <tbody>
+          <tr><td>تقرير الإشعارات الضريبية</td><td>المفتوحة والمتأخرة حسب المحاسب والتصنيف، مع رسم شهري، وعدادات: جديد، تحت المراجعة، متأخر، أولوية عالية، غير مصنف</td></tr>
+          <tr><td>الإشعارات الضريبية</td><td>العمل اليومي على الإشعارات</td></tr>
+          <tr><td>حالة مزامنة الإيميلات</td><td>كل إيميل: آخر مزامنة، النتيجة، الخطأ، مرات الفشل</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 8 -->
+    <section class="ch" id="expiry" data-aud="staff manager">
+      <h2 class="t"><span class="n">8</span> تقرير انتهاء المستندات</h2>
+      <p class="sum">Document Expiry Monitor يجمع كل تواريخ الانتهاء في النظام: منتهي، قريب الانتهاء (خلال أيام التنبيه، افتراضيًا 30)، ساري.</p>
+      <ul>
+        <li>الفلاتر: العميل، الفرع، نوع المستند، التنبيه قبل (يوم)، الحالة، تاريخ الانتهاء من / إلى.</li>
+        <li>الأنواع: البطاقة الضريبية، القيمة المضافة، الرخص، اتحاد التشييد، السجل التجاري، العلامات التجارية، صلاحيات مجلس الإدارة، البطاقة الاستيرادية والتصديرية، التوكن، التيسيرات، الدفعات المقدمة، مستندات الأرشيف.</li>
+        <li>أعلى شاشة العميل تنبيه أحمر أو برتقالي بعدد المنتهي والقريب من الانتهاء.</li>
+      </ul>
+    </section>
+
+    <!-- 9 -->
+    <section class="ch" id="archive" data-aud="staff manager">
+      <h2 class="t"><span class="n">9</span> أرشيف العميل</h2>
+      <p class="sum">لكل عميل شجرة مجلدات خاصة تُنشأ من «الهيكل الافتراضي»، ثم تُعدل بحرية دون التأثير على باقي العملاء. الملفات خاصة لا تُفتح إلا لمستخدم له صلاحية على العميل.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>في تاب الأرشيف</th><th>ماذا يفعل</th></tr></thead>
+        <tbody>
+          <tr><td>الشجرة</td><td>اضغط المجلد لعرض ملفاته. الرقم بجانبه عدد الملفات فيه وفي فروعه</td></tr>
+          <tr><td>مجلد جديد / إعادة تسمية</td><td>داخل المجلد المختار (عدا المجلد الرئيسي)</td></tr>
+          <tr><td>رفع ملفات</td><td>السنة والشهر وتاريخ المستند والوصف، ثم اسحب عدة ملفات</td></tr>
+          <tr><td>تنزيل / نقل المحدد</td><td>ملف واحد يُفتح، وأكثر من ملف يُنزل ZIP. النقل لمجلد آخر لنفس العميل</td></tr>
+          <tr><td>حذف</td><td>للمدير فقط. المجلد يجب أن يكون فارغًا</td></tr>
+          <tr><td>البحث والسنة</td><td>بالاسم أو الوصف، وفلتر بالسنة، و«شامل المجلدات الفرعية»</td></tr>
+        </tbody>
+      </table></div>
+      <ul>
+        <li><b>الهيكل الافتراضي</b> من شاشة Archive Folder Template، وزر «الهيكل الافتراضي» في تاب الأرشيف يضيف الجديد منه لعميل قديم.</li>
+        <li><b>مستندات الأرشيف</b> (Customer Document): بحث في كل العملاء مع تصدير Excel. و<b>ملخص الأرشيف</b>: العدد والحجم وآخر رفع لكل عميل ومجلد.</li>
+      </ul>
+    </section>
+
+    <!-- 10 -->
+    <section class="ch" id="daily" data-aud="staff manager">
+      <h2 class="t"><span class="n">10</span> ملخص اليوم للموظف</h2>
+      <ul>
+        <li>من السايدبار «ملخص اليوم» ثم جديد. الموظف والتاريخ يُحددان تلقائيًا.</li>
+        <li>صفوف الأعمال: العميل، نوع العمل، الوصف، الساعات، الحالة. وعلامة «يحتاج متابعة من المدير».</li>
+        <li>ملخص واحد لكل موظف في اليوم، والإجمالي لا يتجاوز 24 ساعة.</li>
+        <li>الموظف يرى ملخصاته فقط ويعدلها خلال يومين. المدير يرى الكل وله «رد المدير».</li>
+        <li>تقرير «ساعات العمل»: الساعات حسب الموظف أو العميل أو نوع العمل.</li>
+      </ul>
+    </section>
+
+    <!-- 11 -->
+    <section class="ch" id="links" data-aud="staff manager tech">
+      <h2 class="t"><span class="n">11</span> اللوحة والروابط</h2>
+      <p class="sum">لوحة «مكتب المحاسبة»: كروت المستندات المنتهية والقريبة، والإشعارات الجديدة والمتأخرة، ورسمان من أول السنة. وكل الروابط في سايدبار Selling (شاشات العملاء) تحت Reports.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>الشاشة</th><th>الرابط داخل النظام</th></tr></thead>
+        <tbody id="linktable"></tbody>
+      </table></div>
+    </section>
+
+    <!-- 12 -->
+    <section class="ch" id="permissions" data-aud="manager tech">
+      <h2 class="t"><span class="n">12</span> الصلاحيات</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>الإجراء</th><th>من يستطيع</th></tr></thead>
+        <tbody>
+          <tr><td>عرض كلمات مرور المنصات والميل الضريبي</td><td>System Manager</td></tr>
+          <tr><td>إدارة خرائط المهام</td><td>System Manager، Accounts Manager، Projects Manager (القراءة: Accounts User، Projects User)</td></tr>
+          <tr><td>إلغاء مهمة إجبارية</td><td>System Manager، Projects Manager، Accounts Manager</td></tr>
+          <tr><td>العمل على مهمة خدمة وإغلاقها</td><td>من أُسندت إليه (تُشارك معه تلقائيًا)</td></tr>
+          <tr><td>إنشاء مهام خدمة</td><td>من له صلاحية إنشاء Task وقراءة العميل</td></tr>
+          <tr><td>إعدادات الإيميل الضريبي والقواعد والتصنيفات</td><td>System Manager، Accounts Manager</td></tr>
+          <tr><td>حذف إشعار ضريبي</td><td>System Manager، Accounts Manager</td></tr>
+          <tr><td>حذف ملف أو مجلد من الأرشيف</td><td>System Manager</td></tr>
+          <tr><td>تعديل ملخص يوم قديم أو لموظف آخر</td><td>System Manager، HR Manager، Accounts Manager</td></tr>
+          <tr><td>تسجيل ملخص اليوم</td><td>كل موظف لنفسه</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note"><b>سجل التتبع:</b> كل عرض لكلمة مرور، وكل رفع أو حذف في الأرشيف، وكل تغيير في خدمات العميل يُسجل باسم المستخدم والوقت.</div>
+    </section>
+
+    <!-- 13 -->
+    <section class="ch" id="best" data-aud="staff manager">
+      <h2 class="t"><span class="n">13</span> أفضل طريقة للاستخدام</h2>
+      <p class="sum">روتين عملي يجعل النظام مصدرًا واحدًا للحقيقة في المكتب.</p>
+      <h3>الموظف / المحاسب: كل يوم</h3>
+      <ol class="steps">
+        <li><b>ابدأ من قائمة مهامك</b>المهام المسندة لك والمهام المعروضة لقسمك أو رولك. استلم ما ستعمل عليه فورًا حتى لا يعمل عليه زميل آخر.</li>
+        <li><b>الإشعارات الضريبية الجديدة</b>افتح كل إشعار، غيّره إلى «تحت المراجعة»، ثم «تم التعامل» بعد الإنجاز مع ملاحظة.</li>
+        <li><b>حدّث المهمة لحظة حدوث الشيء</b>أكمل المهمة فور انتهائها، فالتالية تبدأ وتُسند تلقائيًا. وإذا توقفت، اختر «سبب الانتظار» بدلًا من تركها صامتة.</li>
+        <li><b>المستند مكانه الأرشيف</b>ارفع أي مستند يُستلم في مجلد العميل الصحيح بالسنة والتاريخ، وعلى المهمة إذا كانت تحتاج مرفقًا.</li>
+        <li><b>ملخص اليوم</b>قبل المغادرة: الأعمال والساعات لكل عميل.</li>
+      </ol>
+      <h3>المدير: كل أسبوع</h3>
+      <ul>
+        <li>لوحة مكتب المحاسبة وتقرير الإشعارات: المتأخر وغير المصنف وعالي الأولوية.</li>
+        <li>قائمة المهام مفلترة بالمتأخرة والمنتظرة. مهمة بها تعليق «أسندها يدويًا» تعني قسمًا بلا مدير أو رولًا بلا أصحاب.</li>
+        <li>تقرير انتهاء المستندات للشهر القادم، وافتح مهام التجديد من شاشة كل عميل.</li>
+        <li>حالة مزامنة الإيميلات: أي إيميل فشل (كلمة مرور تغيرت غالبًا).</li>
+        <li>ملخصات الأيام التي تحتاج متابعة، والرد عليها.</li>
+      </ul>
+      <h3>المدير: كل شهر</h3>
+      <ul>
+        <li>للخدمات الدورية (إقرارات شهرية وربع سنوية): أنشئ مهام الفترة لكل عميل من تاب الخدمات.</li>
+        <li>راجع الإشعارات «غير المصنفة» وأضف لها قواعد، وجربها بزر «جرّب القاعدة» قبل الحفظ.</li>
+        <li>حسّن خرائط المهام من الواقع: المدة الحقيقية، والمهام التي تُستبعد دائمًا.</li>
+      </ul>
+      <h3>نصائح لبناء خرائط جيدة</h3>
+      <ul>
+        <li>اجعل كل مرحلة مهمة رئيسية (تجهيز، تقديم، متابعة، استلام)، والتفاصيل مهام فرعية. التقارير تُقرأ على مستوى المراحل.</li>
+        <li>أسند للقسم أو الرول بدلًا من موظف بالاسم، إلا عند الضرورة. هكذا لا تتعطل المهمة عند غياب موظف.</li>
+        <li>اجعل «الاستيفاء إن وجد» وما يشبهه غير إجباري، وخطوات الـ scan «تحتاج مرفق».</li>
+        <li>استخدم «متوازي» للخطوات المستقلة فعلًا، مثل ملف ضريبي وملف قيمة مضافة يُقدمان معًا.</li>
+        <li>خريطة واحدة تخدم كل الكيانات: حدد «ينطبق على الكيانات» للخطوات الخاصة بنوع شركة فقط.</li>
+      </ul>
+    </section>
+
+    <!-- 14 -->
+    <section class="ch" id="faq" data-aud="staff manager tech">
+      <h2 class="t"><span class="n">14</span> أسئلة شائعة وحل المشاكل</h2>
+      <details class="faq"><summary>مهمة لا تظهر عند الموظف</summary><div>إما أنها لم تبدأ بعد (تنتظر المهام التي قبلها)، أو أن الموظف بلا مستخدم، أو ليس في القسم أو لا يحمل الرول المحدد. افتح المهمة: إن لم تبدأ تظهر رسالة بذلك، وإن لم يوجد من يستلمها يظهر تعليق «أسندها يدويًا».</div></details>
+      <details class="faq"><summary>زر «+ مهمة» غير ظاهر بجانب الخدمة</summary><div>الخدمة غير معلّمة للعميل، أو حالتها «موقوفة»، أو العميل لم يُحفظ بعد. علّم الخدمة واحفظ العميل.</div></details>
+      <details class="faq"><summary>مهمة من الخريطة لم تُنشأ للعميل</summary><div>المهمة محدد لها «ينطبق على الكيانات» وكيان العميل ليس منها، أو أن كيان العميل فارغ. نافذة الإنشاء تعرض السبب بجانب كل مهمة مستبعدة.</div></details>
+      <details class="faq"><summary>لا أستطيع إغلاق مهمة</summary><div>إما أنها «تحتاج مرفق» (ارفع الملف أولًا)، أو لم تبدأ بعد، أو أنها مهمة رئيسية تُغلق وحدها عند انتهاء فرعياتها.</div></details>
+      <details class="faq"><summary>الإشعارات الضريبية لا تُسند لأحد</summary><div>العميل بلا «كود محاسب»، أو المحاسب بلا مستخدم، ولا يوجد «مسؤول افتراضي» في إعدادات الإيميل الضريبي. يظهر تنبيه برتقالي بذلك أعلى شاشة العميل.</div></details>
+      <details class="faq"><summary>إيميل عميل يفشل في القراءة</summary><div>افتح «حالة مزامنة الإيميلات» لقراءة الخطأ. غالبًا كلمة المرور تغيرت: حدّثها في صف الإيميل ثم «اختبار الاتصال». بعد الفشل ينتظر النظام 6 ساعات، و«جلب الآن» يتجاوز الانتظار.</div></details>
+      <details class="faq"><summary>إشعار صُنف خطأ</summary><div>افتح القاعدة المطبقة (رابط في الإشعار)، وعدّل كلماتها أو ترتيبها، وجربها بـ«جرّب القاعدة»، ثم «إعادة تطبيق القواعد» من القائمة.</div></details>
+      <details class="faq"><summary>عدّلت خريطة الخدمة، فهل تتغير المهام الحالية؟</summary><div>لا. التعديل يُطبق على المهام التي تُنشأ بعده فقط.</div></details>
+    </section>
+
+    <!-- 15 -->
+    <section class="ch" id="tech" data-aud="tech">
+      <h2 class="t"><span class="n">15</span> ملاحظات فنية</h2>
+      <ul>
+        <li><b>الكود:</b> <code>apps/accounting_firms</code>. حقول شاشة العميل في <code>fixtures/custom_field.json</code>، وحقول الصنف والقسم والمهمة في <code>office_services/setup.py</code> (تُطبق مع كل migrate)، والبيانات الافتراضية بـ patches وتُنشأ أيضًا عند التثبيت.</li>
+        <li><b>التثبيت على خادم آخر:</b> <code>bench get-app</code> ثم <code>bench install-app accounting_firms</code> ثم <code>bench migrate</code>.</li>
+        <li><b>بعد تعديل Python:</b> الخادم production (gunicorn مع preload). <code>bench migrate</code> لا يعيد التشغيل، فيلزم إعادة تشغيل الويب والـ workers.</li>
+        <li><b>المهمة المجدولة:</b> <code>accounting_firms.tax_email.fetch.fetch_all</code> كل 5 دقائق، تقرأ الإيميلات التي حان دورها حسب الإعداد. تتطلب تشغيل scheduler الموقع.</li>
+        <li><b>محرك المهام:</b> <code>office_services/tasks.py</code>. أحداث Task: <code>before_validate</code> و <code>on_update</code>. المهمة تُشارك مع المسند له بصلاحية تعديل قبل الإسناد.</li>
+        <li><b>الملفات الثابتة:</b> nginx يخزنها في الكاش سنة، لذلك كل إصدار من إضافة المتصفح له ملف باسم رقمه.</li>
+        <li><b>الرجوع عن ميزة:</b> كل ميزة في commit مستقل يمكن عمل revert له وحده.</li>
+      </ul>
+    </section>
+
+    <!-- 16 -->
+    <section class="ch" id="changelog" data-aud="tech manager">
+      <h2 class="t"><span class="n">16</span> سجل التعديلات</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>التاريخ</th><th>الـ commit</th><th>التعديل</th></tr></thead>
+        <tbody>
+          <tr><td>2026-11-15</td><td><code>8bb4437</code></td><td>مهام الخدمات من شاشة العميل: الإنشاء من الخريطة، التسلسل، الإسناد والاستلام</td></tr>
+          <tr><td>2026-11-15</td><td><code>eb73883</code></td><td>خريطة مهام الخدمة، و«مدير القسم»</td></tr>
+          <tr><td>2026-11-15</td><td><code>10dd9e9</code></td><td>تاب الخدمات في شاشة العميل</td></tr>
+          <tr><td>2026-11-15</td><td><code>5faebf4</code></td><td>«خدمة مكتب» على الصنف، وتعليم خدمات الدليل</td></tr>
+          <tr><td>2026-11-08</td><td><code>6f65d10</code></td><td>إضافة المتصفح 1.0.3</td></tr>
+          <tr><td>2026-10-15</td><td><code>0fc78d0</code></td><td>الإيميل الضريبي: أرشفة القديم، المسؤول الافتراضي، الكلمة الكاملة، الفولدرات، OAuth، تنبيهات الفشل</td></tr>
+          <tr><td>2026-10-12</td><td><code>d670c82</code>، <code>c4484f0</code></td><td>البيانات الافتراضية عند التثبيت</td></tr>
+          <tr><td>2026-10-11</td><td><code>a56ee80</code></td><td>أرشيف العميل</td></tr>
+          <tr><td>2026-10-11</td><td><code>29c9c17</code>، <code>3acc897</code></td><td>البيانات الإدارية، العلامات التجارية، الشركات المرتبطة، ملخص اليوم</td></tr>
+          <tr><td>2026-10-11</td><td><code>bdd4a50</code>، <code>878f555</code></td><td>لوحة المكتب وروابط السايدبار، الترجمة</td></tr>
+          <tr><td>2026-10-06</td><td><code>b07a7ff</code> ← <code>c23eacf</code></td><td>قراءة الإيميل الضريبي وتصنيف الإشعارات</td></tr>
+          <tr><td>2026-10-06</td><td><code>322fb35</code> ← <code>7ab5fa7</code></td><td>إضافة المتصفح للدخول التلقائي</td></tr>
+          <tr><td>2026-10-06</td><td><code>35d4b3f</code>، <code>8d5311e</code></td><td>إعادة هيكلة العميل، المنصات، ملف الفاتورة الإلكترونية</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <div class="empty" id="noresults" hidden>لا توجد نتائج. جرّب كلمة أخرى، أو امسح البحث.</div>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap"><span>Digital Roots Solutions · دليل تطبيق accounting_firms</span><span>الإصدار 2.0 · نوفمبر 2026</span></div>
+</footer>
+</div>
+
+<script>
+(function () {
+  const LINKS = [
+    ["لوحة مكتب المحاسبة", "/app/dashboard-view/مكتب المحاسبة"],
+    ["خرائط مهام الخدمات", "/app/service-task-map"],
+    ["المهام", "/app/task"],
+    ["تقرير انتهاء المستندات", "/app/query-report/Document Expiry Monitor"],
+    ["تقرير الإشعارات الضريبية", "/app/query-report/Tax Notifications Monitor"],
+    ["الإشعارات الضريبية", "/app/tax-notification"],
+    ["قواعد تصنيف الإشعارات", "/app/tax-notification-rule"],
+    ["فئات الإشعارات", "/app/tax-notification-category"],
+    ["إعدادات الإيميل الضريبي", "/app/tax-email-settings"],
+    ["حالة مزامنة الإيميلات", "/app/tax-mailbox-sync"],
+    ["المنصات الضريبية", "/app/tax-platform"],
+    ["ملخص اليوم", "/app/employee-daily-summary"],
+    ["تقرير ساعات العمل", "/app/query-report/Daily Work Hours"],
+    ["مستندات الأرشيف", "/app/customer-document"],
+    ["ملخص الأرشيف", "/app/query-report/Archive Summary"],
+    ["الهيكل الافتراضي للأرشيف", "/app/archive-folder-template/view/tree"],
+    ["فروع العملاء", "/app/customer-branch"],
+  ];
+  const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  document.getElementById("linktable").innerHTML = LINKS.map(([n, p]) =>
+    `<tr><td><a href="${encodeURI(p)}">${esc(n)}</a></td><td><span class="path">${esc(p)}</span><button class="copy" type="button" data-copy="${esc(p)}">نسخ</button></td></tr>`).join("");
+
+  const sections = [...document.querySelectorAll("section.ch")];
+  const toc = document.getElementById("toc"), tocm = document.getElementById("tocm");
+  const items = sections.map((s) => {
+    const n = s.querySelector("h2 .n").textContent;
+    const title = [...s.querySelector("h2").childNodes].filter((x) => x.nodeType === 3).map((x) => x.textContent).join("").trim();
+    return { s, n, title };
+  });
+  toc.innerHTML = items.map((i) => `<li><a href="#${i.s.id}" data-id="${i.s.id}"><span class="n">${i.n}</span><span>${esc(i.title)}</span></a></li>`).join("");
+  tocm.innerHTML = items.map((i) => `<li><a href="#${i.s.id}">${i.n}. ${esc(i.title)}</a></li>`).join("");
+  tocm.addEventListener("click", (e) => { if (e.target.closest("a")) tocm.closest("details").open = false; });
+
+  // copy buttons
+  document.addEventListener("click", async (e) => {
+    const b = e.target.closest(".copy");
+    if (!b) return;
+    const text = b.dataset.copy;
+    try {
+      await navigator.clipboard.writeText(text);
+      b.textContent = "تم النسخ"; b.classList.add("ok");
+    } catch {
+      const span = b.previousElementSibling;
+      if (span) { const r = document.createRange(); r.selectNodeContents(span); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
+      b.textContent = "حدد وانسخ";
+    }
+    setTimeout(() => { b.textContent = "نسخ"; b.classList.remove("ok"); }, 1600);
+  });
+
+  // audience
+  let aud = "all";
+  try { aud = localStorage.getItem("af-guide-aud") || "all"; } catch {}
+  const audButtons = [...document.querySelectorAll(".aud button")];
+  function applyAud() {
+    audButtons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.aud === aud)));
+    sections.forEach((s) => {
+      const fits = aud === "all" || (s.dataset.aud || "").split(" ").includes(aud);
+      s.classList.toggle("dim", !fits);
+      const a = toc.querySelector(`a[data-id="${s.id}"]`);
+      if (a) a.classList.toggle("dim", !fits);
+    });
+  }
+  audButtons.forEach((b) => b.addEventListener("click", () => {
+    aud = b.dataset.aud;
+    try { localStorage.setItem("af-guide-aud", aud); } catch {}
+    applyAud();
+  }));
+  applyAud();
+
+  // search
+  const q = document.getElementById("q"), hits = document.getElementById("hits"), none = document.getElementById("noresults");
+  const norm = (t) => t.toLowerCase().replace(/[ًٌٍَُِّْـ]/g, "").replace(/[أإآ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه");
+  const original = new Map(sections.map((s) => [s, s.innerHTML]));
+  let timer;
+  q.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(search, 150); });
+  function search() {
+    const term = q.value.trim();
+    let count = 0;
+    sections.forEach((s) => {
+      s.innerHTML = original.get(s);
+      if (!term) { s.hidden = false; return; }
+      const match = norm(s.textContent).includes(norm(term));
+      s.hidden = !match;
+      if (match) { count++; highlight(s, term); }
+    });
+    hits.textContent = term ? `${count} فصل` : "";
+    none.hidden = !term || count > 0;
+    if (term) { const first = sections.find((s) => !s.hidden); if (first) first.scrollIntoView({ block: "start" }); }
+  }
+  function highlight(root, term) {
+    const t = norm(term);
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: (n) => n.parentElement.closest("button, script") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((n) => {
+      const i = norm(n.textContent).indexOf(t);
+      if (i < 0 || norm(n.textContent).length !== n.textContent.length) return;
+      const r = document.createRange(); r.setStart(n, i); r.setEnd(n, i + term.length);
+      const m = document.createElement("mark"); r.surroundContents(m);
+    });
+  }
+
+  // scrollspy
+  const links = [...toc.querySelectorAll("a")];
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (en.isIntersecting) links.forEach((a) => a.classList.toggle("on", a.dataset.id === en.target.id));
+    });
+  }, { rootMargin: "-80px 0px -70% 0px" });
+  sections.forEach((s) => io.observe(s));
+})();
+</script>
+
+</body>
+</html>
